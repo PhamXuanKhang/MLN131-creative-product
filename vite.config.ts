@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/Web-Ho-Chi-Minh-journey/',
+  base: '/Map_Khang_chien_chong_my/',
 })
