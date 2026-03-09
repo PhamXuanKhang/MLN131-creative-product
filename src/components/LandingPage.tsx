@@ -41,9 +41,9 @@ function LandingPage({ onEnter }: LandingPageProps) {
             <span className="star">★</span>
           </div>
           <h1 className="main-title">
-            <span className="title-sub">Hành Trình Tìm Đường Cứu Nước</span>
-            <span className="title-main">NGUYỄN ÁI QUỐC</span>
-            <span className="title-year">1911 - 1941</span>
+            <span className="title-sub">Các Chiến Dịch Quân Sự Lớn</span>
+            <span className="title-main">KHÁNG CHIẾN CHỐNG MỸ</span>
+            <span className="title-year">1960 - 1975</span>
           </h1>
           <div className="header-decoration">
             <span className="star">★</span>
@@ -55,44 +55,43 @@ function LandingPage({ onEnter }: LandingPageProps) {
         {/* Phần giới thiệu */}
         <section className="intro-section">
           <p className="intro-quote">
-            "Tôi muốn đi ra nước ngoài, xem nước Pháp và các nước khác. 
-            Sau khi xem xét họ làm như thế nào, tôi sẽ trở về giúp đồng bào ta."
+            "Không có gì quý hơn độc lập, tự do."
           </p>
-          <span className="quote-author">— Nguyễn Tất Thành, 1911</span>
+          <span className="quote-author">— Chủ tịch Hồ Chí Minh, 1966</span>
         </section>
 
         {/* Thống kê nhanh */}
         <section className="quick-stats">
           <div className="stat-item">
-            <span className="stat-number">30</span>
-            <span className="stat-label">Năm Bôn Ba</span>
+            <span className="stat-number">5</span>
+            <span className="stat-label">Chiến Dịch Lớn</span>
           </div>
           <div className="stat-divider"></div>
           <div className="stat-item">
-            <span className="stat-number">28</span>
-            <span className="stat-label">Quốc Gia</span>
+            <span className="stat-number">15</span>
+            <span className="stat-label">Năm Kháng Chiến</span>
           </div>
           <div className="stat-divider"></div>
           <div className="stat-item">
-            <span className="stat-number">3</span>
-            <span className="stat-label">Châu Lục</span>
+            <span className="stat-number">17</span>
+            <span className="stat-label">Trận Đánh</span>
           </div>
           <div className="stat-divider"></div>
           <div className="stat-item">
             <span className="stat-number">∞</span>
-            <span className="stat-label">Di Sản</span>
+            <span className="stat-label">Hy Sinh</span>
           </div>
         </section>
 
-        {/* Nút vào trang chính - đơn giản */}
+        {/* Nút vào trang chính */}
         <div className="enter-section" onClick={handleEnter}>
-          <span className="enter-text">Nhấn để bắt đầu hành trình</span>
+          <span className="enter-text">Nhấn để khám phá bản đồ chiến dịch</span>
           <span className="enter-arrow">↓</span>
         </div>
 
         {/* Footer */}
         <footer className="landing-footer">
-          <p>Dự án học phần HCM202 - Tư tưởng Hồ Chí Minh</p>
+          <p>Dự án học phần VNR202 - Lịch sử Việt Nam</p>
           <p className="team-info">Nhóm 8 | 2026</p>
         </footer>
       </div>

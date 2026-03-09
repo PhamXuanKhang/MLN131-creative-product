@@ -1,52 +1,99 @@
-import { useState, useRef, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap, Polyline } from "react-leaflet";
-import { Icon, Marker as LeafletMarker } from "leaflet";
-import type { LatLngExpression } from "leaflet";
+import { useState, useRef, useEffect, useMemo } from "react";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMap,
+} from "react-leaflet";
+import { DivIcon } from "leaflet";
+import type { Marker as LeafletMarker } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./MapView.css";
-import { locations } from "../data/locations";
-import type { Location } from "../data/locations";
+import { campaigns } from "../data/locations";
+import type { Campaign, Battle } from "../data/locations";
+import Timeline from "./Timeline";
+import LocationCard from "./LocationCard";
 
-// interface Location removed as it is imported
+// === CUSTOM ICONS ===
 
+function createCampaignIcon(isActive: boolean, isDimmed: boolean) {
+  const bg = isDimmed
+    ? "rgba(100,100,100,0.5)"
+    : isActive
+      ? "#ffd700"
+      : "linear-gradient(135deg, #da251d 0%, #ff4444 100%)";
+  const border = isDimmed
+    ? "rgba(150,150,150,0.4)"
+    : isActive
+      ? "#fff"
+      : "rgba(255, 215, 0, 0.7)";
+  const starColor = isDimmed ? "#666" : isActive ? "#da251d" : "#ffd700";
+  const shadow = isDimmed
+    ? "none"
+    : isActive
+      ? "0 0 25px rgba(255, 215, 0, 0.8)"
+      : "0 0 15px rgba(218, 37, 29, 0.5)";
+  const size = isActive ? 48 : 40;
 
-// Tạo custom icon màu đỏ cho marker
-const redIcon = new Icon({
-  iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
-  shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
-
-// Icon vàng cho marker đang được chọn
-const goldIcon = new Icon({
-  iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png",
-  shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
-
-
-// Tạo đường nối giữa các điểm
-const journeyPath: LatLngExpression[] = locations.map((loc) => [
-  loc.coordinates.lat,
-  loc.coordinates.lng,
-]);
-
-// Component con để xử lý flyTo
-interface FlyToMarkerProps {
-  location: Location;
-  isActive: boolean;
-  onSelect: (location: Location) => void;
+  return new DivIcon({
+    html: `<div style="
+      width:${size}px;height:${size}px;
+      background:${bg};
+      border:3px solid ${border};
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:${shadow};
+      transition:all 0.3s ease;
+      cursor:pointer;
+    "><span style="color:${starColor};font-size:${isActive ? 24 : 20}px;line-height:1;">★</span></div>`,
+    className: "campaign-marker-icon",
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size / 2],
+    popupAnchor: [0, -(size / 2)],
+  });
 }
 
-const FlyToMarker = ({ location, isActive, onSelect }: FlyToMarkerProps) => {
+function createBattleIcon() {
+  return new DivIcon({
+    html: `<div style="
+      width:22px;height:22px;
+      background:radial-gradient(circle, #ff4444 0%, #da251d 100%);
+      border:2px solid #fff;
+      border-radius:50%;
+      box-shadow:0 0 12px rgba(255, 68, 68, 0.7);
+      cursor:pointer;
+      transition:all 0.3s ease;
+      display:flex;align-items:center;justify-content:center;
+    "><span style="color:#fff;font-size:11px;font-weight:bold;">⚔</span></div>`,
+    className: "battle-marker-icon",
+    iconSize: [22, 22],
+    iconAnchor: [11, 11],
+    popupAnchor: [0, -11],
+  });
+}
+
+// === SUB-COMPONENTS ===
+
+interface CampaignMarkerProps {
+  campaign: Campaign;
+  isActive: boolean;
+  isDimmed: boolean;
+  onClick: (campaign: Campaign) => void;
+}
+
+const CampaignMarker = ({
+  campaign,
+  isActive,
+  isDimmed,
+  onClick,
+}: CampaignMarkerProps) => {
   const map = useMap();
   const markerRef = useRef<LeafletMarker>(null);
+  const icon = useMemo(
+    () => createCampaignIcon(isActive, isDimmed),
+    [isActive, isDimmed]
+  );
 
   useEffect(() => {
     if (isActive && markerRef.current) {
@@ -55,27 +102,26 @@ const FlyToMarker = ({ location, isActive, onSelect }: FlyToMarkerProps) => {
   }, [isActive]);
 
   const handleClick = () => {
-    map.flyTo([location.coordinates.lat, location.coordinates.lng], 6, {
-      duration: 1.5,
-    });
-    onSelect(location);
+    map.flyTo(
+      [campaign.coordinates.lat, campaign.coordinates.lng],
+      campaign.id === 2 || campaign.id === 3 ? 7 : 9,
+      { duration: 1.5 }
+    );
+    onClick(campaign);
   };
 
   return (
     <Marker
       ref={markerRef}
-      position={[location.coordinates.lat, location.coordinates.lng]}
-      icon={isActive ? goldIcon : redIcon}
-      eventHandlers={{
-        click: handleClick,
-      }}
+      position={[campaign.coordinates.lat, campaign.coordinates.lng]}
+      icon={icon}
+      eventHandlers={{ click: handleClick }}
     >
       <Popup>
         <div className="popup-content">
-          <h3>{location.name}</h3>
-          <p className="popup-country">
-            📍 {location.country} | {location.year}
-            {location.endYear ? ` - ${location.endYear}` : ""}
+          <h3>★ {campaign.name}</h3>
+          <p className="popup-year">
+            {campaign.year} | {campaign.battles.length} trận đánh
           </p>
         </div>
       </Popup>
@@ -83,209 +129,182 @@ const FlyToMarker = ({ location, isActive, onSelect }: FlyToMarkerProps) => {
   );
 };
 
-// Component Timeline
-interface TimelineProps {
-  locations: Location[];
-  activeId: number | null;
-  onSelect: (location: Location) => void;
+interface BattleMarkerProps {
+  battle: Battle;
+  isActive: boolean;
+  onClick: (battle: Battle) => void;
 }
 
-const Timeline = ({ locations, activeId, onSelect }: TimelineProps) => {
-  return (
-    <div className="timeline">
-      <div className="timeline-line"></div>
-      <div className="timeline-track">
-        {locations.map((location, index) => (
-          <div
-            key={location.id}
-            className={`timeline-item ${activeId === location.id ? "active" : ""}`}
-            onClick={() => onSelect(location)}
-          >
-            <div className="timeline-dot">
-              <span className="timeline-number">{index + 1}</span>
-            </div>
-            <div className="timeline-label">
-              <span className="timeline-year">{location.year}</span>
-              <span className="timeline-name">{location.name}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-// Component Card thông tin chi tiết
-interface LocationCardProps {
-  location: Location;
-  onClose: () => void;
-}
-
-const LocationCard = ({ location, onClose }: LocationCardProps) => {
-  return (
-    <div className="location-card">
-      <button className="card-close" onClick={onClose}>✕</button>
-      
-      <div className="card-image">
-        <img src={location.image} alt={location.name} />
-        <div className="card-badge">
-          {location.year}{location.endYear ? ` - ${location.endYear}` : ""}
-        </div>
-      </div>
-      
-      <div className="card-body">
-        <h2>{location.name}</h2>
-        <p className="card-country">📍 {location.country}</p>
-        <p className="card-desc">{location.description}</p>
-        
-        <div className="card-events">
-          <h4>📜 Sự kiện chính</h4>
-          <ul>
-            {location.events.map((event, idx) => (
-              <li key={idx}>{event}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Component điều khiển bay đến vị trí từ Timeline
-interface MapControllerProps {
-  targetLocation: Location | null;
-}
-
-const MapController = ({ targetLocation }: MapControllerProps) => {
+const BattleMarker = ({ battle, isActive, onClick }: BattleMarkerProps) => {
   const map = useMap();
+  const markerRef = useRef<LeafletMarker>(null);
+  const icon = useMemo(() => createBattleIcon(), []);
 
-  if (targetLocation) {
-    map.flyTo(
-      [targetLocation.coordinates.lat, targetLocation.coordinates.lng],
-      6,
-      { duration: 1.5 }
-    );
-  }
+  useEffect(() => {
+    if (isActive && markerRef.current) {
+      markerRef.current.openPopup();
+    }
+  }, [isActive]);
 
+  const handleClick = () => {
+    map.flyTo([battle.coordinates.lat, battle.coordinates.lng], 11, {
+      duration: 1,
+    });
+    onClick(battle);
+  };
+
+  return (
+    <Marker
+      ref={markerRef}
+      position={[battle.coordinates.lat, battle.coordinates.lng]}
+      icon={icon}
+      eventHandlers={{ click: handleClick }}
+    >
+      <Popup>
+        <div className="popup-content">
+          <h3>⚔ {battle.name}</h3>
+          {battle.date && <p className="popup-year">{battle.date}</p>}
+        </div>
+      </Popup>
+    </Marker>
+  );
+};
+
+interface MapControllerProps {
+  target: { lat: number; lng: number; zoom: number } | null;
+}
+
+const MapController = ({ target }: MapControllerProps) => {
+  const map = useMap();
+  useEffect(() => {
+    if (target) {
+      map.flyTo([target.lat, target.lng], target.zoom, { duration: 1.5 });
+    }
+  }, [target, map]);
   return null;
 };
 
+// === MAIN COMPONENT ===
+
 const MapView = () => {
-  const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
-  const [flyTarget, setFlyTarget] = useState<Location | null>(null);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
-  const [currentAutoPlayIndex, setCurrentAutoPlayIndex] = useState(0);
-  const autoPlayRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [activeCampaignId, setActiveCampaignId] = useState<number | null>(
+    null
+  );
+  const [selectedBattleId, setSelectedBattleId] = useState<string | null>(null);
+  const [flyTarget, setFlyTarget] = useState<{
+    lat: number;
+    lng: number;
+    zoom: number;
+  } | null>(null);
 
-  // Auto-play logic
-  useEffect(() => {
-    if (isAutoPlaying) {
-      // Bay đến địa điểm hiện tại
-      const currentLocation = locations[currentAutoPlayIndex];
-      setSelectedLocation(currentLocation);
-      setFlyTarget(currentLocation);
-      setTimeout(() => setFlyTarget(null), 2000);
+  const activeCampaign = useMemo(
+    () => campaigns.find((c) => c.id === activeCampaignId) ?? null,
+    [activeCampaignId]
+  );
 
-      // Đặt timer để chuyển sang địa điểm tiếp theo sau 5 giây
-      autoPlayRef.current = setTimeout(() => {
-        if (currentAutoPlayIndex < locations.length - 1) {
-          setCurrentAutoPlayIndex((prev) => prev + 1);
-        } else {
-          // Kết thúc hành trình
-          setIsAutoPlaying(false);
-          setCurrentAutoPlayIndex(0);
-        }
-      }, 15000);
-    }
+  const selectedBattle = useMemo(() => {
+    if (!activeCampaign || !selectedBattleId) return null;
+    return (
+      activeCampaign.battles.find((b) => b.id === selectedBattleId) ?? null
+    );
+  }, [activeCampaign, selectedBattleId]);
 
-    return () => {
-      if (autoPlayRef.current) {
-        clearTimeout(autoPlayRef.current);
-      }
-    };
-  }, [isAutoPlaying, currentAutoPlayIndex]);
-
-  const handleStartAutoPlay = () => {
-    if (isAutoPlaying) {
-      // Dừng auto-play
-      setIsAutoPlaying(false);
-      if (autoPlayRef.current) {
-        clearTimeout(autoPlayRef.current);
-      }
-    } else {
-      // Bắt đầu auto-play từ đầu
-      setCurrentAutoPlayIndex(0);
-      setIsAutoPlaying(true);
-    }
-  };
-
-  const handleSelectFromTimeline = (location: Location) => {
-    // Dừng auto-play khi người dùng click thủ công
-    if (isAutoPlaying) {
-      setIsAutoPlaying(false);
-      if (autoPlayRef.current) {
-        clearTimeout(autoPlayRef.current);
-      }
-    }
-    setSelectedLocation(location);
-    setFlyTarget(location);
+  const handleSelectCampaign = (campaign: Campaign) => {
+    setActiveCampaignId(campaign.id);
+    setSelectedBattleId(null);
+    setFlyTarget({
+      lat: campaign.coordinates.lat,
+      lng: campaign.coordinates.lng,
+      zoom: campaign.id === 2 || campaign.id === 3 ? 7 : 9,
+    });
     setTimeout(() => setFlyTarget(null), 2000);
   };
 
-  const handleSelectFromMarker = (location: Location) => {
-    // Dừng auto-play khi người dùng click thủ công
-    if (isAutoPlaying) {
-      setIsAutoPlaying(false);
-      if (autoPlayRef.current) {
-        clearTimeout(autoPlayRef.current);
-      }
-    }
-    setSelectedLocation(location);
+  const handleSelectBattle = (battle: Battle) => {
+    setSelectedBattleId(battle.id);
+    setFlyTarget({
+      lat: battle.coordinates.lat,
+      lng: battle.coordinates.lng,
+      zoom: 11,
+    });
+    setTimeout(() => setFlyTarget(null), 2000);
+  };
+
+  const handleBackToOverview = () => {
+    setActiveCampaignId(null);
+    setSelectedBattleId(null);
+    setFlyTarget({ lat: 14.5, lng: 107.0, zoom: 6 });
+    setTimeout(() => setFlyTarget(null), 2000);
   };
 
   const handleCloseCard = () => {
-    setSelectedLocation(null);
+    if (selectedBattleId) {
+      setSelectedBattleId(null);
+    } else {
+      setActiveCampaignId(null);
+    }
   };
 
   return (
     <div className="map-container">
-      {/* Bản đồ với Dark Theme */}
       <MapContainer
-        center={[25, 20]}
-        zoom={2}
-        style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0, zIndex: 0 }}
+        center={[14.5, 107.0]}
+        zoom={6}
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 0,
+        }}
         scrollWheelZoom={true}
         zoomControl={false}
       >
-        {/* Bản đồ Dark Theme - CartoDB Dark Matter */}
         <TileLayer
           attribution='&copy; <a href="https://carto.com/">CARTO</a>'
           url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
         />
 
-        {/* Đường nối hành trình */}
-        <Polyline
-          positions={journeyPath}
-          pathOptions={{
-            color: "#ffd700",
-            weight: 2,
-            opacity: 0.7,
-            dashArray: "10, 10",
-          }}
-        />
+        <MapController target={flyTarget} />
 
-        {/* Controller để bay đến vị trí */}
-        <MapController targetLocation={flyTarget} />
+        {/* Campaign Markers (Ghim Mẹ) */}
+        {campaigns.map((campaign) => {
+          if (activeCampaignId === null) {
+            return (
+              <CampaignMarker
+                key={campaign.id}
+                campaign={campaign}
+                isActive={false}
+                isDimmed={false}
+                onClick={handleSelectCampaign}
+              />
+            );
+          }
+          if (campaign.id === activeCampaignId) {
+            return (
+              <CampaignMarker
+                key={campaign.id}
+                campaign={campaign}
+                isActive={true}
+                isDimmed={false}
+                onClick={handleSelectCampaign}
+              />
+            );
+          }
+          return null;
+        })}
 
-        {/* Render các marker */}
-        {locations.map((location) => (
-          <FlyToMarker
-            key={location.id}
-            location={location}
-            isActive={selectedLocation?.id === location.id}
-            onSelect={handleSelectFromMarker}
-          />
-        ))}
+        {/* Battle Markers (Ghim Con) */}
+        {activeCampaign &&
+          activeCampaign.battles.map((battle) => (
+            <BattleMarker
+              key={battle.id}
+              battle={battle}
+              isActive={selectedBattleId === battle.id}
+              onClick={handleSelectBattle}
+            />
+          ))}
       </MapContainer>
 
       {/* Header */}
@@ -293,52 +312,39 @@ const MapView = () => {
         <div className="header-content">
           <h1>
             <span className="flag">🇻🇳</span>
-            Hành trình tìm đường cứu nước
+            Các chiến dịch lớn trong Kháng chiến chống Mỹ
           </h1>
-          <h2>Chủ tịch Hồ Chí Minh</h2>
-          <p className="header-subtitle">1911 - 1941 • 30 năm bôn ba qua 4 châu lục</p>
+          <p className="header-subtitle">
+            1960 - 1975 • Bản đồ tương tác các chiến dịch quân sự
+          </p>
         </div>
       </header>
 
-      {/* Auto-play controls */}
-      <div className="autoplay-container">
-        <button 
-          className={`autoplay-btn ${isAutoPlaying ? 'playing' : ''}`}
-          onClick={handleStartAutoPlay}
-        >
-          <span className="icon">{isAutoPlaying ? '⏸' : '▶'}</span>
-          {isAutoPlaying ? 'Tạm dừng' : 'Bắt đầu hành trình'}
-        </button>
-        
-        {isAutoPlaying && (
-          <div className="autoplay-progress">
-            <span>{currentAutoPlayIndex + 1}/{locations.length}</span>
-            <div className="progress-bar">
-              <div 
-                className="progress-fill" 
-                style={{ width: `${((currentAutoPlayIndex + 1) / locations.length) * 100}%` }}
-              />
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Card thông tin chi tiết */}
-      {selectedLocation && (
-        <LocationCard location={selectedLocation} onClose={handleCloseCard} />
+      {/* Info Panel */}
+      {(activeCampaign || selectedBattle) && (
+        <LocationCard
+          campaign={activeCampaign}
+          battle={selectedBattle}
+          onClose={handleCloseCard}
+          onBack={handleBackToOverview}
+          onSelectBattle={handleSelectBattle}
+        />
       )}
 
-      {/* Timeline ở dưới */}
+      {/* Timeline */}
       <Timeline
-        locations={locations}
-        activeId={selectedLocation?.id ?? null}
-        onSelect={handleSelectFromTimeline}
+        campaigns={campaigns}
+        activeCampaignId={activeCampaignId}
+        onSelectCampaign={handleSelectCampaign}
       />
 
-      {/* Hướng dẫn khi chưa chọn địa điểm */}
-      {!selectedLocation && (
+      {/* Guide Hint */}
+      {!activeCampaign && (
         <div className="guide-hint">
-          <p>👆 Nhấp vào các điểm đánh dấu hoặc timeline để khám phá hành trình</p>
+          <p>
+            👆 Nhấp vào các <strong>ngôi sao ★</strong> trên bản đồ hoặc{" "}
+            <strong>timeline</strong> để khám phá các chiến dịch
+          </p>
         </div>
       )}
     </div>

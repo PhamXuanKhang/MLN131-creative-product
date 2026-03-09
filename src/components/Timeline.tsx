@@ -1,26 +1,33 @@
-import type { Location } from "../data/locations";
+import type { Campaign } from "../data/locations";
 import "./Timeline.css";
 
 interface TimelineProps {
-  locations: Location[];
-  activeId: number | null;
-  onSelect: (location: Location) => void;
+  campaigns: Campaign[];
+  activeCampaignId: number | null;
+  onSelectCampaign: (campaign: Campaign) => void;
 }
 
-const Timeline = ({ locations, activeId, onSelect }: TimelineProps) => {
+const Timeline = ({
+  campaigns,
+  activeCampaignId,
+  onSelectCampaign,
+}: TimelineProps) => {
   return (
     <div className="timeline">
+      <div className="timeline-line"></div>
       <div className="timeline-track">
-        {locations.map((location) => (
+        {campaigns.map((campaign, index) => (
           <div
-            key={location.id}
-            className={`timeline-item ${activeId === location.id ? "active" : ""}`}
-            onClick={() => onSelect(location)}
+            key={campaign.id}
+            className={`timeline-item ${activeCampaignId === campaign.id ? "active" : ""}`}
+            onClick={() => onSelectCampaign(campaign)}
           >
-            <div className="timeline-dot"></div>
+            <div className="timeline-dot">
+              <span className="timeline-number">{index + 1}</span>
+            </div>
             <div className="timeline-label">
-              <span className="timeline-year">{location.year}</span>
-              <span className="timeline-name">{location.name}</span>
+              <span className="timeline-year">{campaign.year}</span>
+              <span className="timeline-name">{campaign.name}</span>
             </div>
           </div>
         ))}
