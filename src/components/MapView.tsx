@@ -186,7 +186,7 @@ const MapController = ({ target }: MapControllerProps) => {
 
 // === MAIN COMPONENT ===
 
-const MapView = () => {
+const MapView = ({ onOpenQuiz }: { onOpenQuiz: () => void }) => {
   const [activeCampaignId, setActiveCampaignId] = useState<number | null>(
     null
   );
@@ -327,6 +327,9 @@ const MapView = () => {
             1960 - 1975 • Bản đồ tương tác các chiến dịch quân sự
           </p>
         </div>
+        <button className="quiz-nav-btn" onClick={onOpenQuiz}>
+          📝 Kiểm tra kiến thức
+        </button>
       </header>
 
       {/* Info Panel */}
