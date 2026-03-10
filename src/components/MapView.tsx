@@ -240,6 +240,15 @@ const MapView = () => {
   const handleCloseCard = () => {
     if (selectedBattleId) {
       setSelectedBattleId(null);
+      // Fly back to the parent campaign pin
+      if (activeCampaign) {
+        setFlyTarget({
+          lat: activeCampaign.coordinates.lat,
+          lng: activeCampaign.coordinates.lng,
+          zoom: activeCampaign.id === 2 || activeCampaign.id === 3 ? 7 : 9,
+        });
+        setTimeout(() => setFlyTarget(null), 2000);
+      }
     } else {
       setActiveCampaignId(null);
     }

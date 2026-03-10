@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { Campaign, Battle } from "../data/locations";
 import "./LocationCard.css";
 
@@ -16,6 +17,7 @@ const LocationCard = ({
   onBack,
   onSelectBattle,
 }: LocationCardProps) => {
+  const [lightboxImage, setLightboxImage] = useState<{ src: string; alt: string } | null>(null);
   // Show battle detail
   if (battle) {
     return (
@@ -31,9 +33,14 @@ const LocationCard = ({
         </div>
 
         {battle.image && (
-          <div className="card-image">
+          <div className="card-image" onClick={() => setLightboxImage({ src: battle.image, alt: battle.name })}>
             <img src={battle.image} alt={battle.name} />
+            <div className="image-zoom-hint">🔍</div>
           </div>
+        )}
+
+        {lightboxImage && (
+          <ImageLightbox src={lightboxImage.src} alt={lightboxImage.alt} onClose={() => setLightboxImage(null)} />
         )}
 
         <div className="card-content">
@@ -63,10 +70,15 @@ const LocationCard = ({
         </div>
 
         {campaign.image && (
-          <div className="card-image">
+          <div className="card-image" onClick={() => setLightboxImage({ src: campaign.image, alt: campaign.name })}>
             <img src={campaign.image} alt={campaign.name} />
             <div className="card-year-badge">{campaign.year}</div>
+            <div className="image-zoom-hint">🔍</div>
           </div>
+        )}
+
+        {lightboxImage && (
+          <ImageLightbox src={lightboxImage.src} alt={lightboxImage.alt} onClose={() => setLightboxImage(null)} />
         )}
 
         <div className="card-content">
@@ -111,3 +123,13 @@ const LocationCard = ({
 };
 
 export default LocationCard;
+
+// Lightbox sub-component
+function ImageLightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+  return (
+    <div className="lightbox-overlay" onClick={onClose}>
+      <button className="lightbox-close" onClick={onClose}>✕</button>
+      <img src={src} alt={alt} className="lightbox-img" onClick={(e) => e.stopPropagation()} />
+    </div>
+  );
+}
