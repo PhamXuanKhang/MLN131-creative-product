@@ -495,7 +495,7 @@ export const campaigns: Campaign[] = [
     description:
       "Sau các thắng lợi tại Tây Nguyên và Huế – Đà Nẵng, cục diện chiến trường miền Nam chuyển biến có lợi cho cách mạng. Ngày 14/4/1975, Bộ Chính trị quyết định mở Chiến dịch Hồ Chí Minh nhằm giải phóng Sài Gòn – Gia Định trong thời gian ngắn nhất. Từ ngày 26/4 đến ngày 30/4/1975, quân giải phóng tiến công vào Sài Gòn từ năm hướng, đánh chiếm các mục tiêu quân sự và cơ quan đầu não của chính quyền Sài Gòn, nhanh chóng phá vỡ hệ thống phòng thủ của đối phương. Chiến dịch kết thúc bằng sự kiện xe tăng húc đổ cổng Dinh Độc Lập lúc 11h30 ngày 30/4/1975.",
     image:
-      "https://drive.google.com/uc?export=view&id=13bQQjlfEXzVpTSkLPnZ2rwrfu7BVWzgl",
+      "https://lh3.googleusercontent.com/d/13bQQjlfEXzVpTSkLPnZ2rwrfu7BVWzgl",
     significance:
       "Sáng 30/4/1975, quân giải phóng tiến vào trung tâm Sài Gòn; lúc 11 giờ 30 phút, xe tăng tiến vào Dinh Độc Lập, Tổng thống Dương Văn Minh tuyên bố đầu hàng vô điều kiện. Chiến dịch toàn thắng, kết thúc cuộc kháng chiến chống Mỹ, giải phóng hoàn toàn miền Nam và thống nhất đất nước, kết thúc 21 năm kháng chiến chống Mỹ và 117 năm chống thực dân, đế quốc. Ghi dấu son chói lọi trong lịch sử dân tộc Việt Nam.",
     battles: [
@@ -506,7 +506,7 @@ export const campaigns: Campaign[] = [
         description:
           "Xuân Lộc được mệnh danh là \"cánh cửa thép\" bảo vệ Sài Gòn từ phía Đông. Tại đây, quân đội Sài Gòn tập trung các lực lượng mạnh như lữ đoàn dù và sư đoàn bộ binh để cố thủ. Trước tình hình đó, quân ta chuyển từ chiến thuật đánh trực diện sang bao vây, chia cắt và cô lập Xuân Lộc. Ngày 21/4/1975, phòng tuyến Xuân Lộc bị phá vỡ; cùng ngày, Tổng thống Nguyễn Văn Thiệu tuyên bố từ chức và rời khỏi Việt Nam, mở toang \"cánh cửa\" để các quân đoàn chủ lực tiến vào giải phóng Sài Gòn.",
         image:
-          "https://drive.google.com/uc?export=view&id=1qTtl5sD06stK6VJ4uFwsgF_bOvTbeJKO",
+          "https://lh3.googleusercontent.com/d/1qTtl5sD06stK6VJ4uFwsgF_bOvTbeJKO",
         date: "09/04 – 21/04/1975",
       },
       {
@@ -516,7 +516,7 @@ export const campaigns: Campaign[] = [
         description:
           "Cầu Sài Gòn là chốt chặn huyết mạch cuối cùng trên hướng Đông Bắc để tiến vào nội đô Sài Gòn. Tại đây, quân đội Sài Gòn thiết lập một \"lá chắn thép\" với xe tăng, tàu chiến dưới sông và hỏa lực mạnh từ các tòa nhà cao tầng nhằm phong tỏa mặt cầu. Đội hình xe tăng của Lữ đoàn 203, với các xe dẫn đầu 843 và 390, phối hợp cùng bộ binh Sư đoàn 304 tiến công quyết liệt, tiêu diệt các ổ đề kháng tại đầu cầu. Kết quả, quân ta đập tan tuyến phòng thủ cuối cùng của địch ở cửa ngõ phía Đông, làm chủ cây cầu và mở đường cho cánh quân tiến thẳng vào Dinh Độc Lập.",
         image:
-          "https://drive.google.com/uc?export=view&id=1XD-eg9UZaOakHLm5qVWRcVThssSCtHGZ",
+          "https://lh3.googleusercontent.com/d/1XD-eg9UZaOakHLm5qVWRcVThssSCtHGZ",
         date: "30/04/1975",
       },
       {
@@ -526,7 +526,7 @@ export const campaigns: Campaign[] = [
         description:
           "Sân bay Tân Sơn Nhất là điểm quyết chiến quan trọng ở cửa ngõ Tây Bắc Sài Gòn trong giai đoạn cuối của chiến dịch. Tại đây, Sư đoàn 10 (thuộc Quân đoàn 3) tiến công mạnh nhằm làm tê liệt hoàn toàn hệ thống không vận của đối phương. Pháo binh ta bắn cấp tập vào sân bay, phá hủy các đường băng; đồng thời các mũi tiến công khác đánh chiếm Bộ Tổng tham mưu Quân lực Việt Nam Cộng hòa – cơ quan đầu não chỉ huy quân đội Sài Gòn. Quân ta nhanh chóng làm chủ các mục tiêu trọng yếu như đường băng, kho xăng dầu và Bộ tư lệnh Không quân. Kết quả, toàn bộ hệ thống hàng không của địch bị tê liệt; kế hoạch di tản bằng máy bay cánh cố định của Mỹ thất bại, buộc họ phải chuyển sang cuộc di tản bằng trực thăng hỗn loạn từ các nóc nhà trong thành phố.",
         image:
-          "https://drive.google.com/uc?export=view&id=1ShKDHO9T-xkw_CLSySgyT0Ggmvo9Bot-",
+          "https://lh3.googleusercontent.com/d/1ShKDHO9T-xkw_CLSySgyT0Ggmvo9Bot-",
         date: "30/04/1975",
       },
       {
@@ -536,7 +536,7 @@ export const campaigns: Campaign[] = [
         description:
           "Dinh Độc Lập là cơ quan đầu não cao nhất của chính quyền Sài Gòn và cũng là điểm hội tụ cuối cùng của năm cánh quân giải phóng trong Chiến dịch Hồ Chí Minh, nơi chứng kiến sự sụp đổ hoàn toàn của chế độ cũ. Lúc 10h45 ngày 30/4/1975, xe tăng 843 do đại đội trưởng Bùi Quang Thận chỉ huy húc vào cổng phụ nhưng bị kẹt lại; ngay sau đó xe tăng 390 do trưởng xe Vũ Đăng Toàn điều khiển đã húc đổ cổng chính và tiến thẳng vào sân dinh. Đến 11h30, Bùi Quang Thận hạ lá cờ của chính quyền Sài Gòn và cắm lá cờ Giải phóng trên nóc dinh; cùng thời điểm đó tại Đài Phát thanh Sài Gòn, Tổng thống Dương Văn Minh tuyên bố đầu hàng vô điều kiện. Sự kiện này đánh dấu thắng lợi hoàn toàn của Chiến dịch Hồ Chí Minh, Sài Gòn được tiếp quản gần như nguyên vẹn, chấm dứt 21 năm kháng chiến chống Mỹ và mở ra kỷ nguyên mới: non sông liền một dải, đất nước bước vào thời kỳ độc lập, thống nhất và cùng tiến lên chủ nghĩa xã hội.",
         image:
-          "https://drive.google.com/uc?export=view&id=1gVDP6ak8z4Voqx2yLOSf1a1sWIHBkUQ6",
+          "https://lh3.googleusercontent.com/d/1gVDP6ak8z4Voqx2yLOSf1a1sWIHBkUQ6",
         date: "30/04/1975",
       },
     ],

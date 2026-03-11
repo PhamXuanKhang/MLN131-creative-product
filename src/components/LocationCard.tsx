@@ -88,11 +88,6 @@ const LocationCard = ({
           <h2>{campaign.name}</h2>
           <p className="description">{campaign.description}</p>
 
-          <div className="significance-box">
-            <h4>🏆 Ý nghĩa lịch sử</h4>
-            <p>{campaign.significance}</p>
-          </div>
-
           <div className="battles-list">
             <h4>
               ⚔ Các trận đánh ({campaign.battles.length})
@@ -113,6 +108,11 @@ const LocationCard = ({
                 </li>
               ))}
             </ul>
+          </div>
+
+          <div className="significance-box">
+            <h4>🏆 Ý nghĩa lịch sử</h4>
+            <p>{campaign.significance}</p>
           </div>
         </div>
       </div>
