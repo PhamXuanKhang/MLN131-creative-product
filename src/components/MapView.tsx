@@ -353,7 +353,7 @@ const MapView = ({ onOpenQuiz, initialCampaignId, onCampaignConsumed }: { onOpen
         <div className="header-content">
           <h1>
             <span className="flag">🇻🇳</span>
-            Các chiến dịch lớn trong Kháng chiến chống Mỹ
+            CÁC CHIẾN DỊCH LỚN TRONG KHÁNG CHIẾN CHỐNG MỸ
           </h1>
           <p className="header-subtitle">
             1960 - 1975 • Bản đồ tương tác các chiến dịch quân sự
