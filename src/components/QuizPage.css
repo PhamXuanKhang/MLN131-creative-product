@@ -302,6 +302,30 @@
   color: #f44336;
 }
 
+/* Go to map button */
+.btn-go-to-map {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 8px 18px;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.35);
+  border-radius: 20px;
+  color: #ffd700;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-go-to-map:hover {
+  background: rgba(255, 215, 0, 0.2);
+  border-color: #ffd700;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 12px rgba(255, 215, 0, 0.25);
+}
+
 /* Action buttons */
 .quiz-actions {
   margin-top: 24px;

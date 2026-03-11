@@ -1,10 +1,12 @@
 import { useState, useMemo } from "react";
 import { quizQuestions } from "../data/quizData";
+import { campaigns } from "../data/locations";
 import type { QuizQuestion } from "../data/quizData";
 import "./QuizPage.css";
 
 interface QuizPageProps {
   onBack: () => void;
+  onGoToCampaign: (campaignId: number) => void;
 }
 
 function shuffleArray<T>(array: T[]): T[] {
@@ -18,7 +20,7 @@ function shuffleArray<T>(array: T[]): T[] {
 
 const TOTAL_QUESTIONS = 10;
 
-function QuizPage({ onBack }: QuizPageProps) {
+function QuizPage({ onBack, onGoToCampaign }: QuizPageProps) {
   const questions = useMemo(
     () => shuffleArray(quizQuestions).slice(0, TOTAL_QUESTIONS),
     []
@@ -233,6 +235,17 @@ function QuizPage({ onBack }: QuizPageProps) {
               {answeredCorrectly ? "✅ Chính xác!" : "❌ Chưa đúng!"}
             </p>
             <p>{current.explanation}</p>
+            {current.campaignId && (() => {
+              const campaign = campaigns.find(c => c.id === current.campaignId);
+              return campaign ? (
+                <button
+                  className="btn-go-to-map"
+                  onClick={() => onGoToCampaign(current.campaignId)}
+                >
+                  🗺️ Xem sự kiện «{campaign.name}» trên bản đồ
+                </button>
+              ) : null;
+            })()}
           </div>
         )}
 

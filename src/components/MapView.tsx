@@ -199,7 +199,7 @@ const MapController = ({ target, activeCampaign }: MapControllerProps) => {
 
 // === MAIN COMPONENT ===
 
-const MapView = ({ onOpenQuiz }: { onOpenQuiz: () => void }) => {
+const MapView = ({ onOpenQuiz, initialCampaignId, onCampaignConsumed }: { onOpenQuiz: () => void; initialCampaignId?: number | null; onCampaignConsumed?: () => void }) => {
   const [activeCampaignId, setActiveCampaignId] = useState<number | null>(
     null
   );
@@ -209,6 +209,24 @@ const MapView = ({ onOpenQuiz }: { onOpenQuiz: () => void }) => {
     lng: number;
     zoom: number;
   } | null>(null);
+
+  // Auto-select campaign when coming from quiz
+  useEffect(() => {
+    if (initialCampaignId != null) {
+      const campaign = campaigns.find((c) => c.id === initialCampaignId);
+      if (campaign) {
+        setActiveCampaignId(campaign.id);
+        setSelectedBattleId(null);
+        setFlyTarget({
+          lat: campaign.coordinates.lat,
+          lng: campaign.coordinates.lng,
+          zoom: -1,
+        });
+        setTimeout(() => setFlyTarget(null), 2000);
+      }
+      onCampaignConsumed?.();
+    }
+  }, [initialCampaignId]);
 
   const activeCampaign = useMemo(
     () => campaigns.find((c) => c.id === activeCampaignId) ?? null,

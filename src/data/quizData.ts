@@ -4,6 +4,7 @@ export interface QuizQuestion {
   options: string[];
   correctIndex: number;
   explanation: string;
+  campaignId: number;
 }
 
 export const quizQuestions: QuizQuestion[] = [
@@ -14,6 +15,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       "Phong trào Đồng Khởi bắt đầu từ Bến Tre vào ngày 17/1/1960, dưới sự lãnh đạo của bà Nguyễn Thị Định.",
+    campaignId: 1,
   },
   {
     id: 2,
@@ -23,6 +25,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       "Mặt trận Dân tộc Giải phóng miền Nam Việt Nam được thành lập ngày 20/12/1960, sau thắng lợi của phong trào Đồng Khởi.",
+    campaignId: 1,
   },
   {
     id: 3,
@@ -32,6 +35,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       "Quân giải phóng chiếm được Thành nội Huế và treo cờ Mặt trận trên Kỳ đài suốt 25 ngày (31/01 - 25/02/1968).",
+    campaignId: 3,
   },
   {
     id: 4,
@@ -40,6 +44,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 3,
     explanation:
       "Quân Giải phóng bao vây căn cứ Khe Sanh (Quảng Trị) suốt 77 ngày đêm (21/01 - 09/04/1968).",
+    campaignId: 3,
   },
   {
     id: 5,
@@ -54,6 +59,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 2,
     explanation:
       "Cuộc Tổng tiến công Tết Mậu Thân đã làm phá sản chiến lược 'Chiến tranh cục bộ', buộc Tổng thống Lyndon B. Johnson tuyên bố không tái tranh cử.",
+    campaignId: 3,
   },
   {
     id: 6,
@@ -63,6 +69,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 3,
     explanation:
       "Trận 'Thành cổ Quảng Trị' kéo dài 81 ngày đêm (từ tháng 6/1972) và trở thành biểu tượng huyền thoại của sự hy sinh anh dũng.",
+    campaignId: 5,
   },
   {
     id: 7,
@@ -72,6 +79,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       "Hiệp định Paris được ký ngày 27/01/1973, buộc Mỹ phải rút hết quân khỏi miền Nam Việt Nam.",
+    campaignId: 7,
   },
   {
     id: 8,
@@ -85,6 +93,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 2,
     explanation:
       "Ngày 10/3/1975, quân Giải phóng bất ngờ tấn công Buôn Ma Thuột, chỉ trong 32 giờ đã làm chủ hoàn toàn thị xã.",
+    campaignId: 8,
   },
   {
     id: 9,
@@ -99,6 +108,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       "Sau khi mất Buôn Ma Thuột, Nguyễn Văn Thiệu ra lệnh rút quân khỏi Pleiku và Kontum theo Đường 7B, biến thành cuộc tháo chạy hỗn loạn.",
+    campaignId: 8,
   },
   {
     id: 10,
@@ -113,6 +123,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       "Trận Xuân Lộc (9-21/4/1975) được gọi là 'cánh cửa thép' bảo vệ Sài Gòn. Sau 12 ngày chiến đấu, quân Giải phóng đập tan tuyến phòng thủ này.",
+    campaignId: 10,
   },
   {
     id: 11,
@@ -126,6 +137,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       "Lúc 10h45 ngày 30/4/1975, xe tăng T-54 số hiệu 843 húc đổ cổng Dinh Độc Lập. Trung úy Bùi Quang Thận cắm cờ trên nóc Dinh.",
+    campaignId: 10,
   },
   {
     id: 12,
@@ -140,6 +152,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 2,
     explanation:
       "Tổng thống Dương Văn Minh tuyên bố đầu hàng vô điều kiện lúc 11h30 ngày 30/4/1975, kết thúc cuộc chiến.",
+    campaignId: 10,
   },
   {
     id: 13,
@@ -149,6 +162,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 2,
     explanation:
       "Chiến dịch Hồ Chí Minh (26/4 - 30/4/1975) với 5 cánh quân từ các hướng đồng loạt tiến vào Sài Gòn.",
+    campaignId: 10,
   },
   {
     id: 14,
@@ -163,6 +177,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 0,
     explanation:
       "Ngày 17/1/1960, hàng vạn nhân dân Mỏ Cày (Bến Tre) đồng loạt nổi dậy dưới sự lãnh đạo của bà Nguyễn Thị Định.",
+    campaignId: 1,
   },
   {
     id: 15,
@@ -172,5 +187,6 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       "Chiến dịch Xuân - Hè 1972 mở 3 hướng tiến công đồng thời: Quảng Trị, Tây Nguyên (Kontum), và Đông Nam Bộ (An Lộc).",
+    campaignId: 6,
   },
 ];
