@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import LandingPage from './components/LandingPage'
+import WarLanding from './components/WarLanding'
 import MapView from './components/MapView'
 import QuizPage from './components/QuizPage'
 import './App.css'
@@ -10,7 +10,7 @@ function App() {
   const [page, setPage] = useState<Page>('landing')
 
   if (page === 'landing') {
-    return <LandingPage onEnter={() => setPage('map')} />
+    return <WarLanding onEnter={() => setPage('map')} />
   }
 
   if (page === 'quiz') {
