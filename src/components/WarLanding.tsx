@@ -45,7 +45,7 @@ function WarLanding({ onEnter }: WarLandingProps) {
             </div>
 
             <p className="war-landing__eyebrow">Bản Đồ Tương Tác</p>
-            <h1 className="war-landing__title">Kháng Chiến Chống Mỹ</h1>
+            <h1 className="war-landing__title">Kháng Chiến Chong Mỹ</h1>
             <p className="war-landing__years">1960 — 1975</p>
 
             <div className="war-landing__ornament" aria-hidden="true">

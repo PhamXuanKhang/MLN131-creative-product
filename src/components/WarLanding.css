@@ -32,8 +32,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 50% 28%, rgba(10, 10, 21, 0.50) 0%, rgba(10, 10, 21, 0.88) 70%),
-    linear-gradient(180deg, rgba(10, 10, 21, 0.55) 0%, rgba(26, 20, 40, 0.75) 50%, rgba(13, 13, 26, 0.92) 100%);
+    radial-gradient(ellipse at 50% 28%, rgba(10, 10, 21, 0.28) 0%, rgba(10, 10, 21, 0.68) 70%),
+    linear-gradient(180deg, rgba(10, 10, 21, 0.32) 0%, rgba(26, 20, 40, 0.56) 50%, rgba(13, 13, 26, 0.74) 100%);
 }
 
 .war-landing__grain {
