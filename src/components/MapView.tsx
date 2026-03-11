@@ -6,7 +6,7 @@ import {
   Popup,
   useMap,
 } from "react-leaflet";
-import { DivIcon } from "leaflet";
+import L, { DivIcon } from "leaflet";
 import type { Marker as LeafletMarker } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./MapView.css";
@@ -32,9 +32,9 @@ function createCampaignIcon(isActive: boolean, isDimmed: boolean) {
   const shadow = isDimmed
     ? "none"
     : isActive
-      ? "0 0 25px rgba(255, 215, 0, 0.8)"
+      ? "0 0 20px rgba(255, 215, 0, 0.6)"
       : "0 0 15px rgba(218, 37, 29, 0.5)";
-  const size = isActive ? 48 : 40;
+  const size = isActive ? 36 : 40;
 
   return new DivIcon({
     html: `<div style="
@@ -88,7 +88,6 @@ const CampaignMarker = ({
   isDimmed,
   onClick,
 }: CampaignMarkerProps) => {
-  const map = useMap();
   const markerRef = useRef<LeafletMarker>(null);
   const icon = useMemo(
     () => createCampaignIcon(isActive, isDimmed),
@@ -97,16 +96,12 @@ const CampaignMarker = ({
 
   useEffect(() => {
     if (isActive && markerRef.current) {
-      markerRef.current.openPopup();
+      // Close popup when active so it doesn't cover battle markers
+      markerRef.current.closePopup();
     }
   }, [isActive]);
 
   const handleClick = () => {
-    map.flyTo(
-      [campaign.coordinates.lat, campaign.coordinates.lng],
-      campaign.id === 2 || campaign.id === 3 ? 7 : 9,
-      { duration: 1.5 }
-    );
     onClick(campaign);
   };
 
@@ -116,8 +111,9 @@ const CampaignMarker = ({
       position={[campaign.coordinates.lat, campaign.coordinates.lng]}
       icon={icon}
       eventHandlers={{ click: handleClick }}
+      zIndexOffset={isActive ? -1000 : 0}
     >
-      <Popup>
+      <Popup autoPan={false}>
         <div className="popup-content">
           <h3>★ {campaign.name}</h3>
           <p className="popup-year">
@@ -159,8 +155,9 @@ const BattleMarker = ({ battle, isActive, onClick }: BattleMarkerProps) => {
       position={[battle.coordinates.lat, battle.coordinates.lng]}
       icon={icon}
       eventHandlers={{ click: handleClick }}
+      zIndexOffset={1000}
     >
-      <Popup>
+      <Popup autoPan={false}>
         <div className="popup-content">
           <h3>⚔ {battle.name}</h3>
           {battle.date && <p className="popup-year">{battle.date}</p>}
@@ -172,15 +169,31 @@ const BattleMarker = ({ battle, isActive, onClick }: BattleMarkerProps) => {
 
 interface MapControllerProps {
   target: { lat: number; lng: number; zoom: number } | null;
+  activeCampaign: Campaign | null;
 }
 
-const MapController = ({ target }: MapControllerProps) => {
+const MapController = ({ target, activeCampaign }: MapControllerProps) => {
   const map = useMap();
   useEffect(() => {
-    if (target) {
+    if (!target) return;
+    // sentinel zoom -1 means "fitBounds to active campaign's battles"
+    if (target.zoom === -1 && activeCampaign) {
+      const points: [number, number][] = [
+        [activeCampaign.coordinates.lat, activeCampaign.coordinates.lng],
+        ...activeCampaign.battles.map(
+          (b) => [b.coordinates.lat, b.coordinates.lng] as [number, number]
+        ),
+      ];
+      map.flyToBounds(L.latLngBounds(points), {
+        paddingTopLeft: [460, 80],
+        paddingBottomRight: [80, 120],
+        duration: 1.5,
+        maxZoom: 10,
+      });
+    } else {
       map.flyTo([target.lat, target.lng], target.zoom, { duration: 1.5 });
     }
-  }, [target, map]);
+  }, [target, activeCampaign, map]);
   return null;
 };
 
@@ -212,10 +225,11 @@ const MapView = ({ onOpenQuiz }: { onOpenQuiz: () => void }) => {
   const handleSelectCampaign = (campaign: Campaign) => {
     setActiveCampaignId(campaign.id);
     setSelectedBattleId(null);
+    // Use fitBounds sentinel for both marker clicks and Timeline clicks
     setFlyTarget({
       lat: campaign.coordinates.lat,
       lng: campaign.coordinates.lng,
-      zoom: campaign.id === 2 || campaign.id === 3 ? 7 : 9,
+      zoom: -1,
     });
     setTimeout(() => setFlyTarget(null), 2000);
   };
@@ -240,12 +254,12 @@ const MapView = ({ onOpenQuiz }: { onOpenQuiz: () => void }) => {
   const handleCloseCard = () => {
     if (selectedBattleId) {
       setSelectedBattleId(null);
-      // Fly back to the parent campaign pin
+      // Fly back to fit all battles of the parent campaign
       if (activeCampaign) {
         setFlyTarget({
           lat: activeCampaign.coordinates.lat,
           lng: activeCampaign.coordinates.lng,
-          zoom: activeCampaign.id === 2 || activeCampaign.id === 3 ? 7 : 9,
+          zoom: -1, // sentinel: triggers fitBounds in MapController
         });
         setTimeout(() => setFlyTarget(null), 2000);
       }
@@ -275,7 +289,7 @@ const MapView = ({ onOpenQuiz }: { onOpenQuiz: () => void }) => {
           url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
         />
 
-        <MapController target={flyTarget} />
+        <MapController target={flyTarget} activeCampaign={activeCampaign} />
 
         {/* Campaign Markers (Ghim Mẹ) */}
         {campaigns.map((campaign) => {

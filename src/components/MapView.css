@@ -124,6 +124,11 @@
   border: none !important;
 }
 
+/* Ensure battle markers render above campaign markers */
+.battle-marker-icon {
+  z-index: 700 !important;
+}
+
 /* ===== POPUP ===== */
 .popup-content h3 {
   margin: 0 0 4px;
@@ -141,6 +146,20 @@
 .leaflet-popup-content-wrapper {
   border-radius: 12px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  max-width: 220px;
+}
+
+.leaflet-popup-content {
+  margin: 8px 12px;
+}
+
+/* Keep popups from blocking marker clicks */
+.leaflet-popup {
+  pointer-events: auto;
+}
+
+.leaflet-popup-tip-container {
+  pointer-events: none;
 }
 
 /* ===== RESPONSIVE ===== */
