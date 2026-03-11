@@ -9,7 +9,8 @@
   isolation: isolate;
   background: #050816;
   color: #f5e8b9;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
@@ -75,24 +76,22 @@
   position: relative;
   min-height: 100vh;
   min-height: 100dvh;
-  overflow-y: auto;
   overflow-x: hidden;
-  padding: 48px 24px;
+  padding: 40px 24px;
 }
 
 /* ---------- centered shell ---------- */
 
 .war-landing__shell {
-  min-height: calc(100vh - 96px);
-  min-height: calc(100dvh - 96px);
   width: min(100%, 960px);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 32px;
+  gap: 28px;
   text-align: center;
+  padding: 16px 0;
 }
 
 /* ---------- header ---------- */
@@ -142,11 +141,12 @@
 .war-landing__title {
   margin: 0;
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
-  line-height: 1.05;
-  letter-spacing: 0.08em;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  line-height: 1.15;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   font-weight: 700;
+  max-width: 800px;
   background: linear-gradient(135deg, #ffd700 0%, #ffec8b 50%, #daa520 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -257,7 +257,7 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 28px 16px;
+  padding: 22px 16px;
 }
 
 .war-landing__stat + .war-landing__stat {
@@ -360,12 +360,12 @@
 }
 
 @media (max-width: 560px) {
-  .war-landing__scroll { padding: 28px 16px; }
-  .war-landing__shell  { gap: 22px; }
+  .war-landing__scroll { padding: 20px 14px; }
+  .war-landing__shell  { gap: 18px; }
 
   .war-landing__title {
-    font-size: clamp(2rem, 8vw, 2.6rem);
-    letter-spacing: 0.04em;
+    font-size: clamp(1.4rem, 6vw, 2rem);
+    letter-spacing: 0.03em;
   }
 
   .war-landing__eyebrow {
@@ -401,4 +401,15 @@
   .war-landing__cta {
     width: 100%;
   }
+}
+
+/* ---------- small height screens ---------- */
+
+@media (max-height: 700px) {
+  .war-landing__scroll { padding: 20px 16px; }
+  .war-landing__shell  { gap: 16px; }
+  .war-landing__stat   { padding: 14px 12px; }
+  .war-landing__ornament { margin: 4px 0; }
+  .war-landing__quote-text { font-size: 1.05rem; }
+  .war-landing__cta { padding: 12px 32px; }
 }
