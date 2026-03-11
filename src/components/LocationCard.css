@@ -2,7 +2,7 @@
   position: absolute;
   top: 100px;
   left: 20px;
-  width: 420px;
+  width: 500px;
   max-height: calc(100vh - 220px);
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   border-radius: 16px;
@@ -76,7 +76,7 @@
 .card-image {
   position: relative;
   width: 100%;
-  height: 160px;
+  height: 200px;
   overflow: hidden;
   flex-shrink: 0;
   cursor: pointer;
