@@ -137,6 +137,65 @@
   font-size: 14px;
 }
 
+/* ===== SOVEREIGNTY OVERLAY (Hoàng Sa & Trường Sa) ===== */
+.sovereignty-marker-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.sovereignty-label {
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.sovereignty-flag {
+  font-size: 24px;
+  line-height: 1;
+  margin-bottom: 2px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.sovereignty-name {
+  font-family: "Playfair Display", "Times New Roman", serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: #da251d;
+  text-shadow:
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff,
+    0 0 8px rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.5px;
+}
+
+.sovereignty-subtext {
+  font-size: 10px;
+  font-weight: 400;
+  color: #555;
+  text-shadow:
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+}
+
+.sovereignty-country {
+  font-size: 12px;
+  font-weight: 900;
+  color: #da251d;
+  letter-spacing: 3px;
+  margin-top: 2px;
+  text-shadow:
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff,
+    0 0 10px rgba(255, 255, 255, 1);
+}
+
 /* ===== MARKER ICONS ===== */
 .campaign-marker-icon,
 .battle-marker-icon {

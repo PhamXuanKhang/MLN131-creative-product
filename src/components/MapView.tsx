@@ -1,10 +1,11 @@
-import { useState, useRef, useEffect, useMemo } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import {
   MapContainer,
   TileLayer,
   Marker,
   Popup,
   useMap,
+  Circle,
 } from "react-leaflet";
 import L, { DivIcon } from "leaflet";
 import type { Marker as LeafletMarker } from "leaflet";
@@ -14,6 +15,66 @@ import { campaigns } from "../data/locations";
 import type { Campaign, Battle } from "../data/locations";
 import Timeline from "./Timeline";
 import LocationCard from "./LocationCard";
+
+// === SOVEREIGNTY OVERLAY (Hoàng Sa & Trường Sa) ===
+
+const SOVEREIGNTY_MARKERS = [
+  {
+    name: "Quần đảo Hoàng Sa",
+    subtext: "(Paracel Islands)",
+    coordinates: { lat: 16.5, lng: 112.0 },
+    radius: 80000,
+  },
+  {
+    name: "Quần đảo Trường Sa",
+    subtext: "(Spratly Islands)",
+    coordinates: { lat: 10.0, lng: 114.0 },
+    radius: 120000,
+  },
+];
+
+function createSovereigntyIcon(name: string, subtext: string) {
+  return new DivIcon({
+    html: `<div class="sovereignty-label">
+      <div class="sovereignty-flag">🇻🇳</div>
+      <div class="sovereignty-name">${name}</div>
+      <div class="sovereignty-subtext">${subtext}</div>
+      <div class="sovereignty-country">VIỆT NAM</div>
+    </div>`,
+    className: "sovereignty-marker-icon",
+    iconSize: [200, 80],
+    iconAnchor: [100, 40],
+  });
+}
+
+const SovereigntyOverlay = () => {
+  return (
+    <>
+      {SOVEREIGNTY_MARKERS.map((item) => (
+        <React.Fragment key={item.name}>
+          <Circle
+            center={[item.coordinates.lat, item.coordinates.lng]}
+            radius={item.radius}
+            pathOptions={{
+              color: "#da251d",
+              weight: 2,
+              opacity: 0.6,
+              fillColor: "#da251d",
+              fillOpacity: 0.08,
+              dashArray: "8 4",
+            }}
+          />
+          <Marker
+            position={[item.coordinates.lat, item.coordinates.lng]}
+            icon={createSovereigntyIcon(item.name, item.subtext)}
+            interactive={false}
+            zIndexOffset={2000}
+          />
+        </React.Fragment>
+      ))}
+    </>
+  );
+};
 
 // === CUSTOM ICONS ===
 
@@ -308,6 +369,9 @@ const MapView = ({ onOpenQuiz, initialCampaignId, onCampaignConsumed }: { onOpen
         />
 
         <MapController target={flyTarget} activeCampaign={activeCampaign} />
+
+        {/* Sovereignty Overlay – Hoàng Sa & Trường Sa (Việt Nam) */}
+        <SovereigntyOverlay />
 
         {/* Campaign Markers (Ghim Mẹ) */}
         {campaigns.map((campaign) => {
