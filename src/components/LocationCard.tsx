@@ -18,6 +18,11 @@ const LocationCard = ({
   onSelectBattle,
 }: LocationCardProps) => {
   const [lightboxImage, setLightboxImage] = useState<{ src: string; alt: string } | null>(null);
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+
+  const toggleSection = (key: string) => {
+    setExpandedSections((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
   // Show battle detail
   if (battle) {
     return (
@@ -88,31 +93,52 @@ const LocationCard = ({
           <h2>{campaign.name}</h2>
           <p className="description">{campaign.description}</p>
 
-          <div className="battles-list">
-            <h4>
-              ⚔ Các trận đánh ({campaign.battles.length})
-            </h4>
-            <p className="battles-hint">
-              Chọn các điểm trên bản đồ để xem chi tiết các trận đánh
-            </p>
-            <ul>
-              {campaign.battles.map((b) => (
-                <li key={b.id} onClick={() => onSelectBattle(b)}>
-                  <span className="battle-icon">⚔</span>
-                  <div>
-                    <strong>{b.name}</strong>
-                    {b.date && (
-                      <span className="battle-date">{b.date}</span>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
+          {/* Đường lối của Đảng - collapsible */}
+          <div className={`collapsible-section guideline-section ${expandedSections["guideline"] ? "expanded" : ""}`}>
+            <button className="collapsible-header" onClick={() => toggleSection("guideline")}>
+              <h4>☆ Đường lối của Đảng</h4>
+              <span className="collapsible-arrow">{expandedSections["guideline"] ? "▲" : "▼"}</span>
+            </button>
+            <div className="collapsible-body">
+              <p>{campaign.partyGuideline}</p>
+            </div>
           </div>
 
-          <div className="significance-box">
-            <h4>🏆 Ý nghĩa lịch sử</h4>
-            <p>{campaign.significance}</p>
+          {/* Các trận đánh - collapsible */}
+          <div className={`collapsible-section battles-section ${expandedSections["battles"] ? "expanded" : ""}`}>
+            <button className="collapsible-header" onClick={() => toggleSection("battles")}>
+              <h4>⚔ Các trận đánh ({campaign.battles.length})</h4>
+              <span className="collapsible-arrow">{expandedSections["battles"] ? "▲" : "▼"}</span>
+            </button>
+            <div className="collapsible-body">
+              <p className="battles-hint">
+                Chọn các điểm trên bản đồ để xem chi tiết các trận đánh
+              </p>
+              <ul className="battles-list-items">
+                {campaign.battles.map((b) => (
+                  <li key={b.id} onClick={() => onSelectBattle(b)}>
+                    <span className="battle-icon">⚔</span>
+                    <div>
+                      <strong>{b.name}</strong>
+                      {b.date && (
+                        <span className="battle-date">{b.date}</span>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Ý nghĩa lịch sử - collapsible */}
+          <div className={`collapsible-section significance-section ${expandedSections["significance"] ? "expanded" : ""}`}>
+            <button className="collapsible-header" onClick={() => toggleSection("significance")}>
+              <h4>🏆 Ý nghĩa lịch sử</h4>
+              <span className="collapsible-arrow">{expandedSections["significance"] ? "▲" : "▼"}</span>
+            </button>
+            <div className="collapsible-body">
+              <p>{campaign.significance}</p>
+            </div>
           </div>
         </div>
       </div>

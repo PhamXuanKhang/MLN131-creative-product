@@ -164,7 +164,96 @@
   text-align: justify;
 }
 
-/* Significance box */
+/* Collapsible sections */
+.collapsible-section {
+  margin-bottom: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.collapsible-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.collapsible-header:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.collapsible-header h4 {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.collapsible-arrow {
+  font-size: 0.7rem;
+  color: #999;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.collapsible-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding: 0 14px;
+}
+
+.collapsible-section.expanded .collapsible-body {
+  max-height: 800px;
+  padding: 10px 14px 14px;
+}
+
+/* Guideline section */
+.guideline-section .collapsible-header h4 {
+  color: #64b5f6;
+}
+
+.guideline-section {
+  border-color: rgba(100, 181, 246, 0.15);
+}
+
+.guideline-section .collapsible-body p {
+  color: #ccc;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Battles section */
+.battles-section .collapsible-header h4 {
+  color: #ff6b6b;
+}
+
+.battles-section {
+  border-color: rgba(218, 37, 29, 0.15);
+}
+
+/* Significance section */
+.significance-section .collapsible-header h4 {
+  color: #ffd700;
+}
+
+.significance-section {
+  border-color: rgba(255, 215, 0, 0.15);
+}
+
+.significance-section .collapsible-body p {
+  color: #ccc;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Significance box (kept for backward compat) */
 .significance-box {
   background: rgba(255, 215, 0, 0.06);
   border-radius: 10px;
@@ -187,14 +276,10 @@
 }
 
 /* Battles list */
-.battles-list {
-  margin-top: 4px;
-}
-
-.battles-list h4 {
-  color: #ff6b6b;
-  margin: 0 0 4px;
-  font-size: 0.9rem;
+.battles-list-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .battles-hint {
@@ -210,7 +295,7 @@
   margin: 0;
 }
 
-.battles-list li {
+.battles-list-items li {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -223,7 +308,7 @@
   border: 1px solid transparent;
 }
 
-.battles-list li:hover {
+.battles-list-items li:hover {
   background: rgba(218, 37, 29, 0.1);
   border-color: rgba(218, 37, 29, 0.3);
 }
@@ -233,7 +318,7 @@
   flex-shrink: 0;
 }
 
-.battles-list li strong {
+.battles-list-items li strong {
   color: #eee;
   font-size: 0.88rem;
   display: block;

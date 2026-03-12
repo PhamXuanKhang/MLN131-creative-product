@@ -14,6 +14,7 @@ export interface Campaign {
   coordinates: { lat: number; lng: number };
   description: string;
   image: string;
+  partyGuideline: string;
   significance: string;
   battles: Battle[];
 }
@@ -31,6 +32,8 @@ export const campaigns: Campaign[] = [
       "Phong trào Đồng khởi (1959–1960) là bước phát triển quan trọng của cách mạng miền Nam, đánh dấu sự chuyển biến từ đấu tranh chính trị sang kết hợp đấu tranh chính trị với đấu tranh vũ trang. Trước sự đàn áp khốc liệt của chính quyền Ngô Đình Diệm, nhân dân nhiều địa phương đã nổi dậy phá bỏ bộ máy kìm kẹp, giành quyền làm chủ ở nông thôn. Phong trào bùng nổ mạnh ở Bến Tre rồi nhanh chóng lan rộng ra khắp Nam Bộ và một số khu vực Trung Trung Bộ.",
     image:
       "https://dinhnghia.com.vn/wp-content/uploads/2022/08/phong-trao-dong-khoi-1959-1960-nguyen-nhan-dien-bien-y-nghia-3.jpg",
+    partyGuideline:
+      "Nghị quyết 15 (01/1959) của Ban Chấp hành Trung ương Đảng xác định con đường cách mạng miền Nam là khởi nghĩa giành chính quyền bằng lực lượng chính trị của quần chúng kết hợp với lực lượng vũ trang, chuyển từ thế giữ gìn lực lượng sang thế tiến công.",
     significance:
       "Phong trào Đồng khởi làm lung lay hệ thống chính quyền cơ sở của chính quyền Sài Gòn ở nhiều vùng nông thôn, mở rộng vùng giải phóng và phát triển lực lượng cách mạng. Đồng thời tạo điều kiện cho sự ra đời của Mặt trận Dân tộc Giải phóng miền Nam Việt Nam vào ngày 20/12/1960, góp phần làm thay đổi cục diện cách mạng ở miền Nam.",
     battles: [
@@ -79,6 +82,8 @@ export const campaigns: Campaign[] = [
       "Tháng 8 năm 1965, tại Vạn Tường (Quảng Ngãi), quân và dân ta đã giành thắng lợi lớn trước cuộc hành quân quy mô lớn đầu tiên của quân đội Mỹ tại miền Nam Việt Nam. Đây là trận đánh đánh dấu sự đối đầu trực tiếp giữa lực lượng cách mạng và quân viễn chinh Mỹ trong giai đoạn 'Chiến tranh cục bộ'. Mỹ huy động hàng nghìn quân cùng xe tăng, pháo binh và không quân với mục tiêu tiêu diệt lực lượng chủ lực của ta. Tuy nhiên, bằng chiến thuật linh hoạt, bám sát địa hình và phát huy thế trận chiến tranh nhân dân, quân giải phóng đã gây cho đối phương nhiều tổn thất nặng nề.",
     image:
       "https://quangngai.gov.vn/upload/2006516/fck/ntmthien/2025_08_12_09_06_501.jpg",
+    partyGuideline:
+      "Đảng chủ trương kết hợp đấu tranh quân sự với đấu tranh chính trị và ngoại giao, phát huy sức mạnh chiến tranh nhân dân để đối phó với chiến lược 'Chiến tranh cục bộ' của Mỹ, kiên quyết đánh bại quân viễn chinh Mỹ ngay từ trận đầu.",
     significance:
       "Chiến thắng Vạn Tường chứng minh quân đội Mỹ không phải lực lượng 'bất bại', củng cố niềm tin chiến đấu của quân dân cả nước và mở đầu cao trào 'Tìm Mỹ mà đánh, lùng ngụy mà diệt' trong kháng chiến chống Mỹ.",
     battles: [
@@ -137,6 +142,8 @@ export const campaigns: Campaign[] = [
       "Cuộc Tổng tiến công và nổi dậy Tết Mậu Thân 1968 là sự kiện có ý nghĩa bước ngoặt trong cuộc kháng chiến chống Mỹ. Đêm 30 rạng sáng 31/1/1968, quân và dân ta đồng loạt tiến công vào hơn 100 đô thị và căn cứ quân sự trên toàn miền Nam, trong đó có Sài Gòn, Huế, Đà Nẵng. Mục tiêu chiến lược của ta là giáng đòn mạnh vào ý chí xâm lược của Mỹ, làm lung lay bộ máy chính quyền Sài Gòn, tạo chuyển biến quyết định cho chiến tranh. Dù chịu tổn thất lớn về lực lượng, cuộc tổng tiến công đã gây chấn động mạnh mẽ dư luận Mỹ và thế giới. Lần đầu tiên chiến tranh lan rộng vào trung tâm các đô thị lớn, kể cả cơ quan đầu não của chính quyền Sài Gòn. Thắng lợi lớn nhất của Mậu Thân 1968 là thắng lợi về chiến lược và chính trị: Mỹ buộc phải tuyên bố \"phi Mỹ hóa chiến tranh\", chấp nhận đàm phán tại Paris và từng bước xuống thang chiến tranh.",
     image:
       "https://file-dangcongsan.nhandan.vn/DATA/0/2019/10/04_nhan_dan_3008_300a2-16_48_13_973.jpg",
+    partyGuideline:
+      "Bộ Chính trị và Trung ương Cục miền Nam quyết định mở cuộc Tổng tiến công và nổi dậy đồng loạt trên toàn miền Nam, kết hợp tiến công quân sự với nổi dậy của quần chúng tại các đô thị, nhằm giáng đòn quyết định vào ý chí xâm lược của đế quốc Mỹ.",
     significance:
       "Làm phá sản chiến lược 'Chiến tranh cục bộ' của Mỹ, buộc Mỹ phải xuống thang chiến tranh, ngừng ném bom miền Bắc, chấp nhận đàm phán tại Paris. Tổng thống Johnson tuyên bố không tái tranh cử.",
     battles: [
@@ -195,6 +202,8 @@ export const campaigns: Campaign[] = [
       "Chiến dịch phản công của quân và dân ta đánh bại cuộc hành quân Lam Sơn 719 của liên quân Mỹ - VNCH nhằm cắt đứt đường mòn Hồ Chí Minh tại Nam Lào.",
     image:
       "https://thuviennguyenvanhuong.vn/wp-content/uploads/2023/02/ToughLao3.jpg",
+    partyGuideline:
+      "Đảng chủ trương kiên quyết bảo vệ tuyến vận tải chiến lược Trường Sơn – Đường Hồ Chí Minh, đồng thời tổ chức phản công tiêu diệt lực lượng đối phương khi chúng tiến sang Lào, làm thất bại chiến lược 'Việt Nam hóa chiến tranh' của Nixon.",
     significance:
       "Đập tan chiến lược 'Việt Nam hóa chiến tranh', bảo vệ hành lang vận tải chiến lược Đường Hồ Chí Minh, tạo tiền đề cho các thắng lợi tiếp theo.",
     battles: [
@@ -242,6 +251,8 @@ export const campaigns: Campaign[] = [
       "Chiến dịch tiến công chiến lược của quân và dân ta tại mặt trận Trị – Thiên, giải phóng tỉnh Quảng Trị và uy hiếp trực tiếp cố đô Huế, góp phần tạo bước ngoặt quan trọng trên bàn đàm phán Paris.",
     image:
       "https://i.ytimg.com/vi/WwPxHM9rk8E/maxresdefault.jpg",
+    partyGuideline:
+      "Đảng chủ trương mở cuộc tiến công chiến lược trên mặt trận Trị – Thiên nhằm giải phóng vùng đất phía nam vĩ tuyến 17, giam chân lực lượng dự bị của địch, tạo thế mạnh trên bàn đàm phán Paris để buộc Mỹ chấp nhận ký hiệp định.",
     significance:
       "Giải phóng hoàn toàn tỉnh Quảng Trị, giam chân lực lượng dự bị chiến lược của địch, tạo thế có lợi cho đàm phán Hiệp định Paris 1973.",
     battles: [
@@ -307,6 +318,8 @@ export const campaigns: Campaign[] = [
     description:
       "Chiến dịch Xuân - Hè 1972 (còn gọi là Chiến dịch Nguyễn Huệ / Easter Offensive) là cuộc tiến công chiến lược lớn nhất kể từ Tết Mậu Thân. Quân Giải phóng mở ba hướng tiến công đồng thời: Quảng Trị, Tây Nguyên (Kontum), và Đông Nam Bộ (An Lộc).",
     image: "",
+    partyGuideline:
+      "Bộ Chính trị quyết định mở cuộc tiến công chiến lược trên ba hướng (Quảng Trị, Tây Nguyên, Đông Nam Bộ) nhằm đánh bại chiến lược 'Việt Nam hóa chiến tranh', chứng minh quân đội Sài Gòn không thể đứng vững khi thiếu sự hỗ trợ trực tiếp của quân Mỹ.",
     significance:
       "Giải phóng Quảng Trị, chứng minh sức mạnh quân đội miền Bắc sau khi Mỹ rút quân, buộc Mỹ phải ký Hiệp định Paris (27/1/1973), rút hết quân khỏi miền Nam.",
     battles: [
@@ -352,6 +365,8 @@ export const campaigns: Campaign[] = [
       "Xuất phát từ sự bế tắc trên bàn đàm phán Paris, Tổng thống Nixon muốn dùng sức mạnh hủy diệt của 'pháo đài bay' B-52 Stratofortress để ép miền Bắc Việt Nam ký kết các điều khoản có lợi cho Mỹ và xoa dịu chính quyền Sài Gòn. Với ý đồ đưa miền Bắc 'về thời kỳ đồ đá' và giải tỏa áp lực từ phong trào phản chiến trong nước, tối ngày 18/12/1972, Mỹ đã bất ngờ mở chiến dịch Linebacker II, trút bom xuống Hà Nội và Hải Phòng nhằm đè bẹp ý chí kháng chiến của nhân dân ta bằng một 'canh bạc quân sự' cuối cùng. Chiến dịch kéo dài từ đêm 18/12 đến ngày 30/12/1972.",
     image:
       "http://redsvn.net/wp-content/uploads/2018/01/Nixon-Kissinger.jpg",
+    partyGuideline:
+      "Đảng và Nhà nước chỉ đạo kiên quyết chiến đấu bảo vệ miền Bắc, sẵn sàng đánh trả mọi hành động leo thang chiến tranh của Mỹ, đồng thời kết hợp đấu tranh quân sự với đấu tranh ngoại giao để buộc Mỹ trở lại bàn đàm phán và ký Hiệp định Paris.",
     significance:
       "Đập tan cuộc tập kích chiến lược B-52, buộc Mỹ ký Hiệp định Paris 1973, mở đường cho sự nghiệp giải phóng hoàn toàn miền Nam. Chiến thắng này còn mang ý nghĩa quốc tế sâu sắc, là lần đầu tiên quân đội một nước thuộc địa đánh bại một cường quốc thực dân phương Tây trong trận dàn quân quy mô lớn. Nó trở thành nguồn cảm hứng mạnh mẽ cho phong trào giải phóng dân tộc toàn thế giới, đặc biệt là tại châu Phi.",
     battles: [
@@ -400,6 +415,8 @@ export const campaigns: Campaign[] = [
       "Chiến dịch Tây Nguyên (3/1975) mở màn cho Tổng tiến công và nổi dậy mùa Xuân 1975. Tây Nguyên được chọn làm hướng tiến công chiến lược vì có vị trí quân sự quan trọng, kiểm soát các tuyến giao thông giữa miền Trung và Nam Bộ. Ngày 10/3/1975, quân giải phóng bất ngờ tiến công Buôn Ma Thuột, nhanh chóng phá vỡ hệ thống phòng thủ của quân đội Sài Gòn tại khu vực. Sau thất bại này, quân đội Sài Gòn buộc phải rút khỏi Pleiku và Kon Tum, khiến toàn bộ Tây Nguyên nhanh chóng được giải phóng.",
     image:
       "https://daklakmuseum.vn/baotangdaklak/imgs/174081405783552.jpeg",
+    partyGuideline:
+      "Bộ Chính trị xác định Tây Nguyên là hướng tiến công chiến lược chủ yếu trong năm 1975, chọn Buôn Ma Thuột làm mục tiêu then chốt, thực hiện nguyên tắc tập trung lực lượng đánh vào nơi địch yếu nhất để tạo đột phá chiến lược.",
     significance:
       "Chiến thắng Tây Nguyên trở thành bước ngoặt chiến lược của cuộc kháng chiến chống Mỹ, mở đường cho các chiến dịch Huế – Đà Nẵng và Chiến dịch Hồ Chí Minh, tiến tới giải phóng hoàn toàn miền Nam vào ngày 30/4/1975.",
     battles: [
@@ -448,6 +465,8 @@ export const campaigns: Campaign[] = [
       "Chiến dịch Huế – Đà Nẵng là một trong những chiến dịch lớn của Tổng tiến công và nổi dậy mùa Xuân năm 1975, diễn ra tại khu vực miền Trung Việt Nam. Sau thắng lợi của Chiến dịch Tây Nguyên, quân giải phóng nhanh chóng mở các đợt tiến công vào hệ thống phòng thủ của quân đội Sài Gòn tại khu vực Trị – Thiên và Quảng Nam – Đà Nẵng. Với các mũi tiến công nhanh và mạnh, quân giải phóng lần lượt giải phóng nhiều địa bàn quan trọng, trong đó có Huế, Tam Kỳ và cuối cùng là Đà Nẵng – căn cứ quân sự lớn nhất của đối phương ở miền Trung. Chiến dịch kết thúc thắng lợi vào ngày 29/3/1975, đánh dấu sự sụp đổ hoàn toàn của hệ thống phòng thủ của quân đội Sài Gòn tại khu vực miền Trung.",
     image:
       "https://cdn.nhandan.vn/images/22f099ca8bc7ae81aa2a8d3416a84bf8c077298dcec0d06192eab1a0be9ff9b773788f344325da4cce7343006295b363069068eaf6528db853ca3059e723ffedce8814482b7007f2e4626000259e5a7fdc0ca7def67bab94885ec312600084f57c5548edf8497a7cfcbd1f880caab688/25-3-1975-chien-dich-hue-da-nang-820-7636-1772-6926.jpg.webp",
+    partyGuideline:
+      "Sau thắng lợi Tây Nguyên, Bộ Chính trị chủ trương tranh thủ thời cơ chiến lược, nhanh chóng giải phóng miền Trung trước khi địch kịp co cụm, thực hiện phương châm 'thần tốc, táo bạo, bất ngờ, chắc thắng'.",
     significance:
       "Chiến thắng của Chiến dịch Huế – Đà Nẵng đã làm tan rã lực lượng quân đội Sài Gòn tại miền Trung, giải phóng một vùng lãnh thổ rộng lớn và tạo ra bước chuyển quan trọng về cục diện chiến tranh. Thắng lợi này mở ra thời cơ thuận lợi để quân giải phóng tiếp tục tiến công vào miền Nam, góp phần quyết định vào thắng lợi của Chiến dịch Hồ Chí Minh, tiến tới giải phóng hoàn toàn miền Nam và thống nhất đất nước.",
     battles: [
@@ -496,6 +515,8 @@ export const campaigns: Campaign[] = [
       "Sau các thắng lợi tại Tây Nguyên và Huế – Đà Nẵng, cục diện chiến trường miền Nam chuyển biến có lợi cho cách mạng. Ngày 14/4/1975, Bộ Chính trị quyết định mở Chiến dịch Hồ Chí Minh nhằm giải phóng Sài Gòn – Gia Định trong thời gian ngắn nhất. Từ ngày 26/4 đến ngày 30/4/1975, quân giải phóng tiến công vào Sài Gòn từ năm hướng, đánh chiếm các mục tiêu quân sự và cơ quan đầu não của chính quyền Sài Gòn, nhanh chóng phá vỡ hệ thống phòng thủ của đối phương. Chiến dịch kết thúc bằng sự kiện xe tăng húc đổ cổng Dinh Độc Lập lúc 11h30 ngày 30/4/1975.",
     image:
       "https://lh3.googleusercontent.com/d/13bQQjlfEXzVpTSkLPnZ2rwrfu7BVWzgl",
+    partyGuideline:
+      "Bộ Chính trị hạ quyết tâm chiến lược: giải phóng Sài Gòn trước mùa mưa 1975, với phương châm 'thần tốc, táo bạo, bất ngờ, chắc thắng'. Chiến dịch mang tên Bác Hồ thể hiện ý chí quyết tâm hoàn thành sự nghiệp giải phóng dân tộc mà Người đã suốt đời theo đuổi.",
     significance:
       "Sáng 30/4/1975, quân giải phóng tiến vào trung tâm Sài Gòn; lúc 11 giờ 30 phút, xe tăng tiến vào Dinh Độc Lập, Tổng thống Dương Văn Minh tuyên bố đầu hàng vô điều kiện. Chiến dịch toàn thắng, kết thúc cuộc kháng chiến chống Mỹ, giải phóng hoàn toàn miền Nam và thống nhất đất nước, kết thúc 21 năm kháng chiến chống Mỹ và 117 năm chống thực dân, đế quốc. Ghi dấu son chói lọi trong lịch sử dân tộc Việt Nam.",
     battles: [
