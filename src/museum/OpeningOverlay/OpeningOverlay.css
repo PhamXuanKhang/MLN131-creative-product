@@ -1,0 +1,228 @@
+/* Opening overlay — theme neutral, z giữa EventPanel (200) và Transition (400) */
+
+.opening {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background-color: var(--c-bg);
+  color: var(--c-ink);
+  overflow: hidden;
+}
+
+.opening__skip {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  z-index: 3;
+  padding: 6px 16px;
+  background: none;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-pill);
+  font-size: 0.8rem;
+  color: var(--c-ink-muted);
+}
+
+.opening__skip:hover {
+  color: var(--c-ink);
+  border-color: var(--c-accent);
+}
+
+.opening__grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  height: 100%;
+}
+
+/* ---- Trái 60%: nội dung ---- */
+.opening__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px clamp(32px, 6vw, 96px);
+}
+
+.opening__eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+}
+
+.opening__title {
+  margin-top: 18px;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5.2vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--c-paper);
+}
+
+.opening__sub {
+  margin-top: 20px;
+  max-width: 46ch;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--c-ink-muted);
+}
+
+.opening__stats {
+  display: flex;
+  gap: clamp(24px, 4vw, 56px);
+  margin-top: 36px;
+  list-style: none;
+}
+
+.opening__stats li {
+  display: flex;
+  flex-direction: column;
+}
+
+.opening__stats strong {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--c-accent);
+}
+
+.opening__stats span {
+  margin-top: 2px;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-ink-muted);
+}
+
+.opening__cta {
+  align-self: flex-start;
+  margin-top: 44px;
+  padding: 14px 38px;
+  background-color: var(--c-accent);
+  border: none;
+  border-radius: var(--r-pill);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-bg);
+  box-shadow: var(--c-glow);
+  transition: transform 0.2s ease;
+}
+
+.opening__cta:hover {
+  transform: translateY(-2px);
+}
+
+/* ---- Phải 40%: cuộn phim ---- */
+.opening__film {
+  position: relative;
+  overflow: hidden;
+  background-color: #080808;
+  border-left: 1px solid var(--c-line);
+  --torch-x: 50%;
+  --torch-y: 40%;
+}
+
+/* Lỗ phim hai mép */
+.opening__film::before,
+.opening__film::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  z-index: 2;
+  background-color: #050505;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 10px,
+    #1c1c1c 10px 24px,
+    transparent 24px 34px
+  );
+}
+
+.opening__film::before {
+  left: 8px;
+}
+
+.opening__film::after {
+  right: 8px;
+}
+
+.film-reel {
+  padding: 0 48px;
+  will-change: transform;
+}
+
+.film-reel__set {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 7px 0;
+}
+
+.film-frame {
+  position: relative;
+  margin: 0;
+  border: 1px solid rgba(216, 200, 165, 0.14);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.film-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  filter: sepia(0.5) saturate(0.55) contrast(0.95);
+}
+
+.film-frame figcaption {
+  position: absolute;
+  right: 8px;
+  bottom: 6px;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  color: rgba(216, 200, 165, 0.85);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* ---- Đèn pin: lớp tối có mask tròn theo chuột ---- */
+.opening__torch {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.82);
+  -webkit-mask-image: radial-gradient(
+    circle 190px at var(--torch-x) var(--torch-y),
+    transparent 0 40%,
+    black 78%
+  );
+  mask-image: radial-gradient(
+    circle 190px at var(--torch-x) var(--torch-y),
+    transparent 0 40%,
+    black 78%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Không track chuột — dim tĩnh nhẹ, reel đứng yên (GSAP đã gate trong JS) */
+  .opening__torch {
+    background-color: rgba(0, 0, 0, 0.45);
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .opening__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .opening__film {
+    display: none; /* mobile: giản lược filmstrip theo quyết định responsive */
+  }
+
+  .opening__content {
+    padding: 72px 28px 48px;
+  }
+}

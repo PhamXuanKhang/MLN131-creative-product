@@ -5,6 +5,7 @@
 import { useLayoutEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Header from './Header'
+import OpeningOverlay from './OpeningOverlay/OpeningOverlay'
 import { useSelectedEvent } from './useSelectedEvent'
 import EventPanel from '@/shared/EventPanel/EventPanel'
 import Transition from '@/shared/Transition/Transition'
@@ -24,6 +25,7 @@ export default function MuseumShell() {
   const { pathname } = useLocation()
   const theme = THEME_BY_PATH[pathname] ?? 'world'
   const { event, select } = useSelectedEvent()
+  const openingVisible = useMuseumStore((s) => s.openingVisible)
   const setAmbientMode = useMuseumStore((s) => s.setAmbient)
   useAudio()
 
@@ -40,6 +42,7 @@ export default function MuseumShell() {
         <Outlet />
       </main>
       {event && <EventPanel key={event.slug} event={event} onClose={() => select(null)} />}
+      {openingVisible && <OpeningOverlay />}
       <Transition />
     </div>
   )
