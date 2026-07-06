@@ -1,0 +1,4 @@
+{
+  "_hướng-dẫn": "Patch thủ công theo event id, áp SAU khi parse xlsx và TRƯỚC khi tải ảnh. Dùng cho hàng có link ảnh là trang Category/bài báo không tự tải được: điền imageUrl là link ảnh trực tiếp. Có thể override mọi field của event (title, locations, imageSource...).",
+  "_ví-dụ": { "post-lenin-01": { "imageUrl": "https://upload.wikimedia.org/..." } }
+}

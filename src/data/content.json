@@ -1,0 +1,877 @@
+{
+  "sourceFile": "docs/content.xlsx",
+  "eventCount": 33,
+  "events": [
+    {
+      "id": "birth-01",
+      "slug": "phong-trao-dau-tranh-cua-giai-cap-cong-nhan-tai-thanh-pho",
+      "era": "birth",
+      "order": 1,
+      "title": "Phong trào đấu tranh của giai cấp công nhân tại thành phố Lion, Pháp giương cao khẩu hiệu về kinh tế và chính trị,.",
+      "dateLabel": "Đợt 1: 21/11/1831 – 03/12/1831; \nĐợt 2: 09/04/1834 – 15/04/1834",
+      "year": 1831,
+      "locations": [
+        {
+          "lat": 45.774272,
+          "lng": 4.829994,
+          "label": "Croix-Rousse, Lyon, Pháp"
+        }
+      ],
+      "summary": "Đây là các cuộc đấu tranh lớn của thợ dệt lụa Lyon.",
+      "description": "Đây là các cuộc đấu tranh lớn của thợ dệt lụa Lyon. Phong trào nêu yêu sách kinh tế về tiền công, điều kiện sống, đồng thời thể hiện bước phát triển về ý thức chính trị của giai cấp công nhân. Đây thường được xem là một trong những cuộc đấu tranh công nhân tiêu biểu đầu thế kỷ XIX.",
+      "image": {
+        "thumb": "/images/thumb/birth-01.jpg",
+        "full": "/images/optimized/birth-01.jpg"
+      },
+      "imageSource": "",
+      "sources": ["https://en.wikipedia.org/wiki/Canut_revolts?utm_source=chatgpt.com"],
+      "incomplete": ["imageSource"]
+    },
+    {
+      "id": "birth-02",
+      "slug": "phong-trao-hien-chuong-cua-nhung-nguoi-lao-dong-dien-ra-tai",
+      "era": "birth",
+      "order": 2,
+      "title": "Phong trào Hiến chương của những người lao động diễn ra tại nước Anh kéo dài trên 10 năm.",
+      "dateLabel": "1836 – 10/04/1848",
+      "year": 1836,
+      "locations": [
+        {
+          "lat": 51.4833,
+          "lng": -0.11436,
+          "label": "Kennington Common, London, Anh"
+        }
+      ],
+      "summary": "Phong trào Hiến chương là phong trào chính trị rộng lớn của giai cấp công nhân Anh, xuất hiện từ năm 1836 và hoạt động mạnh nhất trong giai đoạn 1838–1848.",
+      "description": "Phong trào Hiến chương là phong trào chính trị rộng lớn của giai cấp công nhân Anh, xuất hiện từ năm 1836 và hoạt động mạnh nhất trong giai đoạn 1838–1848. Mục tiêu là đòi quyền chính trị cho người lao động, tiêu biểu qua “Hiến chương Nhân dân”.",
+      "image": {
+        "thumb": "/images/thumb/birth-02.jpg",
+        "full": "/images/optimized/birth-02.jpg"
+      },
+      "imageSource": "",
+      "sources": [
+        "https://www.nationalarchives.gov.uk/education/resources/what-was-chartism/?utm_source=chatgpt.com"
+      ],
+      "incomplete": ["imageSource"]
+    },
+    {
+      "id": "birth-03",
+      "slug": "phong-trao-cong-nhan-det-dien-ra-tai-thanh-pho-xiledi-nuoc",
+      "era": "birth",
+      "order": 3,
+      "title": "Phong trào công nhân dệt diễn ra tại thành phố Xilêđi, nước Đức.",
+      "dateLabel": "04/06/1844 – 06/06/1844",
+      "year": 1844,
+      "locations": [
+        {
+          "lat": 50.712778,
+          "lng": 16.582222,
+          "label": "Peterswaldau, nay là Pieszyce, Ba Lan"
+        }
+      ],
+      "summary": "Cuộc nổi dậy của thợ dệt Silesia nổ ra năm 1844, bắt đầu tại Peterswaldau, nay là Pieszyce, rồi lan sang các khu vực lân cận.",
+      "description": "Cuộc nổi dậy của thợ dệt Silesia nổ ra năm 1844, bắt đầu tại Peterswaldau, nay là Pieszyce, rồi lan sang các khu vực lân cận. Nguyên nhân chính là tiền công thấp, đời sống khó khăn và sự bóc lột của giới chủ/thầu trung gian.",
+      "image": {
+        "thumb": "/images/thumb/birth-03.jpg",
+        "full": "/images/optimized/birth-03.jpg"
+      },
+      "imageSource": "",
+      "sources": [
+        "https://www.deutschlandmuseum.de/en/history/calendar/1844-06-04-the-weavers-revolt/?utm_source=chatgpt.com"
+      ],
+      "incomplete": ["imageSource"]
+    },
+    {
+      "id": "birth-04",
+      "slug": "c-mac-va-ph-angghen-co-su-chuyen-bien-ve-lap-truong-triet",
+      "era": "birth",
+      "order": 4,
+      "title": "C. Mác và Ph. Ăngghen có sự chuyển biến về lập trường triết học và chính trị sang chủ nghĩa cộng sản thông qua các tác phẩm tại Đức và Anh.",
+      "dateLabel": "Năm 1843 - 1844",
+      "year": 1843,
+      "locations": [
+        {
+          "lat": 48.8566,
+          "lng": 2.3522,
+          "label": "Paris"
+        },
+        {
+          "lat": 53.4808,
+          "lng": -2.2426,
+          "label": "Manchester"
+        }
+      ],
+      "summary": "Giai đoạn này Mác và Ăngghen chuyển từ lập trường dân chủ cách mạng sang lập trường cộng sản.",
+      "description": "Giai đoạn này Mác và Ăngghen chuyển từ lập trường dân chủ cách mạng sang lập trường cộng sản. Mác nghiên cứu sâu về triết học, chính trị và kinh tế; Ăngghen nghiên cứu thực tiễn đời sống giai cấp công nhân ở Anh. Năm 1844, hai ông bắt đầu hợp tác chặt chẽ tại Paris, tạo tiền đề cho sự hình thành CNXHKH.",
+      "image": {
+        "thumb": "/images/thumb/birth-04.jpg",
+        "full": "/images/optimized/birth-04.jpg"
+      },
+      "imageSource": "",
+      "sources": ["https://en.wikipedia.org/wiki/Friedrich_Engels?utm_source=chatgpt.com"],
+      "incomplete": ["imageSource"]
+    },
+    {
+      "id": "birth-05",
+      "slug": "tac-pham-tuyen-ngon-cua-dang-cong-san-do-c-mac-va-ph",
+      "era": "birth",
+      "order": 5,
+      "title": "Tác phẩm Tuyên ngôn của Đảng Cộng sản do C. Mác và Ph. Ăngghen soạn thảo được công bố trước toàn thế giới, đánh dấu sự ra đời của CNXHKH.",
+      "dateLabel": "2/1848",
+      "year": 1848,
+      "locations": [
+        {
+          "lat": 51.5176,
+          "lng": -0.0822,
+          "label": "46 Liverpool Street, Bishopsgate, London, Anh"
+        }
+      ],
+      "summary": "Tác phẩm do C. Mác và Ph. Ăngghen soạn thảo, được công bố lần đầu bằng tiếng Đức vào tháng 2/1848 tại London.",
+      "description": "Tác phẩm do C. Mác và Ph. Ăngghen soạn thảo, được công bố lần đầu bằng tiếng Đức vào tháng 2/1848 tại London. Tác phẩm đánh dấu sự ra đời về mặt lý luận của chủ nghĩa xã hội khoa học.",
+      "image": {
+        "thumb": "/images/thumb/birth-05.jpg",
+        "full": "/images/optimized/birth-05.jpg"
+      },
+      "imageSource": "",
+      "sources": [],
+      "incomplete": ["sources", "imageSource"]
+    },
+    {
+      "id": "birth-06",
+      "slug": "cac-cuoc-cach-mang-dan-chu-tu-san-dien-ra-tai-cac-nuoc-tay",
+      "era": "birth",
+      "order": 6,
+      "title": "Các cuộc cách mạng dân chủ tư sản diễn ra tại các nước Tây Âu,.",
+      "dateLabel": "Năm 1848 - 1852",
+      "year": 1848,
+      "locations": [
+        {
+          "lat": 48.8566,
+          "lng": 2.3522,
+          "label": "Paris, Pháp"
+        }
+      ],
+      "summary": "Cách mạng 1848 thường được gọi là “Mùa xuân của các dân tộc”, bắt đầu lan rộng ở châu Âu từ năm 1848, tiêu biểu tại Pháp, Đức, Áo, Ý.",
+      "description": "Cách mạng 1848 thường được gọi là “Mùa xuân của các dân tộc”, bắt đầu lan rộng ở châu Âu từ năm 1848, tiêu biểu tại Pháp, Đức, Áo, Ý. Trong học phần, mốc 1848–1852 có thể hiểu là giai đoạn diễn ra, thất bại và được Mác – Ăngghen tổng kết kinh nghiệm cách mạng.",
+      "image": {
+        "thumb": "/images/thumb/birth-06.jpg",
+        "full": "/images/optimized/birth-06.jpg"
+      },
+      "imageSource": "",
+      "sources": ["https://en.wikipedia.org/wiki/Revolutions_of_1848?utm_source=chatgpt.com"],
+      "incomplete": ["imageSource"]
+    },
+    {
+      "id": "birth-07",
+      "slug": "quoc-te-i-duoc-thanh-lap",
+      "era": "birth",
+      "order": 7,
+      "title": "Quốc tế I được thành lập.",
+      "dateLabel": "28/09/1864",
+      "year": 1864,
+      "locations": [
+        {
+          "lat": 51.513056,
+          "lng": -0.123889,
+          "label": "St Martin’s Hall, Long Acre, London, Anh"
+        }
+      ],
+      "summary": "Ngày 28/9/1864, Hội Liên hiệp Công nhân Quốc tế, thường gọi là Quốc tế I, được thành lập tại St Martin’s Hall, London.",
+      "description": "Ngày 28/9/1864, Hội Liên hiệp Công nhân Quốc tế, thường gọi là Quốc tế I, được thành lập tại St Martin’s Hall, London. Tổ chức này góp phần liên kết phong trào công nhân quốc tế.",
+      "image": {
+        "thumb": "/images/thumb/birth-07.jpg",
+        "full": "/images/optimized/birth-07.jpg"
+      },
+      "imageSource": "",
+      "sources": ["https://en.wikipedia.org/wiki/First_International?utm_source=chatgpt.com"],
+      "incomplete": ["imageSource"]
+    },
+    {
+      "id": "birth-08",
+      "slug": "tap-i-bo-tu-ban-cua-c-mac-duoc-xuat-ban-tai-duc",
+      "era": "birth",
+      "order": 8,
+      "title": "Tập I bộ Tư bản của C. Mác được xuất bản tại Đức.",
+      "dateLabel": "14/09/1867",
+      "year": 1867,
+      "locations": [
+        {
+          "lat": 53.5511,
+          "lng": 9.9937,
+          "label": "Hamburg, Đức"
+        }
+      ],
+      "summary": "Tập I của bộ Tư bản do C. Mác viết, xuất bản lần đầu bằng tiếng Đức tại Hamburg bởi nhà xuất bản Otto Meissner năm 1867.",
+      "description": "Tập I của bộ Tư bản do C. Mác viết, xuất bản lần đầu bằng tiếng Đức tại Hamburg bởi nhà xuất bản Otto Meissner năm 1867. Đây là tác phẩm phân tích sâu sắc phương thức sản xuất tư bản chủ nghĩa.",
+      "image": {
+        "thumb": "/images/thumb/birth-08.jpg",
+        "full": "/images/optimized/birth-08.jpg"
+      },
+      "imageSource": "",
+      "sources": [],
+      "incomplete": ["sources", "imageSource"]
+    },
+    {
+      "id": "birth-09",
+      "slug": "su-kien-cong-xa-pari-tai-phap-tao-ra-hinh-thai-nha-nuoc-moi",
+      "era": "birth",
+      "order": 9,
+      "title": "Sự kiện Công xã Pari tại Pháp tạo ra hình thái nhà nước mới của giai cấp công nhân,,.",
+      "dateLabel": "18/03/1871 – 28/05/1871",
+      "year": 1871,
+      "locations": [
+        {
+          "lat": 48.856373,
+          "lng": 2.353016,
+          "label": "Paris, Pháp, tiêu biểu Hôtel de Ville"
+        }
+      ],
+      "summary": "Công xã Paris tồn tại từ 18/3 đến 28/5/1871.",
+      "description": "Công xã Paris tồn tại từ 18/3 đến 28/5/1871. Đây là chính quyền cách mạng của nhân dân lao động Paris, thường được xem là hình thức nhà nước mới đầu tiên của giai cấp công nhân.",
+      "image": {
+        "thumb": "",
+        "full": ""
+      },
+      "imageSource": "",
+      "sources": ["https://en.wikipedia.org/wiki/Paris_Commune?utm_source=chatgpt.com"],
+      "incomplete": ["image"]
+    },
+    {
+      "id": "birth-10",
+      "slug": "c-mac-viet-tac-pham-phe-phan-cuong-linh-gota",
+      "era": "birth",
+      "order": 10,
+      "title": "C. Mác viết tác phẩm \"Phê phán cương lĩnh Gôta\".",
+      "dateLabel": "Năm 1875",
+      "year": 1875,
+      "locations": [
+        {
+          "lat": 50.948231,
+          "lng": 10.701931,
+          "label": "Gotha, Đức"
+        }
+      ],
+      "summary": "Tác phẩm được Mác viết vào tháng 4 hoặc đầu tháng 5/1875 để phê phán dự thảo cương lĩnh của đảng công nhân Đức trước Đại hội Gotha.",
+      "description": "Tác phẩm được Mác viết vào tháng 4 hoặc đầu tháng 5/1875 để phê phán dự thảo cương lĩnh của đảng công nhân Đức trước Đại hội Gotha. Nội dung có ý nghĩa quan trọng trong việc làm rõ quan điểm của chủ nghĩa Mác về nhà nước, phân phối và thời kỳ quá độ.",
+      "image": {
+        "thumb": "/images/thumb/birth-10.jpg",
+        "full": "/images/optimized/birth-10.jpg"
+      },
+      "imageSource": "",
+      "sources": [],
+      "incomplete": ["sources", "imageSource"]
+    },
+    {
+      "id": "birth-11",
+      "slug": "ph-angghen-viet-tac-pham-chong-duyrinh",
+      "era": "birth",
+      "order": 11,
+      "title": "Ph. Ăngghen viết tác phẩm \"Chống Đuyrinh\",.",
+      "dateLabel": "Năm 1878",
+      "year": 1878,
+      "locations": [
+        {
+          "lat": 51.3397,
+          "lng": 12.3731,
+          "label": "Leipzig, Đức"
+        }
+      ],
+      "summary": "“Chống Đuyrinh” do Ph. Ăngghen viết trong giai đoạn 1876–1878, đăng nhiều kỳ trên báo Vorwärts và xuất bản thành sách tại Leipzig năm 1878.",
+      "description": "“Chống Đuyrinh” do Ph. Ăngghen viết trong giai đoạn 1876–1878, đăng nhiều kỳ trên báo Vorwärts và xuất bản thành sách tại Leipzig năm 1878. Tác phẩm trình bày có hệ thống nhiều nội dung cơ bản của chủ nghĩa Mác.",
+      "image": {
+        "thumb": "/images/thumb/birth-11.jpg",
+        "full": "/images/optimized/birth-11.jpg"
+      },
+      "imageSource": "",
+      "sources": [],
+      "incomplete": ["sources", "imageSource"]
+    },
+    {
+      "id": "lenin-01",
+      "slug": "v-i-lenin-viet-tac-pham-lam-gi",
+      "era": "lenin",
+      "order": 1,
+      "title": "V.I. Lênin viết tác phẩm \"Làm gì?\".",
+      "dateLabel": "Năm 1902",
+      "year": 1902,
+      "locations": [
+        {
+          "lat": 48.77626798547835,
+          "lng": 9.193351369177162,
+          "label": "Stuttgart, Đức"
+        }
+      ],
+      "summary": "Tác phẩm tập trung phê phán \"chủ nghĩa kinh tế\", nhấn mạnh rằng giai cấp vô sản không thể tự phát sinh ý thức chính trị nếu chỉ đấu tranh kinh tế.",
+      "description": "Tác phẩm tập trung phê phán \"chủ nghĩa kinh tế\", nhấn mạnh rằng giai cấp vô sản không thể tự phát sinh ý thức chính trị nếu chỉ đấu tranh kinh tế. Lênin đề xuất việc thành lập một \"Đảng tiên phong\" gồm những nhà cách mạng chuyên nghiệp để truyền bá chủ nghĩa Mác vào phong trào công nhân.",
+      "image": {
+        "thumb": "/images/thumb/lenin-01.jpg",
+        "full": "/images/optimized/lenin-01.jpg"
+      },
+      "imageSource": "https://en.wikipedia.org/wiki/What_Is_to_Be_Done%3F",
+      "sources": ["https://en.wikipedia.org/wiki/What_Is_to_Be_Done%3F"]
+    },
+    {
+      "id": "lenin-02",
+      "slug": "cach-mang-thang-muoi-nga-thanh-cong-dan-den-su-ra-doi-cua",
+      "era": "lenin",
+      "order": 2,
+      "title": "Cách mạng Tháng Mười Nga thành công, dẫn đến sự ra đời của Nhà nước Xôviết - nhà nước XHCN đầu tiên trên thế giới tại Nga,,.",
+      "dateLabel": "6/11/1917-7/11/1917",
+      "year": 1917,
+      "locations": [
+        {
+          "lat": 59.91811876813978,
+          "lng": 30.308775637783157,
+          "label": "Petrograd (nay là thành phố Saint Petersburg), Nga."
+        }
+      ],
+      "summary": "Dưới sự lãnh đạo trực tiếp của Lênin và Đảng Bolshevik, lực lượng công nhân, binh lính và thủy thủ đã lật đổ Chính phủ lâm thời tư sản, giành chính quyền về tay các Xô viết.",
+      "description": "Dưới sự lãnh đạo trực tiếp của Lênin và Đảng Bolshevik, lực lượng công nhân, binh lính và thủy thủ đã lật đổ Chính phủ lâm thời tư sản, giành chính quyền về tay các Xô viết. Đây là cuộc cách mạng vô sản đầu tiên trên thế giới giành thắng lợi.",
+      "image": {
+        "thumb": "",
+        "full": ""
+      },
+      "imageSource": "https://www.baoquankhu7.vn/cach-mang-thang-muoi-nga-chi-ra-con-duong-giai-phong-dan-toc-viet-nam--1378944605-0041678s34010gs",
+      "sources": [
+        "https://www.baoquankhu7.vn/cach-mang-thang-muoi-nga-chi-ra-con-duong-giai-phong-dan-toc-viet-nam--1378944605-0041678s34010gs"
+      ],
+      "incomplete": ["image"]
+    },
+    {
+      "id": "lenin-03",
+      "slug": "v-i-lenin-sang-lap-quoc-te-cong-san-quoc-te-iii",
+      "era": "lenin",
+      "order": 3,
+      "title": "V.I. Lênin sáng lập Quốc tế Cộng sản (Quốc tế III).",
+      "dateLabel": "2/3/1919 - 6/3/1919",
+      "year": 1919,
+      "locations": [
+        {
+          "lat": 55.77816632847786,
+          "lng": 37.56636312971725,
+          "label": "Mát-xcơ-va (Moscow), Nga"
+        }
+      ],
+      "summary": "Quốc tế III được thành lập nhằm tập hợp và lãnh đạo phong trào cộng sản, công nhân quốc tế; đánh dấu sự thắng lợi của chủ nghĩa Mác - Lênin đối với các xu hướng cơ hội chủ nghĩa trong phong trào công nhân.",
+      "description": "Quốc tế III được thành lập nhằm tập hợp và lãnh đạo phong trào cộng sản, công nhân quốc tế; đánh dấu sự thắng lợi của chủ nghĩa Mác - Lênin đối với các xu hướng cơ hội chủ nghĩa trong phong trào công nhân.",
+      "image": {
+        "thumb": "/images/thumb/lenin-03.jpg",
+        "full": "/images/optimized/lenin-03.jpg"
+      },
+      "imageSource": "https://special.vietnamplus.vn/su-ra-doi-cua-quoc-te-cong-san-quoc-te-iii-vao-thang-3-1919-da-thuc-day-su-phat-trien-manh-me-phong-trao-cong-san-va-cong-nhan-quoc-te-doi-voi-viet-nam-quoc-te-cong-san-co-vai-tro-quan-trong-tro/",
+      "sources": [
+        "https://tulieuvankien.dangcongsan.vn/ho-so-su-kien-nhan-chung/phong-trao-cong-san-cong-nhan-quoc-te/quoc-te-cong-san/quoc-te-iii-1919-1943-101"
+      ]
+    },
+    {
+      "id": "lenin-04",
+      "slug": "v-i-lenin-khoi-xuong-va-lanh-dao-thuc-hien-chinh-sach-kinh",
+      "era": "lenin",
+      "order": 4,
+      "title": "V.I. Lênin khởi xướng và lãnh đạo thực hiện \"Chính sách Kinh tế mới\" (NEP).",
+      "dateLabel": "tháng 3 năm 1921",
+      "year": 1921,
+      "locations": [
+        {
+          "lat": 55.77816632847786,
+          "lng": 37.56636312971725,
+          "label": "Mát-xcơ-va (Moscow), Nga"
+        }
+      ],
+      "summary": "Bước ngoặt chiến lược chuyển từ \"Cộng sản thời chiến\" sang phát triển nền kinh tế hàng hóa nhiều thành phần, sử dụng quan hệ thị trường để khôi phục kinh tế sau nội chiến và xây dựng cơ sở vật chất cho Chủ nghĩa xã hội.",
+      "description": "Bước ngoặt chiến lược chuyển từ \"Cộng sản thời chiến\" sang phát triển nền kinh tế hàng hóa nhiều thành phần, sử dụng quan hệ thị trường để khôi phục kinh tế sau nội chiến và xây dựng cơ sở vật chất cho Chủ nghĩa xã hội.",
+      "image": {
+        "thumb": "/images/thumb/lenin-04.jpg",
+        "full": "/images/optimized/lenin-04.jpg"
+      },
+      "imageSource": "https://nbtv.vn/tinh-than-chinh-sach-kinh-te-moi-trong-cong-cuoc-doi-moi-voi-khat-vong-phat-trien-dat-nuoc-phon-vinh-hanh-phuc-29108.html",
+      "sources": [
+        "https://nbtv.vn/tinh-than-chinh-sach-kinh-te-moi-trong-cong-cuoc-doi-moi-voi-khat-vong-phat-trien-dat-nuoc-phon-vinh-hanh-phuc-29108.html"
+      ]
+    },
+    {
+      "id": "lenin-05",
+      "slug": "lenin-lanh-dao-viec-thanh-lap-lien-bang-cong-hoa-xa-hoi-chu",
+      "era": "lenin",
+      "order": 5,
+      "title": "Lênin lãnh đạo việc thành lập Liên bang Cộng hòa Xã hội Chủ nghĩa Xô viết (gọi tắt là Liên Xô).",
+      "dateLabel": "30/12/1922",
+      "year": 1922,
+      "locations": [
+        {
+          "lat": 55.77816632847786,
+          "lng": 37.56636312971725,
+          "label": "Mát-xcơ-va (Moscow), Nga"
+        }
+      ],
+      "summary": "Lênin đóng vai trò quyết định trong việc xây dựng nguyên tắc liên bang tự nguyện, bình đẳng giữa các nước cộng hòa.",
+      "description": "Lênin đóng vai trò quyết định trong việc xây dựng nguyên tắc liên bang tự nguyện, bình đẳng giữa các nước cộng hòa. Đây là mô hình nhà nước liên bang XHCN đầu tiên trên thế giới.",
+      "image": {
+        "thumb": "/images/thumb/lenin-05.jpg",
+        "full": "/images/optimized/lenin-05.jpg"
+      },
+      "imageSource": "https://vpdf.org.vn/tin-tuc-su-kien/chinh-tri-xa-hoi/su-ra-doi-cua-lien-bang-xo-viet-mot-the-ky-nhin-lai.html",
+      "sources": [
+        "https://vi.wikipedia.org/wiki/Hi%E1%BB%87p_%C6%B0%E1%BB%9Bc_v%E1%BB%81_vi%E1%BB%87c_th%C3%A0nh_l%E1%BA%ADp_Li%C3%AAn_X%C3%B4"
+      ]
+    },
+    {
+      "id": "lenin-06",
+      "slug": "v-i-lenin-qua-doi",
+      "era": "lenin",
+      "order": 6,
+      "title": "V.I. Lênin qua đời.",
+      "dateLabel": "21/01/1924",
+      "year": 1924,
+      "locations": [
+        {
+          "lat": 55.50858968707844,
+          "lng": 37.77730781373274,
+          "label": "[object Object]"
+        }
+      ],
+      "summary": "Sự kiện để lại niềm tiếc thương vô hạn cho nhân dân Xô viết và phong trào cộng sản quốc tế.",
+      "description": "Sự kiện để lại niềm tiếc thương vô hạn cho nhân dân Xô viết và phong trào cộng sản quốc tế. Thi hài ông sau đó được bảo quản tại Lăng Lênin trên Quảng trường Đỏ.",
+      "image": {
+        "thumb": "/images/thumb/lenin-06.jpg",
+        "full": "/images/optimized/lenin-06.jpg"
+      },
+      "imageSource": "https://tulieuvankien.dangcongsan.vn/c-mac-angghen-lenin-ho-chi-minh/v-i-lenin/tieu-su-cuoc-doi-va-su-nghiep/tieu-su-v-i-lenin-154",
+      "sources": [
+        "https://tulieuvankien.dangcongsan.vn/c-mac-angghen-lenin-ho-chi-minh/v-i-lenin/tieu-su-cuoc-doi-va-su-nghiep/tieu-su-v-i-lenin-154"
+      ]
+    },
+    {
+      "id": "post-lenin-01",
+      "slug": "dang-cong-san-trung-quoc-duoc-thanh-lap-tai-trung-quoc",
+      "era": "post-lenin",
+      "order": 1,
+      "title": "Đảng Cộng sản Trung Quốc được thành lập tại Trung Quốc.",
+      "dateLabel": "Ngày 1/7/1921",
+      "year": 1921,
+      "locations": [
+        {
+          "lat": 31.2415424510595,
+          "lng": 121.47258398699829,
+          "label": "Thượng Hải"
+        },
+        {
+          "lat": 30.758488630622896,
+          "lng": 120.75395555515016,
+          "label": "Hồ Nam"
+        }
+      ],
+      "summary": "-Đại hội lần thứ nhất của CPC họp với 13 đại biểu, đại diện cho khoảng 50 đảng viên, đánh dấu sự ra đời của chính đảng mác-xít ở Trung Quốc -Sau này Đảng Cộng sản Trung Quốc chính thức lấy ngày 1/7/1921 làm ngày thành l…",
+      "description": "-Đại hội lần thứ nhất của CPC họp với 13 đại biểu, đại diện cho khoảng 50 đảng viên, đánh dấu sự ra đời của chính đảng mác-xít ở Trung Quốc\n\n-Sau này Đảng Cộng sản Trung Quốc chính thức lấy ngày 1/7/1921 làm ngày thành lập để kỷ niệm thường niên.",
+      "image": {
+        "thumb": "/images/thumb/post-lenin-01.jpg",
+        "full": "/images/optimized/post-lenin-01.jpg"
+      },
+      "imageSource": "https://upload.wikimedia.org/wikipedia/commons/8/85/Mao_Proclaiming_New_China.JPG",
+      "sources": ["https://bktt.vn/%C4%90%E1%BA%A3ng_C%E1%BB%99ng_s%E1%BA%A3n_Trung_Qu%E1%BB%91c"]
+    },
+    {
+      "id": "post-lenin-02",
+      "slug": "chien-tranh-the-gioi-thu-hai-dien-ra-sau-do-he-thong-xa-hoi",
+      "era": "post-lenin",
+      "order": 2,
+      "title": "Chiến tranh thế giới thứ hai diễn ra, sau đó hệ thống xã hội chủ nghĩa thế giới hình thành.",
+      "dateLabel": "01/09/1939 - 02/09/1945",
+      "year": 1939,
+      "locations": [
+        {
+          "lat": 52.518880746614514,
+          "lng": 13.402772348961957,
+          "label": "Berlin (Đức)"
+        },
+        {
+          "lat": 55.77816632847786,
+          "lng": 37.56636312971725,
+          "label": "Moskva (Liên Xô)"
+        },
+        {
+          "lat": 52.22784035101646,
+          "lng": 21.001673090288815,
+          "label": "Warsaw (Ba Lan)"
+        }
+      ],
+      "summary": "-Sau Chiến tranh thế giới thứ hai, Liên Xô mở rộng ảnh hưởng sang Đông Âu, góp phần hình thành hệ thống các nước xã hội chủ nghĩa ở châu Âu (Ba Lan, Tiệp Khắc, Đông Đức, Hungary, Romania, Bulgaria, Albania, v.v.",
+      "description": "-Sau Chiến tranh thế giới thứ hai, Liên Xô mở rộng ảnh hưởng sang Đông Âu, góp phần hình thành hệ thống các nước xã hội chủ nghĩa ở châu Âu (Ba Lan, Tiệp Khắc, Đông Đức, Hungary, Romania, Bulgaria, Albania, v.v.\n\n-Thắng lợi của Hồng quân Liên Xô và phong trào giải phóng dân tộc thúc đẩy sự mở rộng của trật tự xã hội chủ nghĩa trên phạm vi toàn cầu, tạo tiền đề cho sự đối lập giữa hai hệ thống: tư bản chủ nghĩa và xã hội chủ nghĩa.",
+      "image": {
+        "thumb": "",
+        "full": ""
+      },
+      "imageSource": "",
+      "sources": [
+        "https://vi.wikipedia.org/wiki/Chi%E1%BA%BFn_tranh_th%E1%BA%BF_gi%E1%BB%9Bi_th%E1%BB%A9_hai"
+      ],
+      "incomplete": ["image"]
+    },
+    {
+      "id": "post-lenin-03",
+      "slug": "hoi-nghi-dai-bieu-cac-dang-cong-san-va-cong-nhan-quoc-te",
+      "era": "post-lenin",
+      "order": 3,
+      "title": "Hội nghị đại biểu các Đảng Cộng sản và công nhân quốc tế họp tại Mátxcơva, Nga thông qua 9 quy luật chung của công cuộc cải tạo XHCN.",
+      "dateLabel": "Tháng 11/1957",
+      "year": 1957,
+      "locations": [
+        {
+          "lat": 55.77816632847786,
+          "lng": 37.56636312971725,
+          "label": "Thành phố Moskva, Liên Xô (nay là Liên bang Nga)"
+        }
+      ],
+      "summary": "- Hội nghị đại biểu các Đảng Cộng sản và công nhân quốc tế họp tại Moskva tháng 11/1957, tổng kết thực tiễn xây dựng chủ nghĩa xã hội và thông qua 9 quy luật chung của công cuộc cải tạo xã hội chủ nghĩa - Văn kiện từ hộ…",
+      "description": "- Hội nghị đại biểu các Đảng Cộng sản và công nhân quốc tế họp tại Moskva tháng 11/1957, tổng kết thực tiễn xây dựng chủ nghĩa xã hội và thông qua 9 quy luật chung của công cuộc cải tạo xã hội chủ nghĩa\n\n- Văn kiện từ hội nghị này trở thành cơ sở quan trọng để các Đảng Mác – Lênin vận dụng trong đường lối xây dựng mô hình xã hội chủ nghĩa ở các nước xã hội chủ nghĩa, trong đó có Việt Nam",
+      "image": {
+        "thumb": "/images/thumb/post-lenin-03.jpg",
+        "full": "/images/optimized/post-lenin-03.jpg"
+      },
+      "imageSource": "",
+      "sources": [
+        "https://tulieuvankien.dangcongsan.vn/ho-so-su-kien-nhan-chung/su-kien-va-nhan-chung?page=1"
+      ],
+      "incomplete": ["imageSource"]
+    },
+    {
+      "id": "post-lenin-04",
+      "slug": "hoi-nghi-dai-bieu-cua-81-dang-cong-san-va-cong-nhan-quoc-te",
+      "era": "post-lenin",
+      "order": 4,
+      "title": "Hội nghị đại biểu của 81 Đảng Cộng sản và công nhân quốc tế họp tại Mátxcơva, Nga phân tích tình hình quốc tế và đưa ra khái niệm về \"thời đại hiện nay\".",
+      "dateLabel": "Tháng 1/1960",
+      "year": 1960,
+      "locations": [
+        {
+          "lat": 55.77816632847786,
+          "lng": 37.56636312971725,
+          "label": "Thành phố Moskva, Liên Xô (nay là Liên bang Nga)"
+        }
+      ],
+      "summary": "- Hội nghị đại biểu của 81 Đảng Cộng sản và Đảng Công nhân quốc tế họp ở Moskva tháng 01/1960, phân tích tình hình quốc tế và đưa ra khái niệm về “thời đại hiện nay”, nhấn mạnh thời đại quá độ từ chủ nghĩa tư bản lên ch…",
+      "description": "- Hội nghị đại biểu của 81 Đảng Cộng sản và Đảng Công nhân quốc tế họp ở Moskva tháng 01/1960, phân tích tình hình quốc tế và đưa ra khái niệm về “thời đại hiện nay”, nhấn mạnh thời đại quá độ từ chủ nghĩa tư bản lên chủ nghĩa xã hội trên phạm vi toàn thế giới\n\n- Hội nghị thông qua bản Tuyên ngôn mới, bổ sung và phát triển nội dung Tuyên ngôn năm 1957, được coi là cương lĩnh cách mạng chung cho các Đảng Mác – Lênin trên thế giới",
+      "image": {
+        "thumb": "",
+        "full": ""
+      },
+      "imageSource": "",
+      "sources": [
+        "https://tulieuvankien.dangcongsan.vn/ho-so-su-kien-nhan-chung/su-kien-va-nhan-chung?page=1"
+      ],
+      "incomplete": ["image"]
+    },
+    {
+      "id": "post-lenin-05",
+      "slug": "hoi-nghi-trung-uong-3-khoa-xi-cua-dang-cong-san-trung-quoc",
+      "era": "post-lenin",
+      "order": 5,
+      "title": "Hội nghị Trung ương 3 khóa XI của Đảng Cộng sản Trung Quốc mở đầu công cuộc cải cách, mở cửa.",
+      "dateLabel": "18/12/1978 - 22/12/1978",
+      "year": 1978,
+      "locations": [
+        {
+          "lat": 39.90576783039686,
+          "lng": 116.39878905704109,
+          "label": "Bắc Kinh, Trung Quốc (thường họp tại Trung Nam Hải hoặc Đại lễ đường Nhân dân trên Quảng trường Thiên An Môn)"
+        }
+      ],
+      "summary": "- Hội nghị Trung ương 3 khóa XI Đảng Cộng sản Trung Quốc được coi là điểm khởi đầu chính thức của đường lối cải cách và mở cửa, chuyển trọng tâm từ đấu tranh giai cấp sang xây dựng kinh tế.",
+      "description": "- Hội nghị Trung ương 3 khóa XI Đảng Cộng sản Trung Quốc được coi là điểm khởi đầu chính thức của đường lối cải cách và mở cửa, chuyển trọng tâm từ đấu tranh giai cấp sang xây dựng kinh tế.\n\n- Hội nghị khẳng định đường lối “giải phóng tư tưởng, thực sự cầu thị”, mở ra quá trình hiện đại hóa bốn lĩnh vực (nông nghiệp, công nghiệp, quốc phòng, khoa học – kỹ thuật).",
+      "image": {
+        "thumb": "",
+        "full": ""
+      },
+      "imageSource": "",
+      "sources": [],
+      "incomplete": ["sources", "image"]
+    },
+    {
+      "id": "post-lenin-06",
+      "slug": "mo-hinh-che-do-xhcn-o-lien-xo-va-dong-au-sup-do-he-thong",
+      "era": "post-lenin",
+      "order": 6,
+      "title": "Mô hình chế độ XHCN ở Liên Xô và Đông Âu sụp đổ, hệ thống XHCN tan rã,,.",
+      "dateLabel": "Cuối thập niên 80 - đầu thập niên 90",
+      "year": 0,
+      "locations": [
+        {
+          "lat": 52.518880746614514,
+          "lng": 13.402772348961957,
+          "label": "Berlin (Đức)"
+        },
+        {
+          "lat": 55.77816632847786,
+          "lng": 37.56636312971725,
+          "label": "Moskva (Liên Xô)"
+        },
+        {
+          "lat": 52.22784035101646,
+          "lng": 21.001673090288815,
+          "label": "Warsaw (Ba Lan)"
+        }
+      ],
+      "summary": "- Cuối thập niên 1980, cải tổ (perestroika) và công khai (glasnost) ở Liên Xô cùng với khủng hoảng kinh tế – xã hội dẫn tới mất ổn định chính trị, làm suy yếu hệ thống XHCN - Năm 1989, các chế độ XHCN Đông Âu lần lượt s…",
+      "description": "- Cuối thập niên 1980, cải tổ (perestroika) và công khai (glasnost) ở Liên Xô cùng với khủng hoảng kinh tế – xã hội dẫn tới mất ổn định chính trị, làm suy yếu hệ thống XHCN\n\n- Năm 1989, các chế độ XHCN Đông Âu lần lượt sụp đổ; đến cuối năm 1991, Liên Xô tan rã, hệ thống xã hội chủ nghĩa thế giới bị thu hẹp mạnh, chỉ còn một số nước như Trung Quốc, Việt Nam, Cuba, Lào, Bắc Triều Tiên tiếp tục con đường XHCN",
+      "image": {
+        "thumb": "",
+        "full": ""
+      },
+      "imageSource": "",
+      "sources": [
+        "https://tapchilichsudang.vn/mot-so-yeu-to-tac-dong-den-su-hinh-thanh-duong-loi-xay-dung-chu-nghia-xa-hoi-o-mien-bac-1954-1975.html"
+      ],
+      "incomplete": ["year", "image"]
+    },
+    {
+      "id": "post-lenin-07",
+      "slug": "dai-hoi-lan-thu-xvi-dang-cong-san-trung-quoc-khai-quat-ve",
+      "era": "post-lenin",
+      "order": 7,
+      "title": "Đại hội lần thứ XVI Đảng Cộng sản Trung Quốc khái quát về quá trình lãnh đạo của Đảng.",
+      "dateLabel": "08/11/2002 - 14/11/2002",
+      "year": 2002,
+      "locations": [
+        {
+          "lat": 39.90576783039686,
+          "lng": 116.39878905704109,
+          "label": "08/11/2002Đại lễ đường Nhân dân, Bắc Kinh, Trung Quốc"
+        }
+      ],
+      "summary": "- Đại hội XVI đã tổng kết quá trình lãnh đạo của Đảng Cộng sản Trung Quốc trong giai đoạn cải cách – mở cửa, xác lập tư tưởng “Ba đại diện” là cơ sở lý luận quan trọng để CPC tiếp tục cầm quyền trong điều kiện kinh tế t…",
+      "description": "- Đại hội XVI đã tổng kết quá trình lãnh đạo của Đảng Cộng sản Trung Quốc trong giai đoạn cải cách – mở cửa, xác lập tư tưởng “Ba đại diện” là cơ sở lý luận quan trọng để CPC tiếp tục cầm quyền trong điều kiện kinh tế thị trường xã hội chủ nghĩa\n\n- Đại hội đề ra mục tiêu tiếp tục hiện đại hóa, thúc đẩy công nghiệp hóa, đô thị hóa và hội nhập kinh tế quốc tế, vừa củng cố vai trò lãnh đạo của Đảng, vừa mở rộng thành phần kinh tế ngoài quốc doanh.",
+      "image": {
+        "thumb": "",
+        "full": ""
+      },
+      "imageSource": "",
+      "sources": [],
+      "incomplete": ["sources", "image"]
+    },
+    {
+      "id": "post-lenin-08",
+      "slug": "dai-hoi-xix-cua-dang-cong-san-trung-quoc-xac-lap-tu-tuong",
+      "era": "post-lenin",
+      "order": 8,
+      "title": "Đại hội XIX của Đảng Cộng sản Trung Quốc xác lập tư tưởng về chủ nghĩa xã hội đặc sắc Trung Quốc thời đại mới.",
+      "dateLabel": "18/10/2017 - 24/10/2017.",
+      "year": 2017,
+      "locations": [
+        {
+          "lat": 39.90576783039686,
+          "lng": 116.39878905704109,
+          "label": "Đại lễ đường Nhân dân, Bắc Kinh, Trung Quố"
+        }
+      ],
+      "summary": "- Đại hội XIX xác lập “Tư tưởng về chủ nghĩa xã hội đặc sắc Trung Quốc trong thời đại mới” của Tập Cận Bình, đưa tư tưởng này vào Cương lĩnh Đảng, khẳng định bước phát triển mới của mô hình XHCN mang đặc sắc Trung Quốc.",
+      "description": "- Đại hội XIX xác lập “Tư tưởng về chủ nghĩa xã hội đặc sắc Trung Quốc trong thời đại mới” của Tập Cận Bình, đưa tư tưởng này vào Cương lĩnh Đảng, khẳng định bước phát triển mới của mô hình XHCN mang đặc sắc Trung Quốc.\n\n- Đại hội đề ra mục tiêu đến giữa thế kỷ XXI xây dựng Trung Quốc trở thành nước xã hội chủ nghĩa hiện đại toàn diện, đồng thời nhấn mạnh vai trò lãnh đạo toàn diện của Đảng trong mọi lĩnh vực",
+      "image": {
+        "thumb": "",
+        "full": ""
+      },
+      "imageSource": "",
+      "sources": [],
+      "incomplete": ["sources", "image"]
+    },
+    {
+      "id": "vietnam-01",
+      "slug": "cuong-linh-dau-tien-cua-dang-cong-san-viet-nam-xac-dinh-con",
+      "era": "vietnam",
+      "order": 1,
+      "title": "Cương lĩnh đầu tiên của Đảng Cộng sản Việt Nam xác định con đường đi lên chủ nghĩa xã hội.",
+      "dateLabel": "03/02/1930 (Hội nghị diễn ra từ 06/01–07/02/1930)",
+      "year": 1930,
+      "locations": [
+        {
+          "lat": 22.3530245,
+          "lng": 113.8090476,
+          "label": "Hương Cảng (Hong Kong, Trung Quốc)"
+        }
+      ],
+      "summary": "Hội nghị thành lập Đảng do Nguyễn Ái Quốc chủ trì thông qua Chánh cương vắn tắt, Sách lược vắn tắt…; xác định con đường cách mạng Việt Nam là làm tư sản dân quyền cách mạng và thổ địa cách mạng để đi tới xã hội cộng sản.",
+      "description": "Hội nghị thành lập Đảng do Nguyễn Ái Quốc chủ trì thông qua Chánh cương vắn tắt, Sách lược vắn tắt…; xác định con đường cách mạng Việt Nam là làm tư sản dân quyền cách mạng và thổ địa cách mạng để đi tới xã hội cộng sản.",
+      "image": {
+        "thumb": "",
+        "full": ""
+      },
+      "imageSource": "",
+      "sources": [
+        "https://nhandan.vn/cuong-linh-xay-dung-dat-nuoc-trong-thoi-ky-qua-do-len-chu-nghia-xa-hoi-post935095.html?"
+      ],
+      "incomplete": ["image"]
+    },
+    {
+      "id": "vietnam-02",
+      "slug": "cach-mang-thang-tam-thanh-cong-tai-viet-nam-thiet-lap-che",
+      "era": "vietnam",
+      "order": 2,
+      "title": "Cách mạng Tháng Tám thành công tại Việt Nam, thiết lập chế độ dân chủ nhân dân.",
+      "dateLabel": "Tháng 8/1945, thắng lợi trên cả nước; 02/09/1945 tuyên bố độc lập",
+      "year": 1945,
+      "locations": [
+        {
+          "lat": 21.0372729,
+          "lng": 105.8333507,
+          "label": "Hà Nội (quảng trường Ba Đình)"
+        }
+      ],
+      "summary": "Cách mạng Tháng Tám giành chính quyền trên cả nước, chấm dứt chế độ thực dân - phong kiến; ngày 02/9/1945, Chủ tịch Hồ Chí Minh đọc Tuyên ngôn Độc lập, khai sinh nước Việt Nam Dân chủ Cộng hòa.",
+      "description": "Cách mạng Tháng Tám giành chính quyền trên cả nước, chấm dứt chế độ thực dân - phong kiến; ngày 02/9/1945, Chủ tịch Hồ Chí Minh đọc Tuyên ngôn Độc lập, khai sinh nước Việt Nam Dân chủ Cộng hòa.",
+      "image": {
+        "thumb": "",
+        "full": ""
+      },
+      "imageSource": "",
+      "sources": [
+        "https://nhandan.vn/cuong-linh-xay-dung-dat-nuoc-trong-thoi-ky-qua-do-len-chu-nghia-xa-hoi-post935095.html"
+      ],
+      "incomplete": ["image"]
+    },
+    {
+      "id": "vietnam-03",
+      "slug": "cuoc-tong-tuyen-cu-dau-tien-cua-nuoc-viet-nam-dan-chu-cong",
+      "era": "vietnam",
+      "order": 3,
+      "title": "Cuộc Tổng tuyển cử đầu tiên của nước Việt Nam Dân chủ Cộng hòa được tổ chức.",
+      "dateLabel": "06/01/1946",
+      "year": 1946,
+      "locations": [],
+      "summary": "Lần đầu tiên nhân dân cả nước thực hiện quyền bầu cử Quốc hội bằng phổ thông đầu phiếu, bầu Quốc hội khóa I của nước Việt Nam Dân chủ Cộng hòa.",
+      "description": "Lần đầu tiên nhân dân cả nước thực hiện quyền bầu cử Quốc hội bằng phổ thông đầu phiếu, bầu Quốc hội khóa I của nước Việt Nam Dân chủ Cộng hòa.",
+      "image": {
+        "thumb": "",
+        "full": ""
+      },
+      "imageSource": "",
+      "sources": [],
+      "incomplete": ["locations", "sources", "image"]
+    },
+    {
+      "id": "vietnam-04",
+      "slug": "ten-nuoc-duoc-doi-thanh-cong-hoa-xa-hoi-chu-nghia-viet-nam",
+      "era": "vietnam",
+      "order": 4,
+      "title": "Tên nước được đổi thành Cộng hòa xã hội chủ nghĩa Việt Nam.",
+      "dateLabel": "02/07/1976",
+      "year": 1976,
+      "locations": [
+        {
+          "lat": 20.9751749,
+          "lng": 105.3223869,
+          "label": "Hà Nội (Kỳ họp thứ nhất Quốc hội khóa VI)"
+        }
+      ],
+      "summary": "Quốc hội khóa VI) Sau khi đất nước thống nhất, Quốc hội quyết định lấy tên nước là Cộng hòa xã hội chủ nghĩa Việt Nam, thống nhất bộ máy nhà nước.",
+      "description": "Quốc hội khóa VI)\nSau khi đất nước thống nhất, Quốc hội quyết định lấy tên nước là Cộng hòa xã hội chủ nghĩa Việt Nam, thống nhất bộ máy nhà nước.",
+      "image": {
+        "thumb": "",
+        "full": ""
+      },
+      "imageSource": "",
+      "sources": [],
+      "incomplete": ["sources", "image"]
+    },
+    {
+      "id": "vietnam-05",
+      "slug": "dai-hoi-lan-thu-vi-cua-dang-khoi-xuong-cong-cuoc-doi-moi",
+      "era": "vietnam",
+      "order": 5,
+      "title": "Đại hội lần thứ VI của Đảng khởi xướng công cuộc Đổi mới toàn diện đất nước.",
+      "dateLabel": "15–18/12/1986",
+      "year": 1986,
+      "locations": [
+        {
+          "lat": 20.9751749,
+          "lng": 105.3223869,
+          "label": "Hà Nội"
+        }
+      ],
+      "summary": "Đại hội VI đề ra đường lối Đổi mới toàn diện, trước hết là đổi mới kinh tế, chuyển từ cơ chế tập trung bao cấp sang nền kinh tế hàng hóa nhiều thành phần vận hành theo cơ chế thị trường có sự quản lý của Nhà nước.",
+      "description": "Đại hội VI đề ra đường lối Đổi mới toàn diện, trước hết là đổi mới kinh tế, chuyển từ cơ chế tập trung bao cấp sang nền kinh tế hàng hóa nhiều thành phần vận hành theo cơ chế thị trường có sự quản lý của Nhà nước.",
+      "image": {
+        "thumb": "",
+        "full": ""
+      },
+      "imageSource": "",
+      "sources": [],
+      "incomplete": ["sources", "image"]
+    },
+    {
+      "id": "vietnam-06",
+      "slug": "thong-qua-cuong-linh-xay-dung-dat-nuoc-trong-thoi-ky-qua-do",
+      "era": "vietnam",
+      "order": 6,
+      "title": "Thông qua Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội,.",
+      "dateLabel": "24–27/06/1991",
+      "year": 1991,
+      "locations": [
+        {
+          "lat": 20.9751749,
+          "lng": 105.3223869,
+          "label": "Hà Nội (Đại hội VII)"
+        }
+      ],
+      "summary": "Đại hội VII thông qua Cương lĩnh năm 1991, xác định mô hình xã hội xã hội chủ nghĩa và phương hướng xây dựng đất nước trong thời kỳ quá độ",
+      "description": "Đại hội VII thông qua Cương lĩnh năm 1991, xác định mô hình xã hội xã hội chủ nghĩa và phương hướng xây dựng đất nước trong thời kỳ quá độ",
+      "image": {
+        "thumb": "",
+        "full": ""
+      },
+      "imageSource": "",
+      "sources": [],
+      "incomplete": ["sources", "image"]
+    },
+    {
+      "id": "vietnam-07",
+      "slug": "thong-qua-cuong-linh-bo-sung-phat-trien-nam-2011-tai-dai",
+      "era": "vietnam",
+      "order": 7,
+      "title": "Thông qua Cương lĩnh (bổ sung, phát triển năm 2011) tại Đại hội XI",
+      "dateLabel": "12–19/01/2011",
+      "year": 2011,
+      "locations": [
+        {
+          "lat": 20.9751749,
+          "lng": 105.3223869,
+          "label": "Hà Nội"
+        }
+      ],
+      "summary": "Đại hội XI thông qua Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên CNXH (bổ sung, phát triển năm 2011); bổ sung nhiều nội dung về đặc trưng xã hội xã hội chủ nghĩa và phương hướng phát triển đất nước.",
+      "description": "Đại hội XI thông qua Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên CNXH (bổ sung, phát triển năm 2011); bổ sung nhiều nội dung về đặc trưng xã hội xã hội chủ nghĩa và phương hướng phát triển đất nước.",
+      "image": {
+        "thumb": "",
+        "full": ""
+      },
+      "imageSource": "",
+      "sources": [
+        "https://dcs.nhandan.vn/tu-lieu-tham-khao-cuoc-thi-trac-nghiem-tim-hieu-90-nam-lich-su-ve-vang-cua-dang-cong-san-viet-nam/tu-lieu-cuoc-thi/cuong-linh-xay-dung-dat-nuoc-trong-thoi-ky-qua-do-len-chu-nghia-xa-hoi-nam-1991-543533.html"
+      ],
+      "incomplete": ["image"]
+    },
+    {
+      "id": "vietnam-08",
+      "slug": "dai-hoi-lan-thu-xiii-cua-dang-danh-gia-35-nam-thuc-hien",
+      "era": "vietnam",
+      "order": 8,
+      "title": "Đại hội lần thứ XIII của Đảng đánh giá 35 năm thực hiện công cuộc Đổi mới",
+      "dateLabel": "25/01–01/02/2021",
+      "year": 2021,
+      "locations": [
+        {
+          "lat": 20.9751749,
+          "lng": 105.3223869,
+          "label": "Hà Nội"
+        }
+      ],
+      "summary": "Đại hội XIII tổng kết 35 năm Đổi mới (1986–2021), 30 năm thực hiện Cương lĩnh 1991, 10 năm thực hiện Cương lĩnh (bổ sung, phát triển năm 2011); đề ra mục tiêu phát triển đất nước đến năm 2025, 2030 và tầm nhìn 2045.",
+      "description": "Đại hội XIII tổng kết 35 năm Đổi mới (1986–2021), 30 năm thực hiện Cương lĩnh 1991, 10 năm thực hiện Cương lĩnh (bổ sung, phát triển năm 2011); đề ra mục tiêu phát triển đất nước đến năm 2025, 2030 và tầm nhìn 2045.",
+      "image": {
+        "thumb": "",
+        "full": ""
+      },
+      "imageSource": "",
+      "sources": [],
+      "incomplete": ["sources", "image"]
+    }
+  ]
+}
