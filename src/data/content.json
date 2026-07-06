@@ -24,8 +24,12 @@
         "full": "/images/optimized/birth-01.jpg"
       },
       "imageSource": "",
-      "sources": ["https://en.wikipedia.org/wiki/Canut_revolts?utm_source=chatgpt.com"],
-      "incomplete": ["imageSource"]
+      "sources": [
+        "https://en.wikipedia.org/wiki/Canut_revolts?utm_source=chatgpt.com"
+      ],
+      "incomplete": [
+        "imageSource"
+      ]
     },
     {
       "id": "birth-02",
@@ -52,7 +56,9 @@
       "sources": [
         "https://www.nationalarchives.gov.uk/education/resources/what-was-chartism/?utm_source=chatgpt.com"
       ],
-      "incomplete": ["imageSource"]
+      "incomplete": [
+        "imageSource"
+      ]
     },
     {
       "id": "birth-03",
@@ -79,7 +85,9 @@
       "sources": [
         "https://www.deutschlandmuseum.de/en/history/calendar/1844-06-04-the-weavers-revolt/?utm_source=chatgpt.com"
       ],
-      "incomplete": ["imageSource"]
+      "incomplete": [
+        "imageSource"
+      ]
     },
     {
       "id": "birth-04",
@@ -108,8 +116,12 @@
         "full": "/images/optimized/birth-04.jpg"
       },
       "imageSource": "",
-      "sources": ["https://en.wikipedia.org/wiki/Friedrich_Engels?utm_source=chatgpt.com"],
-      "incomplete": ["imageSource"]
+      "sources": [
+        "https://en.wikipedia.org/wiki/Friedrich_Engels?utm_source=chatgpt.com"
+      ],
+      "incomplete": [
+        "imageSource"
+      ]
     },
     {
       "id": "birth-05",
@@ -134,7 +146,10 @@
       },
       "imageSource": "",
       "sources": [],
-      "incomplete": ["sources", "imageSource"]
+      "incomplete": [
+        "sources",
+        "imageSource"
+      ]
     },
     {
       "id": "birth-06",
@@ -158,8 +173,12 @@
         "full": "/images/optimized/birth-06.jpg"
       },
       "imageSource": "",
-      "sources": ["https://en.wikipedia.org/wiki/Revolutions_of_1848?utm_source=chatgpt.com"],
-      "incomplete": ["imageSource"]
+      "sources": [
+        "https://en.wikipedia.org/wiki/Revolutions_of_1848?utm_source=chatgpt.com"
+      ],
+      "incomplete": [
+        "imageSource"
+      ]
     },
     {
       "id": "birth-07",
@@ -183,8 +202,12 @@
         "full": "/images/optimized/birth-07.jpg"
       },
       "imageSource": "",
-      "sources": ["https://en.wikipedia.org/wiki/First_International?utm_source=chatgpt.com"],
-      "incomplete": ["imageSource"]
+      "sources": [
+        "https://en.wikipedia.org/wiki/First_International?utm_source=chatgpt.com"
+      ],
+      "incomplete": [
+        "imageSource"
+      ]
     },
     {
       "id": "birth-08",
@@ -209,7 +232,10 @@
       },
       "imageSource": "",
       "sources": [],
-      "incomplete": ["sources", "imageSource"]
+      "incomplete": [
+        "sources",
+        "imageSource"
+      ]
     },
     {
       "id": "birth-09",
@@ -233,8 +259,12 @@
         "full": ""
       },
       "imageSource": "",
-      "sources": ["https://en.wikipedia.org/wiki/Paris_Commune?utm_source=chatgpt.com"],
-      "incomplete": ["image"]
+      "sources": [
+        "https://en.wikipedia.org/wiki/Paris_Commune?utm_source=chatgpt.com"
+      ],
+      "incomplete": [
+        "image"
+      ]
     },
     {
       "id": "birth-10",
@@ -259,7 +289,10 @@
       },
       "imageSource": "",
       "sources": [],
-      "incomplete": ["sources", "imageSource"]
+      "incomplete": [
+        "sources",
+        "imageSource"
+      ]
     },
     {
       "id": "birth-11",
@@ -284,7 +317,10 @@
       },
       "imageSource": "",
       "sources": [],
-      "incomplete": ["sources", "imageSource"]
+      "incomplete": [
+        "sources",
+        "imageSource"
+      ]
     },
     {
       "id": "lenin-01",
@@ -308,7 +344,9 @@
         "full": "/images/optimized/lenin-01.jpg"
       },
       "imageSource": "https://en.wikipedia.org/wiki/What_Is_to_Be_Done%3F",
-      "sources": ["https://en.wikipedia.org/wiki/What_Is_to_Be_Done%3F"]
+      "sources": [
+        "https://en.wikipedia.org/wiki/What_Is_to_Be_Done%3F"
+      ]
     },
     {
       "id": "lenin-02",
@@ -335,7 +373,9 @@
       "sources": [
         "https://www.baoquankhu7.vn/cach-mang-thang-muoi-nga-chi-ra-con-duong-giai-phong-dan-toc-viet-nam--1378944605-0041678s34010gs"
       ],
-      "incomplete": ["image"]
+      "incomplete": [
+        "image"
+      ]
     },
     {
       "id": "lenin-03",
@@ -468,7 +508,9 @@
         "full": "/images/optimized/post-lenin-01.jpg"
       },
       "imageSource": "https://upload.wikimedia.org/wikipedia/commons/8/85/Mao_Proclaiming_New_China.JPG",
-      "sources": ["https://bktt.vn/%C4%90%E1%BA%A3ng_C%E1%BB%99ng_s%E1%BA%A3n_Trung_Qu%E1%BB%91c"]
+      "sources": [
+        "https://bktt.vn/%C4%90%E1%BA%A3ng_C%E1%BB%99ng_s%E1%BA%A3n_Trung_Qu%E1%BB%91c"
+      ]
     },
     {
       "id": "post-lenin-02",
@@ -505,7 +547,9 @@
       "sources": [
         "https://vi.wikipedia.org/wiki/Chi%E1%BA%BFn_tranh_th%E1%BA%BF_gi%E1%BB%9Bi_th%E1%BB%A9_hai"
       ],
-      "incomplete": ["image"]
+      "incomplete": [
+        "image"
+      ]
     },
     {
       "id": "post-lenin-03",
@@ -532,7 +576,9 @@
       "sources": [
         "https://tulieuvankien.dangcongsan.vn/ho-so-su-kien-nhan-chung/su-kien-va-nhan-chung?page=1"
       ],
-      "incomplete": ["imageSource"]
+      "incomplete": [
+        "imageSource"
+      ]
     },
     {
       "id": "post-lenin-04",
@@ -559,7 +605,9 @@
       "sources": [
         "https://tulieuvankien.dangcongsan.vn/ho-so-su-kien-nhan-chung/su-kien-va-nhan-chung?page=1"
       ],
-      "incomplete": ["image"]
+      "incomplete": [
+        "image"
+      ]
     },
     {
       "id": "post-lenin-05",
@@ -584,7 +632,10 @@
       },
       "imageSource": "",
       "sources": [],
-      "incomplete": ["sources", "image"]
+      "incomplete": [
+        "sources",
+        "image"
+      ]
     },
     {
       "id": "post-lenin-06",
@@ -621,7 +672,10 @@
       "sources": [
         "https://tapchilichsudang.vn/mot-so-yeu-to-tac-dong-den-su-hinh-thanh-duong-loi-xay-dung-chu-nghia-xa-hoi-o-mien-bac-1954-1975.html"
       ],
-      "incomplete": ["year", "image"]
+      "incomplete": [
+        "year",
+        "image"
+      ]
     },
     {
       "id": "post-lenin-07",
@@ -646,7 +700,10 @@
       },
       "imageSource": "",
       "sources": [],
-      "incomplete": ["sources", "image"]
+      "incomplete": [
+        "sources",
+        "image"
+      ]
     },
     {
       "id": "post-lenin-08",
@@ -671,7 +728,10 @@
       },
       "imageSource": "",
       "sources": [],
-      "incomplete": ["sources", "image"]
+      "incomplete": [
+        "sources",
+        "image"
+      ]
     },
     {
       "id": "vietnam-01",
@@ -698,7 +758,9 @@
       "sources": [
         "https://nhandan.vn/cuong-linh-xay-dung-dat-nuoc-trong-thoi-ky-qua-do-len-chu-nghia-xa-hoi-post935095.html?"
       ],
-      "incomplete": ["image"]
+      "incomplete": [
+        "image"
+      ]
     },
     {
       "id": "vietnam-02",
@@ -725,7 +787,9 @@
       "sources": [
         "https://nhandan.vn/cuong-linh-xay-dung-dat-nuoc-trong-thoi-ky-qua-do-len-chu-nghia-xa-hoi-post935095.html"
       ],
-      "incomplete": ["image"]
+      "incomplete": [
+        "image"
+      ]
     },
     {
       "id": "vietnam-03",
@@ -744,7 +808,11 @@
       },
       "imageSource": "",
       "sources": [],
-      "incomplete": ["locations", "sources", "image"]
+      "incomplete": [
+        "locations",
+        "sources",
+        "image"
+      ]
     },
     {
       "id": "vietnam-04",
@@ -769,7 +837,10 @@
       },
       "imageSource": "",
       "sources": [],
-      "incomplete": ["sources", "image"]
+      "incomplete": [
+        "sources",
+        "image"
+      ]
     },
     {
       "id": "vietnam-05",
@@ -794,7 +865,10 @@
       },
       "imageSource": "",
       "sources": [],
-      "incomplete": ["sources", "image"]
+      "incomplete": [
+        "sources",
+        "image"
+      ]
     },
     {
       "id": "vietnam-06",
@@ -819,7 +893,10 @@
       },
       "imageSource": "",
       "sources": [],
-      "incomplete": ["sources", "image"]
+      "incomplete": [
+        "sources",
+        "image"
+      ]
     },
     {
       "id": "vietnam-07",
@@ -846,7 +923,9 @@
       "sources": [
         "https://dcs.nhandan.vn/tu-lieu-tham-khao-cuoc-thi-trac-nghiem-tim-hieu-90-nam-lich-su-ve-vang-cua-dang-cong-san-viet-nam/tu-lieu-cuoc-thi/cuong-linh-xay-dung-dat-nuoc-trong-thoi-ky-qua-do-len-chu-nghia-xa-hoi-nam-1991-543533.html"
       ],
-      "incomplete": ["image"]
+      "incomplete": [
+        "image"
+      ]
     },
     {
       "id": "vietnam-08",
@@ -871,7 +950,10 @@
       },
       "imageSource": "",
       "sources": [],
-      "incomplete": ["sources", "image"]
+      "incomplete": [
+        "sources",
+        "image"
+      ]
     }
   ]
 }

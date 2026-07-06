@@ -3,3 +3,6 @@ node_modules
 package-lock.json
 *.md
 public
+
+# Generated bởi npm run convert — giữ đúng format của script
+src/data/content.json
