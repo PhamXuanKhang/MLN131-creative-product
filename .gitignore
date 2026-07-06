@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Claude Code local skills/config (chứa .git lồng nhau — không commit)
+.claude/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
