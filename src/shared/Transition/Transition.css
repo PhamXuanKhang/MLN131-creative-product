@@ -1,0 +1,40 @@
+.film-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  visibility: hidden;
+  background-color: #0a0a0a;
+  /* Lỗ phim hai mép — nhịp lỗ bằng repeating-gradient, không cần ảnh */
+  --sprocket: repeating-linear-gradient(
+    to bottom,
+    transparent 0 10px,
+    #1f1f1f 10px 26px,
+    transparent 26px 36px
+  );
+}
+
+.film-transition::before,
+.film-transition::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 26px;
+  background-image: var(--sprocket);
+  background-color: #050505;
+}
+
+.film-transition::before {
+  left: 10px;
+}
+
+.film-transition::after {
+  right: 10px;
+}
+
+.film-transition__frame {
+  position: absolute;
+  inset: 6% 56px;
+  border: 1px solid rgba(216, 200, 165, 0.12);
+  border-radius: 2px;
+}

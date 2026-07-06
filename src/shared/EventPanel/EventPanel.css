@@ -1,0 +1,155 @@
+.event-panel-root {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.event-panel__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.event-panel {
+  position: relative;
+  width: min(520px, 100%);
+  height: 100%;
+  overflow-y: auto;
+  background-color: var(--c-surface);
+  border-left: 1px solid var(--c-line);
+  box-shadow: var(--shadow-lg);
+}
+
+.event-panel__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: var(--r-full);
+  border: 1px solid var(--c-line);
+  background-color: color-mix(in srgb, var(--c-bg) 70%, transparent);
+  color: var(--c-ink);
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.event-panel__close:hover {
+  border-color: var(--c-accent);
+}
+
+.event-panel__hero {
+  width: 100%;
+  height: 260px;
+  background-color: var(--c-bg);
+}
+
+/* "Giấy" — nội dung trên nền paper của theme */
+.event-panel__paper {
+  min-height: calc(100% - 260px);
+  padding: 24px 28px 32px;
+  background-color: var(--c-paper);
+  color: #2c2417;
+}
+
+.event-panel__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: baseline;
+}
+
+.event-panel__date {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8b6b3e;
+}
+
+.event-panel__era {
+  font-size: 0.72rem;
+  padding: 2px 10px;
+  border: 1px solid rgba(139, 107, 62, 0.4);
+  border-radius: var(--r-pill);
+  color: #6e5631;
+}
+
+.event-panel__title {
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.35;
+  color: #211a10;
+}
+
+.event-panel__locations {
+  margin-top: 8px;
+  font-size: 0.82rem;
+  color: #6e5631;
+}
+
+.event-panel__body {
+  margin-top: 16px;
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.event-panel__body p + p {
+  margin-top: 10px;
+}
+
+.event-panel__missing {
+  font-style: italic;
+  color: #8a7a5e;
+}
+
+.event-panel__sources {
+  margin-top: 24px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(139, 107, 62, 0.45);
+}
+
+.event-panel__sources h3 {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6e5631;
+}
+
+.event-panel__sources ul {
+  margin-top: 8px;
+  padding-left: 18px;
+}
+
+.event-panel__sources li {
+  font-size: 0.78rem;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.event-panel__sources a,
+.event-panel__credit a {
+  color: #8b5a2b;
+}
+
+.event-panel__credit {
+  margin-top: 14px;
+  font-size: 0.72rem;
+  color: #8a7a5e;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 720px) {
+  .event-panel {
+    width: 100%;
+  }
+
+  .event-panel__hero {
+    height: 200px;
+  }
+}

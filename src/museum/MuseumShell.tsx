@@ -5,6 +5,11 @@
 import { useLayoutEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Header from './Header'
+import { useSelectedEvent } from './useSelectedEvent'
+import EventPanel from '@/shared/EventPanel/EventPanel'
+import Transition from '@/shared/Transition/Transition'
+import { useAudio } from '@/shared/AudioManager/useAudio'
+import { useMuseumStore } from '@/store/useMuseumStore'
 import './MuseumShell.css'
 
 type ThemeId = 'neutral' | 'world' | 'vietnam'
@@ -18,11 +23,15 @@ const THEME_BY_PATH: Record<string, ThemeId> = {
 export default function MuseumShell() {
   const { pathname } = useLocation()
   const theme = THEME_BY_PATH[pathname] ?? 'world'
+  const { event, select } = useSelectedEvent()
+  const setAmbientMode = useMuseumStore((s) => s.setAmbient)
+  useAudio()
 
   // Set trên <html> (không phải div của shell) để overlay/portal cùng nhận theme
   useLayoutEffect(() => {
     document.documentElement.dataset.theme = theme
-  }, [theme])
+    setAmbientMode(theme === 'neutral' ? null : theme)
+  }, [theme, setAmbientMode])
 
   return (
     <div className="museum-shell">
@@ -30,6 +39,8 @@ export default function MuseumShell() {
       <main className="museum-shell__main">
         <Outlet />
       </main>
+      {event && <EventPanel key={event.slug} event={event} onClose={() => select(null)} />}
+      <Transition />
     </div>
   )
 }

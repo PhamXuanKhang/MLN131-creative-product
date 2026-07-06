@@ -4,9 +4,8 @@
  */
 import type { HistoricalEvent } from '@/types/events'
 import { useSelectedEvent } from '@/museum/useSelectedEvent'
+import EventImage from '@/shared/EventImage/EventImage'
 import './EventGrid.css'
-
-const PLACEHOLDER = '/images/placeholder-giay-do.svg'
 
 export default function EventGrid({ events }: { events: HistoricalEvent[] }) {
   const { event: selected, select } = useSelectedEvent()
@@ -20,12 +19,7 @@ export default function EventGrid({ events }: { events: HistoricalEvent[] }) {
           className={`event-card${selected?.slug === event.slug ? ' event-card--active' : ''}`}
           onClick={() => select(event.slug)}
         >
-          <img
-            className="event-card__thumb"
-            src={event.image.thumb || PLACEHOLDER}
-            alt=""
-            loading="lazy"
-          />
+          <EventImage event={event} variant="thumb" className="event-card__thumb" />
           <span className="event-card__date">{event.dateLabel}</span>
           <span className="event-card__title">{event.title}</span>
         </button>
