@@ -4,7 +4,7 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
-  background: #0a0a0f;
+  background: var(--bg);
 }
 
 /* ===== HEADER ===== */
@@ -34,10 +34,10 @@
 }
 
 .header h1 {
-  font-family: "Playfair Display", "Times New Roman", serif;
+  font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-strong);
   margin: 0;
   letter-spacing: 0.5px;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
@@ -51,7 +51,7 @@
 
 .header-subtitle {
   font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--text-faint);
   margin: 6px 0 0;
   font-weight: 300;
   letter-spacing: 1.5px;
@@ -68,10 +68,10 @@
   background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  color: #ffd700;
+  border: 1px solid var(--border-gold);
+  color: var(--gold);
   padding: 10px 22px;
-  border-radius: 12px;
+  border-radius: var(--r-md);
   cursor: pointer;
   font-size: 0.85rem;
   font-weight: 600;
@@ -79,20 +79,20 @@
   pointer-events: auto;
   transition: all 0.25s ease;
   z-index: 1001;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-sm);
 }
 
 .quiz-nav-btn:hover {
   background: rgba(255, 215, 0, 0.12);
   border-color: rgba(255, 215, 0, 0.6);
-  color: #fff;
+  color: var(--text-strong);
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(255, 215, 0, 0.2);
 }
 
 .quiz-nav-btn:active {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-sm);
 }
 
 /* ===== GUIDE HINT ===== */
@@ -103,7 +103,7 @@
   transform: translateX(-50%);
   background: rgba(20, 20, 30, 0.9);
   padding: 12px 28px;
-  border-radius: 30px;
+  border-radius: var(--r-3xl);
   z-index: 900;
   border: 1px solid rgba(255, 215, 0, 0.2);
   animation: fadeInUp 0.5s ease, pulse-glow 2s infinite;
@@ -158,10 +158,10 @@
 }
 
 .sovereignty-name {
-  font-family: "Playfair Display", "Times New Roman", serif;
+  font-family: var(--font-display);
   font-size: 14px;
   font-weight: 800;
-  color: #da251d;
+  color: var(--red);
   text-shadow:
     -1px -1px 0 #fff,
     1px -1px 0 #fff,
@@ -174,7 +174,7 @@
 .sovereignty-subtext {
   font-size: 10px;
   font-weight: 400;
-  color: #555;
+  color: var(--n-800);
   text-shadow:
     -1px -1px 0 #fff,
     1px -1px 0 #fff,
@@ -185,7 +185,7 @@
 .sovereignty-country {
   font-size: 12px;
   font-weight: 900;
-  color: #da251d;
+  color: var(--red);
   letter-spacing: 3px;
   margin-top: 2px;
   text-shadow:
@@ -211,20 +211,20 @@
 /* ===== POPUP ===== */
 .popup-content h3 {
   margin: 0 0 4px;
-  color: #da251d;
+  color: var(--red);
   font-size: 0.95rem;
   font-weight: 700;
 }
 
 .popup-year {
   margin: 0;
-  color: #555;
+  color: var(--n-800);
   font-size: 0.8rem;
 }
 
 .leaflet-popup-content-wrapper {
-  border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-md);
   max-width: 220px;
 }
 
@@ -260,7 +260,7 @@
     right: 12px;
     padding: 8px 14px;
     font-size: 0.78rem;
-    border-radius: 10px;
+    border-radius: var(--r-sm);
   }
   .guide-hint {
     white-space: normal;

@@ -4,11 +4,11 @@
   left: 20px;
   width: 500px;
   max-height: calc(100vh - 220px);
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  border-radius: 16px;
+  background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface-3) 100%);
+  border-radius: var(--r-lg);
   overflow: hidden;
   z-index: 1000;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-lg);
   animation: slideIn 0.4s ease-out;
   border: 1px solid rgba(255, 215, 0, 0.2);
   display: flex;
@@ -34,7 +34,7 @@
   height: 32px;
   border: none;
   background: rgba(0, 0, 0, 0.6);
-  color: #fff;
+  color: var(--text-strong);
   border-radius: 50%;
   cursor: pointer;
   font-size: 16px;
@@ -46,7 +46,7 @@
 }
 
 .close-btn:hover {
-  background: #da251d;
+  background: var(--red);
   transform: scale(1.1);
 }
 
@@ -58,10 +58,10 @@
 
 .back-btn {
   background: rgba(255, 215, 0, 0.1);
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  color: #ffd700;
+  border: 1px solid var(--border-gold);
+  color: var(--gold);
   padding: 6px 14px;
-  border-radius: 20px;
+  border-radius: var(--r-xl);
   cursor: pointer;
   font-size: 0.85rem;
   transition: all 0.2s ease;
@@ -69,7 +69,7 @@
 
 .back-btn:hover {
   background: rgba(255, 215, 0, 0.2);
-  border-color: #ffd700;
+  border-color: var(--gold);
 }
 
 /* Image */
@@ -97,10 +97,10 @@
   position: absolute;
   bottom: 10px;
   right: 10px;
-  background: linear-gradient(135deg, #da251d 0%, #ff4444 100%);
-  color: #fff;
+  background: linear-gradient(135deg, var(--red) 0%, var(--red-bright) 100%);
+  color: var(--text-strong);
   padding: 6px 14px;
-  border-radius: 20px;
+  border-radius: var(--r-xl);
   font-weight: bold;
   font-size: 14px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -118,7 +118,7 @@
 .card-type-badge {
   display: inline-block;
   padding: 4px 12px;
-  border-radius: 12px;
+  border-radius: var(--r-md);
   font-size: 0.75rem;
   font-weight: 600;
   margin-bottom: 8px;
@@ -126,38 +126,38 @@
 }
 
 .campaign-badge {
-  background: rgba(255, 215, 0, 0.15);
-  color: #ffd700;
-  border: 1px solid rgba(255, 215, 0, 0.3);
+  background: var(--border-gold-faint);
+  color: var(--gold);
+  border: 1px solid var(--border-gold);
 }
 
 .battle-badge {
   background: rgba(218, 37, 29, 0.15);
-  color: #ff6b6b;
+  color: var(--red-soft);
   border: 1px solid rgba(218, 37, 29, 0.3);
 }
 
 .card-content h2 {
-  font-family: "Playfair Display", "Times New Roman", serif;
-  color: #ffd700;
+  font-family: var(--font-display);
+  color: var(--gold);
   margin: 0 0 8px;
   font-size: 1.4rem;
 }
 
 .card-content h3 {
-  color: #aaa;
+  color: var(--n-400);
   font-size: 0.9rem;
   margin: 0 0 12px;
   font-weight: normal;
 }
 
 .card-date {
-  color: #ccc !important;
+  color: var(--n-300) !important;
   font-size: 0.9rem;
 }
 
 .description {
-  color: #ddd;
+  color: var(--n-200);
   font-size: 0.9rem;
   line-height: 1.7;
   margin: 0 0 16px;
@@ -167,9 +167,9 @@
 /* Collapsible sections */
 .collapsible-section {
   margin-bottom: 10px;
-  border-radius: 10px;
+  border-radius: var(--r-sm);
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--hairline-soft);
 }
 
 .collapsible-header {
@@ -185,7 +185,7 @@
 }
 
 .collapsible-header:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--hairline-soft);
 }
 
 .collapsible-header h4 {
@@ -195,7 +195,7 @@
 
 .collapsible-arrow {
   font-size: 0.7rem;
-  color: #999;
+  color: var(--n-500);
   transition: transform 0.3s ease;
   flex-shrink: 0;
 }
@@ -214,7 +214,7 @@
 
 /* Guideline section */
 .guideline-section .collapsible-header h4 {
-  color: #64b5f6;
+  color: var(--info);
 }
 
 .guideline-section {
@@ -222,7 +222,7 @@
 }
 
 .guideline-section .collapsible-body p {
-  color: #ccc;
+  color: var(--n-300);
   font-size: 0.85rem;
   line-height: 1.6;
   margin: 0;
@@ -230,7 +230,7 @@
 
 /* Battles section */
 .battles-section .collapsible-header h4 {
-  color: #ff6b6b;
+  color: var(--red-soft);
 }
 
 .battles-section {
@@ -239,15 +239,15 @@
 
 /* Significance section */
 .significance-section .collapsible-header h4 {
-  color: #ffd700;
+  color: var(--gold);
 }
 
 .significance-section {
-  border-color: rgba(255, 215, 0, 0.15);
+  border-color: var(--border-gold-faint);
 }
 
 .significance-section .collapsible-body p {
-  color: #ccc;
+  color: var(--n-300);
   font-size: 0.85rem;
   line-height: 1.6;
   margin: 0;
@@ -256,20 +256,20 @@
 /* Significance box (kept for backward compat) */
 .significance-box {
   background: rgba(255, 215, 0, 0.06);
-  border-radius: 10px;
+  border-radius: var(--r-sm);
   padding: 14px;
-  border-left: 3px solid #ffd700;
+  border-left: 3px solid var(--gold);
   margin-bottom: 16px;
 }
 
 .significance-box h4 {
-  color: #ffd700;
+  color: var(--gold);
   margin: 0 0 8px;
   font-size: 0.9rem;
 }
 
 .significance-box p {
-  color: #ccc;
+  color: var(--n-300);
   font-size: 0.85rem;
   line-height: 1.6;
   margin: 0;
@@ -283,7 +283,7 @@
 }
 
 .battles-hint {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--text-faint);
   font-size: 0.8rem;
   font-style: italic;
   margin: 0 0 10px;
@@ -302,7 +302,7 @@
   padding: 10px 12px;
   margin-bottom: 6px;
   background: rgba(255, 255, 255, 0.04);
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   cursor: pointer;
   transition: all 0.2s ease;
   border: 1px solid transparent;
@@ -319,13 +319,13 @@
 }
 
 .battles-list-items li strong {
-  color: #eee;
+  color: var(--n-100);
   font-size: 0.88rem;
   display: block;
 }
 
 .battle-date {
-  color: #999;
+  color: var(--n-500);
   font-size: 0.78rem;
   display: block;
   margin-top: 2px;
@@ -338,12 +338,12 @@
 
 .card-content::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 3px;
+  border-radius: var(--r-xs);
 }
 
 .card-content::-webkit-scrollbar-thumb {
   background: rgba(255, 215, 0, 0.4);
-  border-radius: 3px;
+  border-radius: var(--r-xs);
 }
 
 /* Image zoom hint */
@@ -352,7 +352,7 @@
   top: 8px;
   left: 8px;
   background: rgba(0, 0, 0, 0.6);
-  color: #fff;
+  color: var(--text-strong);
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -393,7 +393,7 @@
   max-width: 90vw;
   max-height: 90vh;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   box-shadow: 0 10px 60px rgba(0, 0, 0, 0.8);
 }
 
@@ -405,7 +405,7 @@
   height: 40px;
   border: none;
   background: rgba(255, 255, 255, 0.15);
-  color: #fff;
+  color: var(--text-strong);
   border-radius: 50%;
   cursor: pointer;
   font-size: 20px;

@@ -1,6 +1,83 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&family=Playfair+Display:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap');
 
+/* =============================================================
+   DESIGN TOKENS — single source of truth (see DESIGN.md)
+   Bản sắc: nền tối navy + vàng kim (chủ đạo) + đỏ cờ (phụ).
+   Mọi stylesheet khác tham chiếu qua var(--…).
+   ============================================================= */
+:root {
+  /* ---- Fonts ---- */
+  --font-display: 'Playfair Display', 'Times New Roman', serif; /* headline serif */
+  --font-title:   'Noto Serif', 'Times New Roman', serif;       /* landing hero */
+  --font-body:    'Roboto', system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  /* ---- Nền tối (canvas & surfaces) ---- */
+  --bg-deep:   #050816; /* landing hero */
+  --bg:        #0a0a15; /* canvas chuẩn */
+  --surface:   #14141e; /* panel / hint */
+  --surface-2: #1a1a2e; /* card gradient (điểm sáng) */
+  --surface-3: #16213e; /* card gradient (điểm tối) */
+
+  /* ---- Vàng kim (primary) ---- */
+  --gold:       #ffd700;
+  --gold-light: #ffec8b;
+  --gold-mid:   #f0c040;
+  --gold-deep:  #daa520;
+  --gold-amber: #ffb300;
+  --gold-muted: #b8a068; /* eyebrow */
+  --gold-tint:  #f5e8b9; /* text trên nền sáng */
+  --gold-sand:  #d4c5a0; /* trích dẫn */
+
+  /* ---- Đỏ cờ Việt Nam (secondary) ---- */
+  --red:        #da251d;
+  --red-bright: #ff4444;
+  --red-soft:   #ff6b6b;
+
+  /* ---- Text (neutral) ---- */
+  --text-strong: #ffffff;
+  --n-100: #eeeeee;
+  --n-200: #dddddd;
+  --n-300: #cccccc;
+  --n-400: #aaaaaa;
+  --n-500: #999999;
+  --n-600: #888888;
+  --n-700: #666666;
+  --n-800: #555555;
+  --text:       rgba(255, 255, 255, 0.87);
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --text-faint: rgba(255, 255, 255, 0.5);
+
+  /* ---- Semantic (quiz feedback) ---- */
+  --success: #4caf50;
+  --error:   #f44336;
+  --info:    #64b5f6;
+
+  /* ---- Border / hairline ---- */
+  --border-gold-faint: rgba(255, 215, 0, 0.15);
+  --border-gold:       rgba(255, 215, 0, 0.3);
+  --hairline:          rgba(255, 255, 255, 0.15);
+  --hairline-soft:     rgba(255, 255, 255, 0.08);
+
+  /* ---- Radius ---- */
+  --r-xs: 3px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 20px;
+  --r-2xl: 24px;
+  --r-3xl: 28px;
+  --r-pill: 50px;
+  --r-full: 9999px;
+
+  /* ---- Glow / shadow (chữ ký hình ảnh) ---- */
+  --glow-gold-sm: 0 0 12px rgba(255, 215, 0, 0.4);
+  --glow-gold-md: 0 0 20px rgba(255, 215, 0, 0.6);
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,12 +85,12 @@
 }
 
 :root {
-  font-family: 'Roboto', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
   line-height: 1.5;
   font-weight: 400;
   color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #0b0b19;
+  color: var(--text);
+  background-color: var(--bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -32,16 +109,16 @@ body {
 
 a {
   font-weight: 500;
-  color: #ffd700;
+  color: var(--gold);
   text-decoration: inherit;
 }
 
 a:hover {
-  color: #ffec8b;
+  color: var(--gold-light);
 }
 
 button {
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
@@ -53,11 +130,11 @@ button {
 }
 
 button:hover {
-  border-color: #ffd700;
+  border-color: var(--gold);
 }
 
 button:focus,
 button:focus-visible {
-  outline: 2px solid #ffd700;
+  outline: 2px solid var(--gold);
   outline-offset: 2px;
 }
