@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Ảnh gốc tải về trong bước convert — chỉ commit bản optimized/thumb trong public/images
+assets/raw/*
+!assets/raw/.gitkeep
+
 # Claude Code local skills/config (chứa .git lồng nhau — không commit)
 .claude/
 

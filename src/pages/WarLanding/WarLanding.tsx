@@ -5,6 +5,12 @@ interface WarLandingProps {
   onEnter: () => void
 }
 
+const PARTICLES = [...Array(20)].map(() => ({
+  left: `${Math.random() * 100}%`,
+  animationDelay: `${Math.random() * 5}s`,
+  animationDuration: `${10 + Math.random() * 10}s`,
+}))
+
 function WarLanding({ onEnter }: WarLandingProps) {
   const [isLeaving, setIsLeaving] = useState(false)
 
@@ -21,16 +27,8 @@ function WarLanding({ onEnter }: WarLandingProps) {
         <div className="war-landing__shade" />
         <div className="war-landing__grain" />
         <div className="war-landing__particles">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="war-landing__dot"
-              style={{
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${10 + Math.random() * 10}s`,
-              }}
-            />
+          {PARTICLES.map((style, i) => (
+            <div key={i} className="war-landing__dot" style={style} />
           ))}
         </div>
       </div>

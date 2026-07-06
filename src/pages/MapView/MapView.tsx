@@ -263,6 +263,7 @@ const MapView = ({
     if (initialCampaignId != null) {
       const campaign = campaigns.find((c) => c.id === initialCampaignId)
       if (campaign) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- legacy, viết lại thành WorldRenderer ở tuần 2
         setActiveCampaignId(campaign.id)
         setSelectedBattleId(null)
         setFlyTarget({

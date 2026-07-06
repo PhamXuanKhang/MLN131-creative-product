@@ -20,6 +20,12 @@ function shuffleArray<T>(array: T[]): T[] {
 
 const TOTAL_QUESTIONS = 10
 
+const PARTICLES = [...Array(15)].map(() => ({
+  left: `${Math.random() * 100}%`,
+  animationDelay: `${Math.random() * 5}s`,
+  animationDuration: `${8 + Math.random() * 8}s`,
+}))
+
 function QuizPage({ onBack, onGoToCampaign }: QuizPageProps) {
   const questions = useMemo(() => shuffleArray(quizQuestions).slice(0, TOTAL_QUESTIONS), [])
 
@@ -80,16 +86,8 @@ function QuizPage({ onBack, onGoToCampaign }: QuizPageProps) {
       <div className="quiz-page">
         <div className="quiz-bg">
           <div className="quiz-particles">
-            {[...Array(15)].map((_, i) => (
-              <div
-                key={i}
-                className="q-particle"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 5}s`,
-                  animationDuration: `${8 + Math.random() * 8}s`,
-                }}
-              />
+            {PARTICLES.map((style, i) => (
+              <div key={i} className="q-particle" style={style} />
             ))}
           </div>
         </div>
@@ -144,16 +142,8 @@ function QuizPage({ onBack, onGoToCampaign }: QuizPageProps) {
     <div className="quiz-page">
       <div className="quiz-bg">
         <div className="quiz-particles">
-          {[...Array(15)].map((_, i) => (
-            <div
-              key={i}
-              className="q-particle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${8 + Math.random() * 8}s`,
-              }}
-            />
+          {PARTICLES.map((style, i) => (
+            <div key={i} className="q-particle" style={style} />
           ))}
         </div>
       </div>
