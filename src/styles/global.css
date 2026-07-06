@@ -16,7 +16,8 @@
   font-weight: 400;
   color-scheme: dark;
   color: var(--text);
-  background-color: var(--bg);
+  /* --c-bg (theme mới) thắng khi data-theme được set; fallback về nền legacy */
+  background-color: var(--c-bg, var(--bg));
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

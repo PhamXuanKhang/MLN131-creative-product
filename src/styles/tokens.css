@@ -1,8 +1,56 @@
 /* =============================================================
    DESIGN TOKENS — single source of truth (xem DESIGN.md)
-   Bản sắc: nền tối navy + vàng kim (chủ đạo) + đỏ cờ (phụ).
-   Mọi stylesheet khác tham chiếu qua var(--…).
+
+   Hai layer:
+   1. THEME (--c-*): semantic tokens của bảo tàng, đổi theo
+      data-theme trên <html> (neutral / world / vietnam).
+      Component MỚI (shared/, museum/, pages/ mới) chỉ dùng layer này.
+   2. LEGACY (:root bên dưới): navy + vàng kim + đỏ cờ — còn được
+      MapView/QuizPage/LocationCard/Timeline cũ tiêu thụ; xoá dần
+      tuần 2–4. Component mới KHÔNG dùng --gold/--bg/--surface...
+      Font / radius / shadow dùng chung cho cả hai layer.
    ============================================================= */
+
+/* ---- Layer 1: THEME (data-theme) ----
+   Chỉ định nghĩa khi data-theme được set (MuseumShell/Opening tự set),
+   để trang legacy chưa có data-theme vẫn fallback về token cũ. */
+[data-theme='neutral'] {
+  /* Neutral — Opening, Quiz, Knowledge: nền tối trung tính, giấy sáng */
+  --c-bg: #0f0f0f;
+  --c-surface: #1c1c1c;
+  --c-paper: #efe6d4;
+  --c-accent: #b89b6a;
+  --c-ink: rgba(255, 255, 255, 0.9);
+  --c-ink-muted: rgba(255, 255, 255, 0.6);
+  --c-line: rgba(255, 255, 255, 0.14);
+  --c-glow: 0 0 18px rgba(184, 155, 106, 0.35);
+}
+
+[data-theme='world'] {
+  /* World — old film */
+  --c-bg: #111111;
+  --c-surface: #1a1a1a;
+  --c-paper: #d8c8a5;
+  --c-accent: #8b6b3e;
+  --c-ink: rgba(228, 218, 197, 0.92);
+  --c-ink-muted: rgba(228, 218, 197, 0.6);
+  --c-line: rgba(216, 200, 165, 0.18);
+  --c-glow: 0 0 18px rgba(216, 200, 165, 0.3);
+}
+
+[data-theme='vietnam'] {
+  /* Vietnam — tre & giấy dó */
+  --c-bg: #17361e;
+  --c-surface: #406343;
+  --c-paper: #f5ecd8;
+  --c-accent: #c69c5d;
+  --c-ink: rgba(245, 236, 216, 0.94);
+  --c-ink-muted: rgba(245, 236, 216, 0.65);
+  --c-line: rgba(245, 236, 216, 0.2);
+  --c-glow: 0 0 18px rgba(198, 156, 93, 0.35);
+}
+
+/* ---- Layer 2: LEGACY ---- */
 :root {
   /* ---- Fonts ---- */
   --font-display: 'Playfair Display', 'Times New Roman', serif; /* headline serif */
