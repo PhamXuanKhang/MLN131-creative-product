@@ -1,0 +1,113 @@
+/* Shell + header + mode switcher — chỉ dùng token theme --c-* */
+
+.museum-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--c-bg);
+  color: var(--c-ink);
+  transition: background-color 0.5s ease;
+}
+
+.museum-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 28px;
+  border-bottom: 1px solid var(--c-line);
+  background-color: color-mix(in srgb, var(--c-bg) 82%, transparent);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.museum-header__brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  margin-right: auto;
+}
+
+.museum-header__eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+}
+
+.museum-header__title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--c-ink);
+}
+
+.mode-switcher {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-pill);
+}
+
+.mode-switcher__link {
+  padding: 6px 18px;
+  border-radius: var(--r-pill);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--c-ink-muted);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.mode-switcher__link:hover {
+  color: var(--c-ink);
+}
+
+.mode-switcher__link--active {
+  background-color: var(--c-accent);
+  color: var(--c-bg);
+}
+
+.mode-switcher__link--active:hover {
+  color: var(--c-bg);
+}
+
+.museum-header__mute {
+  background: none;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-full);
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--c-ink);
+}
+
+.museum-header__mute:hover {
+  border-color: var(--c-accent);
+}
+
+.museum-shell__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 720px) {
+  .museum-header {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .mode-switcher {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+}

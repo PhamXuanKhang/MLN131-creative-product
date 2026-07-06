@@ -1,12 +1,14 @@
+// LEGACY (park, chưa mount) — khung UI tái dùng tuần 4 với nội dung câu hỏi
+// do nhóm review; hiện chạy trên quizPlaceholder + eventSlug thay campaignId.
 import { useState, useMemo } from 'react'
-import { quizQuestions } from '@/data/quizData'
-import { campaigns } from '@/data/locations'
-import type { QuizQuestion } from '@/types'
+import { quizQuestions } from '@/data/quizPlaceholder'
+import { getEventBySlug } from '@/data/adapter'
+import type { QuizQuestion } from '@/types/events'
 import './QuizPage.css'
 
 interface QuizPageProps {
   onBack: () => void
-  onGoToCampaign: (campaignId: number) => void
+  onViewEvent: (eventSlug: string) => void
 }
 
 function shuffleArray<T>(array: T[]): T[] {
@@ -26,7 +28,7 @@ const PARTICLES = [...Array(15)].map(() => ({
   animationDuration: `${8 + Math.random() * 8}s`,
 }))
 
-function QuizPage({ onBack, onGoToCampaign }: QuizPageProps) {
+function QuizPage({ onBack, onViewEvent }: QuizPageProps) {
   const questions = useMemo(() => shuffleArray(quizQuestions).slice(0, TOTAL_QUESTIONS), [])
 
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -212,15 +214,12 @@ function QuizPage({ onBack, onGoToCampaign }: QuizPageProps) {
               {answeredCorrectly ? '✅ Chính xác!' : '❌ Chưa đúng!'}
             </p>
             <p>{current.explanation}</p>
-            {current.campaignId &&
+            {current.eventSlug &&
               (() => {
-                const campaign = campaigns.find((c) => c.id === current.campaignId)
-                return campaign ? (
-                  <button
-                    className="btn-go-to-map"
-                    onClick={() => onGoToCampaign(current.campaignId)}
-                  >
-                    🗺️ Xem sự kiện «{campaign.name}» trên bản đồ
+                const event = getEventBySlug(current.eventSlug)
+                return event ? (
+                  <button className="btn-go-to-map" onClick={() => onViewEvent(current.eventSlug)}>
+                    🗺️ Xem sự kiện «{event.title}» trên bản đồ
                   </button>
                 ) : null
               })()}
