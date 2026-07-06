@@ -1,0 +1,12 @@
+# Chuẩn hoá xuống dòng LF cho mọi file text, tránh cảnh báo CRLF trên Windows.
+* text=auto eol=lf
+
+# Nhị phân — không đụng.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg text
+*.pdf binary
+*.xlsx binary
+*.ico binary
