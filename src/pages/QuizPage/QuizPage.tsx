@@ -1,84 +1,81 @@
-import { useState, useMemo } from "react";
-import { quizQuestions } from "../data/quizData";
-import { campaigns } from "../data/locations";
-import type { QuizQuestion } from "../data/quizData";
-import "./QuizPage.css";
+import { useState, useMemo } from 'react'
+import { quizQuestions } from '@/data/quizData'
+import { campaigns } from '@/data/locations'
+import type { QuizQuestion } from '@/types'
+import './QuizPage.css'
 
 interface QuizPageProps {
-  onBack: () => void;
-  onGoToCampaign: (campaignId: number) => void;
+  onBack: () => void
+  onGoToCampaign: (campaignId: number) => void
 }
 
 function shuffleArray<T>(array: T[]): T[] {
-  const shuffled = [...array];
+  const shuffled = [...array]
   for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
   }
-  return shuffled;
+  return shuffled
 }
 
-const TOTAL_QUESTIONS = 10;
+const TOTAL_QUESTIONS = 10
 
 function QuizPage({ onBack, onGoToCampaign }: QuizPageProps) {
-  const questions = useMemo(
-    () => shuffleArray(quizQuestions).slice(0, TOTAL_QUESTIONS),
-    []
-  );
+  const questions = useMemo(() => shuffleArray(quizQuestions).slice(0, TOTAL_QUESTIONS), [])
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedOption, setSelectedOption] = useState<number | null>(null);
-  const [showResult, setShowResult] = useState(false);
-  const [score, setScore] = useState(0);
-  const [finished, setFinished] = useState(false);
-  const [answeredCorrectly, setAnsweredCorrectly] = useState<boolean | null>(null);
-  const [wrongCount, setWrongCount] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [selectedOption, setSelectedOption] = useState<number | null>(null)
+  const [showResult, setShowResult] = useState(false)
+  const [score, setScore] = useState(0)
+  const [finished, setFinished] = useState(false)
+  const [answeredCorrectly, setAnsweredCorrectly] = useState<boolean | null>(null)
+  const [wrongCount, setWrongCount] = useState(0)
 
-  const current: QuizQuestion = questions[currentIndex];
+  const current: QuizQuestion = questions[currentIndex]
 
   const handleSelect = (index: number) => {
-    if (showResult) return;
-    setSelectedOption(index);
-  };
+    if (showResult) return
+    setSelectedOption(index)
+  }
 
   const handleConfirm = () => {
-    if (selectedOption === null) return;
-    const correct = selectedOption === current.correctIndex;
+    if (selectedOption === null) return
+    const correct = selectedOption === current.correctIndex
     if (correct) {
-      setScore((s) => s + 1);
+      setScore((s) => s + 1)
     } else {
-      setWrongCount((w) => w + 1);
+      setWrongCount((w) => w + 1)
     }
-    setAnsweredCorrectly(correct);
-    setShowResult(true);
-  };
+    setAnsweredCorrectly(correct)
+    setShowResult(true)
+  }
 
   const handleNext = () => {
     if (currentIndex + 1 >= questions.length) {
-      setFinished(true);
+      setFinished(true)
     } else {
-      setCurrentIndex((i) => i + 1);
-      setSelectedOption(null);
-      setShowResult(false);
-      setAnsweredCorrectly(null);
+      setCurrentIndex((i) => i + 1)
+      setSelectedOption(null)
+      setShowResult(false)
+      setAnsweredCorrectly(null)
     }
-  };
+  }
 
   const handleRestart = () => {
-    window.location.reload();
-  };
+    window.location.reload()
+  }
 
   const getGrade = () => {
-    const pct = (score / questions.length) * 100;
-    if (pct >= 90) return { label: "Xuất sắc! 🏆", color: "#ffd700" };
-    if (pct >= 70) return { label: "Giỏi! 🎖️", color: "#4caf50" };
-    if (pct >= 50) return { label: "Khá! 👍", color: "#ff9800" };
-    return { label: "Cần ôn lại! 📖", color: "#ff5252" };
-  };
+    const pct = (score / questions.length) * 100
+    if (pct >= 90) return { label: 'Xuất sắc! 🏆', color: '#ffd700' }
+    if (pct >= 70) return { label: 'Giỏi! 🎖️', color: '#4caf50' }
+    if (pct >= 50) return { label: 'Khá! 👍', color: '#ff9800' }
+    return { label: 'Cần ôn lại! 📖', color: '#ff5252' }
+  }
 
   // === FINISHED SCREEN ===
   if (finished) {
-    const grade = getGrade();
+    const grade = getGrade()
     return (
       <div className="quiz-page">
         <div className="quiz-bg">
@@ -139,7 +136,7 @@ function QuizPage({ onBack, onGoToCampaign }: QuizPageProps) {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
   // === QUESTION SCREEN ===
@@ -169,9 +166,7 @@ function QuizPage({ onBack, onGoToCampaign }: QuizPageProps) {
         <h1>
           <span className="quiz-flag">🇻🇳</span> Kiểm tra kiến thức
         </h1>
-        <p className="quiz-subtitle">
-          Kháng chiến chống Mỹ 1960 - 1975
-        </p>
+        <p className="quiz-subtitle">Kháng chiến chống Mỹ 1960 - 1975</p>
       </header>
 
       {/* Progress */}
@@ -196,56 +191,49 @@ function QuizPage({ onBack, onGoToCampaign }: QuizPageProps) {
 
         <div className="options-list">
           {current.options.map((opt, idx) => {
-            let cls = "option-btn";
+            let cls = 'option-btn'
             if (showResult) {
-              if (idx === current.correctIndex) cls += " correct";
-              else if (idx === selectedOption) cls += " wrong";
+              if (idx === current.correctIndex) cls += ' correct'
+              else if (idx === selectedOption) cls += ' wrong'
             } else if (idx === selectedOption) {
-              cls += " selected";
+              cls += ' selected'
             }
             return (
-              <button
-                key={idx}
-                className={cls}
-                onClick={() => handleSelect(idx)}
-              >
-                <span className="option-letter">
-                  {String.fromCharCode(65 + idx)}
-                </span>
+              <button key={idx} className={cls} onClick={() => handleSelect(idx)}>
+                <span className="option-letter">{String.fromCharCode(65 + idx)}</span>
                 <span className="option-text">{opt}</span>
                 {showResult && idx === current.correctIndex && (
                   <span className="option-icon">✓</span>
                 )}
-                {showResult &&
-                  idx === selectedOption &&
-                  idx !== current.correctIndex && (
-                    <span className="option-icon">✗</span>
-                  )}
+                {showResult && idx === selectedOption && idx !== current.correctIndex && (
+                  <span className="option-icon">✗</span>
+                )}
               </button>
-            );
+            )
           })}
         </div>
 
         {/* Explanation */}
         {showResult && (
           <div
-            className={`explanation-box ${answeredCorrectly ? "explanation-correct" : "explanation-wrong"}`}
+            className={`explanation-box ${answeredCorrectly ? 'explanation-correct' : 'explanation-wrong'}`}
           >
             <p className="explanation-label">
-              {answeredCorrectly ? "✅ Chính xác!" : "❌ Chưa đúng!"}
+              {answeredCorrectly ? '✅ Chính xác!' : '❌ Chưa đúng!'}
             </p>
             <p>{current.explanation}</p>
-            {current.campaignId && (() => {
-              const campaign = campaigns.find(c => c.id === current.campaignId);
-              return campaign ? (
-                <button
-                  className="btn-go-to-map"
-                  onClick={() => onGoToCampaign(current.campaignId)}
-                >
-                  🗺️ Xem sự kiện «{campaign.name}» trên bản đồ
-                </button>
-              ) : null;
-            })()}
+            {current.campaignId &&
+              (() => {
+                const campaign = campaigns.find((c) => c.id === current.campaignId)
+                return campaign ? (
+                  <button
+                    className="btn-go-to-map"
+                    onClick={() => onGoToCampaign(current.campaignId)}
+                  >
+                    🗺️ Xem sự kiện «{campaign.name}» trên bản đồ
+                  </button>
+                ) : null
+              })()}
           </div>
         )}
 
@@ -261,9 +249,7 @@ function QuizPage({ onBack, onGoToCampaign }: QuizPageProps) {
             </button>
           ) : (
             <button className="btn-next" onClick={handleNext}>
-              {currentIndex + 1 >= questions.length
-                ? "Xem kết quả"
-                : "Câu tiếp theo →"}
+              {currentIndex + 1 >= questions.length ? 'Xem kết quả' : 'Câu tiếp theo →'}
             </button>
           )}
         </div>
@@ -274,7 +260,7 @@ function QuizPage({ onBack, onGoToCampaign }: QuizPageProps) {
         ✅ {score} đúng &nbsp;|&nbsp; ❌ {wrongCount} sai
       </div>
     </div>
-  );
+  )
 }
 
-export default QuizPage;
+export default QuizPage

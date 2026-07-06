@@ -106,7 +106,9 @@
   border-radius: var(--r-3xl);
   z-index: 900;
   border: 1px solid rgba(255, 215, 0, 0.2);
-  animation: fadeInUp 0.5s ease, pulse-glow 2s infinite;
+  animation:
+    fadeInUp 0.5s ease,
+    pulse-glow 2s infinite;
   white-space: nowrap;
 }
 

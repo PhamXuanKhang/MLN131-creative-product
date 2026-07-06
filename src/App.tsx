@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import WarLanding from './components/WarLanding'
-import MapView from './components/MapView'
-import QuizPage from './components/QuizPage'
-import './App.css'
+import WarLanding from '@/pages/WarLanding/WarLanding'
+import MapView from '@/pages/MapView/MapView'
+import QuizPage from '@/pages/QuizPage/QuizPage'
 
 type Page = 'landing' | 'map' | 'quiz'
 
@@ -22,7 +21,10 @@ function App() {
   if (page === 'quiz') {
     return (
       <QuizPage
-        onBack={() => { setInitialCampaignId(null); setPage('map') }}
+        onBack={() => {
+          setInitialCampaignId(null)
+          setPage('map')
+        }}
         onGoToCampaign={goToMapWithCampaign}
       />
     )

@@ -1,17 +1,13 @@
-import type { Campaign } from "../data/locations";
-import "./Timeline.css";
+import type { Campaign } from '@/types'
+import './Timeline.css'
 
 interface TimelineProps {
-  campaigns: Campaign[];
-  activeCampaignId: number | null;
-  onSelectCampaign: (campaign: Campaign) => void;
+  campaigns: Campaign[]
+  activeCampaignId: number | null
+  onSelectCampaign: (campaign: Campaign) => void
 }
 
-const Timeline = ({
-  campaigns,
-  activeCampaignId,
-  onSelectCampaign,
-}: TimelineProps) => {
+const Timeline = ({ campaigns, activeCampaignId, onSelectCampaign }: TimelineProps) => {
   return (
     <div className="timeline">
       <div className="timeline-line"></div>
@@ -19,7 +15,7 @@ const Timeline = ({
         {campaigns.map((campaign, index) => (
           <div
             key={campaign.id}
-            className={`timeline-item ${activeCampaignId === campaign.id ? "active" : ""}`}
+            className={`timeline-item ${activeCampaignId === campaign.id ? 'active' : ''}`}
             onClick={() => onSelectCampaign(campaign)}
           >
             <div className="timeline-dot">
@@ -33,7 +29,7 @@ const Timeline = ({
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Timeline;
+export default Timeline

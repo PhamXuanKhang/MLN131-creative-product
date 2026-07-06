@@ -1,37 +1,30 @@
-import React, { useState, useRef, useEffect, useMemo } from "react";
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  useMap,
-  Circle,
-} from "react-leaflet";
-import L, { DivIcon } from "leaflet";
-import type { Marker as LeafletMarker } from "leaflet";
-import "leaflet/dist/leaflet.css";
-import "./MapView.css";
-import { campaigns } from "../data/locations";
-import type { Campaign, Battle } from "../data/locations";
-import Timeline from "./Timeline";
-import LocationCard from "./LocationCard";
+import React, { useState, useRef, useEffect, useMemo } from 'react'
+import { MapContainer, TileLayer, Marker, Popup, useMap, Circle } from 'react-leaflet'
+import L, { DivIcon } from 'leaflet'
+import type { Marker as LeafletMarker } from 'leaflet'
+import 'leaflet/dist/leaflet.css'
+import './MapView.css'
+import { campaigns } from '@/data/locations'
+import type { Campaign, Battle } from '@/types'
+import Timeline from '@/components/Timeline/Timeline'
+import LocationCard from '@/components/LocationCard/LocationCard'
 
 // === SOVEREIGNTY OVERLAY (Hoàng Sa & Trường Sa) ===
 
 const SOVEREIGNTY_MARKERS = [
   {
-    name: "Quần đảo Hoàng Sa",
-    subtext: "(Paracel Islands)",
+    name: 'Quần đảo Hoàng Sa',
+    subtext: '(Paracel Islands)',
     coordinates: { lat: 16.5, lng: 112.0 },
     radius: 80000,
   },
   {
-    name: "Quần đảo Trường Sa",
-    subtext: "(Spratly Islands)",
+    name: 'Quần đảo Trường Sa',
+    subtext: '(Spratly Islands)',
     coordinates: { lat: 10.0, lng: 114.0 },
     radius: 120000,
   },
-];
+]
 
 function createSovereigntyIcon(name: string, subtext: string) {
   return new DivIcon({
@@ -41,10 +34,10 @@ function createSovereigntyIcon(name: string, subtext: string) {
       <div class="sovereignty-subtext">${subtext}</div>
       <div class="sovereignty-country">VIỆT NAM</div>
     </div>`,
-    className: "sovereignty-marker-icon",
+    className: 'sovereignty-marker-icon',
     iconSize: [200, 80],
     iconAnchor: [100, 40],
-  });
+  })
 }
 
 const SovereigntyOverlay = () => {
@@ -56,12 +49,12 @@ const SovereigntyOverlay = () => {
             center={[item.coordinates.lat, item.coordinates.lng]}
             radius={item.radius}
             pathOptions={{
-              color: "#da251d",
+              color: '#da251d',
               weight: 2,
               opacity: 0.6,
-              fillColor: "#da251d",
+              fillColor: '#da251d',
               fillOpacity: 0.08,
-              dashArray: "8 4",
+              dashArray: '8 4',
             }}
           />
           <Marker
@@ -73,29 +66,25 @@ const SovereigntyOverlay = () => {
         </React.Fragment>
       ))}
     </>
-  );
-};
+  )
+}
 
 // === CUSTOM ICONS ===
 
 function createCampaignIcon(isActive: boolean, isDimmed: boolean) {
   const bg = isDimmed
-    ? "rgba(100,100,100,0.5)"
+    ? 'rgba(100,100,100,0.5)'
     : isActive
-      ? "#ffd700"
-      : "linear-gradient(135deg, #da251d 0%, #ff4444 100%)";
-  const border = isDimmed
-    ? "rgba(150,150,150,0.4)"
-    : isActive
-      ? "#fff"
-      : "rgba(255, 215, 0, 0.7)";
-  const starColor = isDimmed ? "#666" : isActive ? "#da251d" : "#ffd700";
+      ? '#ffd700'
+      : 'linear-gradient(135deg, #da251d 0%, #ff4444 100%)'
+  const border = isDimmed ? 'rgba(150,150,150,0.4)' : isActive ? '#fff' : 'rgba(255, 215, 0, 0.7)'
+  const starColor = isDimmed ? '#666' : isActive ? '#da251d' : '#ffd700'
   const shadow = isDimmed
-    ? "none"
+    ? 'none'
     : isActive
-      ? "0 0 20px rgba(255, 215, 0, 0.6)"
-      : "0 0 15px rgba(218, 37, 29, 0.5)";
-  const size = isActive ? 36 : 40;
+      ? '0 0 20px rgba(255, 215, 0, 0.6)'
+      : '0 0 15px rgba(218, 37, 29, 0.5)'
+  const size = isActive ? 36 : 40
 
   return new DivIcon({
     html: `<div style="
@@ -108,11 +97,11 @@ function createCampaignIcon(isActive: boolean, isDimmed: boolean) {
       transition:all 0.3s ease;
       cursor:pointer;
     "><span style="color:${starColor};font-size:${isActive ? 24 : 20}px;line-height:1;">★</span></div>`,
-    className: "campaign-marker-icon",
+    className: 'campaign-marker-icon',
     iconSize: [size, size],
     iconAnchor: [size / 2, size / 2],
     popupAnchor: [0, -(size / 2)],
-  });
+  })
 }
 
 function createBattleIcon() {
@@ -127,44 +116,36 @@ function createBattleIcon() {
       transition:all 0.3s ease;
       display:flex;align-items:center;justify-content:center;
     "><span style="color:#fff;font-size:11px;font-weight:bold;">⚔</span></div>`,
-    className: "battle-marker-icon",
+    className: 'battle-marker-icon',
     iconSize: [22, 22],
     iconAnchor: [11, 11],
     popupAnchor: [0, -11],
-  });
+  })
 }
 
 // === SUB-COMPONENTS ===
 
 interface CampaignMarkerProps {
-  campaign: Campaign;
-  isActive: boolean;
-  isDimmed: boolean;
-  onClick: (campaign: Campaign) => void;
+  campaign: Campaign
+  isActive: boolean
+  isDimmed: boolean
+  onClick: (campaign: Campaign) => void
 }
 
-const CampaignMarker = ({
-  campaign,
-  isActive,
-  isDimmed,
-  onClick,
-}: CampaignMarkerProps) => {
-  const markerRef = useRef<LeafletMarker>(null);
-  const icon = useMemo(
-    () => createCampaignIcon(isActive, isDimmed),
-    [isActive, isDimmed]
-  );
+const CampaignMarker = ({ campaign, isActive, isDimmed, onClick }: CampaignMarkerProps) => {
+  const markerRef = useRef<LeafletMarker>(null)
+  const icon = useMemo(() => createCampaignIcon(isActive, isDimmed), [isActive, isDimmed])
 
   useEffect(() => {
     if (isActive && markerRef.current) {
       // Close popup when active so it doesn't cover battle markers
-      markerRef.current.closePopup();
+      markerRef.current.closePopup()
     }
-  }, [isActive]);
+  }, [isActive])
 
   const handleClick = () => {
-    onClick(campaign);
-  };
+    onClick(campaign)
+  }
 
   return (
     <Marker
@@ -183,32 +164,32 @@ const CampaignMarker = ({
         </div>
       </Popup>
     </Marker>
-  );
-};
+  )
+}
 
 interface BattleMarkerProps {
-  battle: Battle;
-  isActive: boolean;
-  onClick: (battle: Battle) => void;
+  battle: Battle
+  isActive: boolean
+  onClick: (battle: Battle) => void
 }
 
 const BattleMarker = ({ battle, isActive, onClick }: BattleMarkerProps) => {
-  const map = useMap();
-  const markerRef = useRef<LeafletMarker>(null);
-  const icon = useMemo(() => createBattleIcon(), []);
+  const map = useMap()
+  const markerRef = useRef<LeafletMarker>(null)
+  const icon = useMemo(() => createBattleIcon(), [])
 
   useEffect(() => {
     if (isActive && markerRef.current) {
-      markerRef.current.openPopup();
+      markerRef.current.openPopup()
     }
-  }, [isActive]);
+  }, [isActive])
 
   const handleClick = () => {
     map.flyTo([battle.coordinates.lat, battle.coordinates.lng], 11, {
       duration: 1,
-    });
-    onClick(battle);
-  };
+    })
+    onClick(battle)
+  }
 
   return (
     <Marker
@@ -225,127 +206,131 @@ const BattleMarker = ({ battle, isActive, onClick }: BattleMarkerProps) => {
         </div>
       </Popup>
     </Marker>
-  );
-};
+  )
+}
 
 interface MapControllerProps {
-  target: { lat: number; lng: number; zoom: number } | null;
-  activeCampaign: Campaign | null;
+  target: { lat: number; lng: number; zoom: number } | null
+  activeCampaign: Campaign | null
 }
 
 const MapController = ({ target, activeCampaign }: MapControllerProps) => {
-  const map = useMap();
+  const map = useMap()
   useEffect(() => {
-    if (!target) return;
+    if (!target) return
     // sentinel zoom -1 means "fitBounds to active campaign's battles"
     if (target.zoom === -1 && activeCampaign) {
       const points: [number, number][] = [
         [activeCampaign.coordinates.lat, activeCampaign.coordinates.lng],
         ...activeCampaign.battles.map(
-          (b) => [b.coordinates.lat, b.coordinates.lng] as [number, number]
+          (b) => [b.coordinates.lat, b.coordinates.lng] as [number, number],
         ),
-      ];
+      ]
       map.flyToBounds(L.latLngBounds(points), {
         paddingTopLeft: [460, 80],
         paddingBottomRight: [80, 120],
         duration: 1.5,
         maxZoom: 10,
-      });
+      })
     } else {
-      map.flyTo([target.lat, target.lng], target.zoom, { duration: 1.5 });
+      map.flyTo([target.lat, target.lng], target.zoom, { duration: 1.5 })
     }
-  }, [target, activeCampaign, map]);
-  return null;
-};
+  }, [target, activeCampaign, map])
+  return null
+}
 
 // === MAIN COMPONENT ===
 
-const MapView = ({ onOpenQuiz, initialCampaignId, onCampaignConsumed }: { onOpenQuiz: () => void; initialCampaignId?: number | null; onCampaignConsumed?: () => void }) => {
-  const [activeCampaignId, setActiveCampaignId] = useState<number | null>(
-    null
-  );
-  const [selectedBattleId, setSelectedBattleId] = useState<string | null>(null);
+const MapView = ({
+  onOpenQuiz,
+  initialCampaignId,
+  onCampaignConsumed,
+}: {
+  onOpenQuiz: () => void
+  initialCampaignId?: number | null
+  onCampaignConsumed?: () => void
+}) => {
+  const [activeCampaignId, setActiveCampaignId] = useState<number | null>(null)
+  const [selectedBattleId, setSelectedBattleId] = useState<string | null>(null)
   const [flyTarget, setFlyTarget] = useState<{
-    lat: number;
-    lng: number;
-    zoom: number;
-  } | null>(null);
+    lat: number
+    lng: number
+    zoom: number
+  } | null>(null)
 
   // Auto-select campaign when coming from quiz
   useEffect(() => {
     if (initialCampaignId != null) {
-      const campaign = campaigns.find((c) => c.id === initialCampaignId);
+      const campaign = campaigns.find((c) => c.id === initialCampaignId)
       if (campaign) {
-        setActiveCampaignId(campaign.id);
-        setSelectedBattleId(null);
+        setActiveCampaignId(campaign.id)
+        setSelectedBattleId(null)
         setFlyTarget({
           lat: campaign.coordinates.lat,
           lng: campaign.coordinates.lng,
           zoom: -1,
-        });
-        setTimeout(() => setFlyTarget(null), 2000);
+        })
+        setTimeout(() => setFlyTarget(null), 2000)
       }
-      onCampaignConsumed?.();
+      onCampaignConsumed?.()
     }
-  }, [initialCampaignId]);
+  }, [initialCampaignId])
 
   const activeCampaign = useMemo(
     () => campaigns.find((c) => c.id === activeCampaignId) ?? null,
-    [activeCampaignId]
-  );
+    [activeCampaignId],
+  )
 
   const selectedBattle = useMemo(() => {
-    if (!activeCampaign || !selectedBattleId) return null;
-    return (
-      activeCampaign.battles.find((b) => b.id === selectedBattleId) ?? null
-    );
-  }, [activeCampaign, selectedBattleId]);
+    if (!activeCampaign || !selectedBattleId) return null
+    return activeCampaign.battles.find((b) => b.id === selectedBattleId) ?? null
+  }, [activeCampaign, selectedBattleId])
 
   const handleSelectCampaign = (campaign: Campaign) => {
-    setActiveCampaignId(campaign.id);
-    setSelectedBattleId(null);
+    setActiveCampaignId(campaign.id)
+    setSelectedBattleId(null)
     // Use fitBounds sentinel for both marker clicks and Timeline clicks
     setFlyTarget({
       lat: campaign.coordinates.lat,
       lng: campaign.coordinates.lng,
       zoom: -1,
-    });
-    setTimeout(() => setFlyTarget(null), 2000);
-  };
+    })
+    setTimeout(() => setFlyTarget(null), 2000)
+  }
 
   const handleSelectBattle = (battle: Battle) => {
-    setSelectedBattleId(battle.id);
+    setSelectedBattleId(battle.id)
     setFlyTarget({
       lat: battle.coordinates.lat,
       lng: battle.coordinates.lng,
       zoom: 11,
-    });
-    setTimeout(() => setFlyTarget(null), 2000);
-  };
+    })
+    setTimeout(() => setFlyTarget(null), 2000)
+  }
 
   const handleBackToOverview = () => {
-    setActiveCampaignId(null);
-    setSelectedBattleId(null);
-    setFlyTarget({ lat: 14.5, lng: 107.0, zoom: 6 });
-    setTimeout(() => setFlyTarget(null), 2000);
-  };
+    setActiveCampaignId(null)
+    setSelectedBattleId(null)
+    setFlyTarget({ lat: 14.5, lng: 107.0, zoom: 6 })
+    setTimeout(() => setFlyTarget(null), 2000)
+  }
 
   const handleCloseCard = () => {
     if (selectedBattleId) {
-      setSelectedBattleId(null);
+      setSelectedBattleId(null)
       // Fly back to fit all battles of the parent campaign
       if (activeCampaign) {
         setFlyTarget({
           lat: activeCampaign.coordinates.lat,
           lng: activeCampaign.coordinates.lng,
           zoom: -1, // sentinel: triggers fitBounds in MapController
-        });
-        setTimeout(() => setFlyTarget(null), 2000);
+        })
+        setTimeout(() => setFlyTarget(null), 2000)
       }
     } else {
-      setActiveCampaignId(null);
+      setActiveCampaignId(null)
     }
-  };
+  }
 
   return (
     <div className="map-container">
@@ -353,9 +338,9 @@ const MapView = ({ onOpenQuiz, initialCampaignId, onCampaignConsumed }: { onOpen
         center={[14.5, 107.0]}
         zoom={6}
         style={{
-          width: "100%",
-          height: "100%",
-          position: "absolute",
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
           top: 0,
           left: 0,
           zIndex: 0,
@@ -384,7 +369,7 @@ const MapView = ({ onOpenQuiz, initialCampaignId, onCampaignConsumed }: { onOpen
                 isDimmed={false}
                 onClick={handleSelectCampaign}
               />
-            );
+            )
           }
           if (campaign.id === activeCampaignId) {
             return (
@@ -395,9 +380,9 @@ const MapView = ({ onOpenQuiz, initialCampaignId, onCampaignConsumed }: { onOpen
                 isDimmed={false}
                 onClick={handleSelectCampaign}
               />
-            );
+            )
           }
-          return null;
+          return null
         })}
 
         {/* Battle Markers (Ghim Con) */}
@@ -419,9 +404,7 @@ const MapView = ({ onOpenQuiz, initialCampaignId, onCampaignConsumed }: { onOpen
             <span className="flag">🇻🇳</span>
             CÁC CHIẾN DỊCH LỚN TRONG KHÁNG CHIẾN CHỐNG MỸ
           </h1>
-          <p className="header-subtitle">
-            1960 - 1975 • Bản đồ tương tác các chiến dịch quân sự
-          </p>
+          <p className="header-subtitle">1960 - 1975 • Bản đồ tương tác các chiến dịch quân sự</p>
         </div>
         <button className="quiz-nav-btn" onClick={onOpenQuiz}>
           📝 Kiểm tra kiến thức
@@ -450,13 +433,13 @@ const MapView = ({ onOpenQuiz, initialCampaignId, onCampaignConsumed }: { onOpen
       {!activeCampaign && (
         <div className="guide-hint">
           <p>
-            👆 Nhấp vào các <strong>ngôi sao ★</strong> trên bản đồ hoặc{" "}
-            <strong>timeline</strong> để khám phá các chiến dịch
+            👆 Nhấp vào các <strong>ngôi sao ★</strong> trên bản đồ hoặc <strong>timeline</strong>{' '}
+            để khám phá các chiến dịch
           </p>
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default MapView;
+export default MapView

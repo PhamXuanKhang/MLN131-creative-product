@@ -1,28 +1,22 @@
-import { useState } from "react";
-import type { Campaign, Battle } from "../data/locations";
-import "./LocationCard.css";
+import { useState } from 'react'
+import type { Campaign, Battle } from '@/types'
+import './LocationCard.css'
 
 interface LocationCardProps {
-  campaign: Campaign | null;
-  battle: Battle | null;
-  onClose: () => void;
-  onBack: () => void;
-  onSelectBattle: (battle: Battle) => void;
+  campaign: Campaign | null
+  battle: Battle | null
+  onClose: () => void
+  onBack: () => void
+  onSelectBattle: (battle: Battle) => void
 }
 
-const LocationCard = ({
-  campaign,
-  battle,
-  onClose,
-  onBack,
-  onSelectBattle,
-}: LocationCardProps) => {
-  const [lightboxImage, setLightboxImage] = useState<{ src: string; alt: string } | null>(null);
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+const LocationCard = ({ campaign, battle, onClose, onBack, onSelectBattle }: LocationCardProps) => {
+  const [lightboxImage, setLightboxImage] = useState<{ src: string; alt: string } | null>(null)
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({})
 
   const toggleSection = (key: string) => {
-    setExpandedSections((prev) => ({ ...prev, [key]: !prev[key] }));
-  };
+    setExpandedSections((prev) => ({ ...prev, [key]: !prev[key] }))
+  }
   // Show battle detail
   if (battle) {
     return (
@@ -38,26 +32,31 @@ const LocationCard = ({
         </div>
 
         {battle.image && (
-          <div className="card-image" onClick={() => setLightboxImage({ src: battle.image, alt: battle.name })}>
+          <div
+            className="card-image"
+            onClick={() => setLightboxImage({ src: battle.image, alt: battle.name })}
+          >
             <img src={battle.image} alt={battle.name} />
             <div className="image-zoom-hint">🔍</div>
           </div>
         )}
 
         {lightboxImage && (
-          <ImageLightbox src={lightboxImage.src} alt={lightboxImage.alt} onClose={() => setLightboxImage(null)} />
+          <ImageLightbox
+            src={lightboxImage.src}
+            alt={lightboxImage.alt}
+            onClose={() => setLightboxImage(null)}
+          />
         )}
 
         <div className="card-content">
           <div className="card-type-badge battle-badge">⚔ Trận đánh</div>
           <h2>{battle.name}</h2>
-          {battle.date && (
-            <h3 className="card-date">📅 {battle.date}</h3>
-          )}
+          {battle.date && <h3 className="card-date">📅 {battle.date}</h3>}
           <p className="description">{battle.description}</p>
         </div>
       </div>
-    );
+    )
   }
 
   // Show campaign overview
@@ -75,7 +74,10 @@ const LocationCard = ({
         </div>
 
         {campaign.image && (
-          <div className="card-image" onClick={() => setLightboxImage({ src: campaign.image, alt: campaign.name })}>
+          <div
+            className="card-image"
+            onClick={() => setLightboxImage({ src: campaign.image, alt: campaign.name })}
+          >
             <img src={campaign.image} alt={campaign.name} />
             <div className="card-year-badge">{campaign.year}</div>
             <div className="image-zoom-hint">🔍</div>
@@ -83,21 +85,25 @@ const LocationCard = ({
         )}
 
         {lightboxImage && (
-          <ImageLightbox src={lightboxImage.src} alt={lightboxImage.alt} onClose={() => setLightboxImage(null)} />
+          <ImageLightbox
+            src={lightboxImage.src}
+            alt={lightboxImage.alt}
+            onClose={() => setLightboxImage(null)}
+          />
         )}
 
         <div className="card-content">
-          <div className="card-type-badge campaign-badge">
-            ★ Chiến dịch
-          </div>
+          <div className="card-type-badge campaign-badge">★ Chiến dịch</div>
           <h2>{campaign.name}</h2>
           <p className="description">{campaign.description}</p>
 
           {/* Đường lối của Đảng - collapsible */}
-          <div className={`collapsible-section guideline-section ${expandedSections["guideline"] ? "expanded" : ""}`}>
-            <button className="collapsible-header" onClick={() => toggleSection("guideline")}>
+          <div
+            className={`collapsible-section guideline-section ${expandedSections['guideline'] ? 'expanded' : ''}`}
+          >
+            <button className="collapsible-header" onClick={() => toggleSection('guideline')}>
               <h4>☆ Đường lối của Đảng</h4>
-              <span className="collapsible-arrow">{expandedSections["guideline"] ? "▲" : "▼"}</span>
+              <span className="collapsible-arrow">{expandedSections['guideline'] ? '▲' : '▼'}</span>
             </button>
             <div className="collapsible-body">
               <p>{campaign.partyGuideline}</p>
@@ -105,10 +111,12 @@ const LocationCard = ({
           </div>
 
           {/* Các trận đánh - collapsible */}
-          <div className={`collapsible-section battles-section ${expandedSections["battles"] ? "expanded" : ""}`}>
-            <button className="collapsible-header" onClick={() => toggleSection("battles")}>
+          <div
+            className={`collapsible-section battles-section ${expandedSections['battles'] ? 'expanded' : ''}`}
+          >
+            <button className="collapsible-header" onClick={() => toggleSection('battles')}>
               <h4>⚔ Các trận đánh ({campaign.battles.length})</h4>
-              <span className="collapsible-arrow">{expandedSections["battles"] ? "▲" : "▼"}</span>
+              <span className="collapsible-arrow">{expandedSections['battles'] ? '▲' : '▼'}</span>
             </button>
             <div className="collapsible-body">
               <p className="battles-hint">
@@ -120,9 +128,7 @@ const LocationCard = ({
                     <span className="battle-icon">⚔</span>
                     <div>
                       <strong>{b.name}</strong>
-                      {b.date && (
-                        <span className="battle-date">{b.date}</span>
-                      )}
+                      {b.date && <span className="battle-date">{b.date}</span>}
                     </div>
                   </li>
                 ))}
@@ -131,10 +137,14 @@ const LocationCard = ({
           </div>
 
           {/* Ý nghĩa lịch sử - collapsible */}
-          <div className={`collapsible-section significance-section ${expandedSections["significance"] ? "expanded" : ""}`}>
-            <button className="collapsible-header" onClick={() => toggleSection("significance")}>
+          <div
+            className={`collapsible-section significance-section ${expandedSections['significance'] ? 'expanded' : ''}`}
+          >
+            <button className="collapsible-header" onClick={() => toggleSection('significance')}>
               <h4>🏆 Ý nghĩa lịch sử</h4>
-              <span className="collapsible-arrow">{expandedSections["significance"] ? "▲" : "▼"}</span>
+              <span className="collapsible-arrow">
+                {expandedSections['significance'] ? '▲' : '▼'}
+              </span>
             </button>
             <div className="collapsible-body">
               <p>{campaign.significance}</p>
@@ -142,20 +152,22 @@ const LocationCard = ({
           </div>
         </div>
       </div>
-    );
+    )
   }
 
-  return null;
-};
+  return null
+}
 
-export default LocationCard;
+export default LocationCard
 
 // Lightbox sub-component
 function ImageLightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
   return (
     <div className="lightbox-overlay" onClick={onClose}>
-      <button className="lightbox-close" onClick={onClose}>✕</button>
+      <button className="lightbox-close" onClick={onClose}>
+        ✕
+      </button>
       <img src={src} alt={alt} className="lightbox-img" onClick={(e) => e.stopPropagation()} />
     </div>
-  );
+  )
 }

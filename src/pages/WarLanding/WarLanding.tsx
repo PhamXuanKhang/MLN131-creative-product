@@ -45,7 +45,9 @@ function WarLanding({ onEnter }: WarLandingProps) {
             </div>
 
             <p className="war-landing__eyebrow">Bản Đồ Tương Tác</p>
-            <h1 className="war-landing__title">21 MÙA XUÂN KHÁNG CHIẾN CHỐNG MỸ - NON SÔNG LIỀN MỘT DẢI</h1>
+            <h1 className="war-landing__title">
+              21 MÙA XUÂN KHÁNG CHIẾN CHỐNG MỸ - NON SÔNG LIỀN MỘT DẢI
+            </h1>
             <p className="war-landing__years">1960 — 1975</p>
 
             <div className="war-landing__ornament" aria-hidden="true">
@@ -63,9 +65,8 @@ function WarLanding({ onEnter }: WarLandingProps) {
           </blockquote>
 
           <p className="war-landing__summary">
-            Khám phá các chiến dịch quân sự lớn trong cuộc kháng chiến chống Mỹ cứu nước
-            qua bản đồ tương tác — từ phong trào Đồng Khởi đến ngày giải phóng miền Nam,
-            thống nhất đất nước.
+            Khám phá các chiến dịch quân sự lớn trong cuộc kháng chiến chống Mỹ cứu nước qua bản đồ
+            tương tác — từ phong trào Đồng Khởi đến ngày giải phóng miền Nam, thống nhất đất nước.
           </p>
 
           <div className="war-landing__stats" aria-label="Thống kê tổng quan">

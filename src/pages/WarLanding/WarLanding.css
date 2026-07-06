@@ -11,7 +11,9 @@
   color: var(--gold-tint);
   overflow-x: hidden;
   overflow-y: auto;
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
 }
 
 .war-landing--leaving {
@@ -24,8 +26,8 @@
 .war-landing__backdrop {
   position: fixed;
   inset: 0;
-  background:
-    url('https://cdn.thuvienphapluat.vn/uploads/tintuc/2024/12/20/khang-chien-chong-my.jpg') center/cover no-repeat;
+  background: url('https://cdn.thuvienphapluat.vn/uploads/tintuc/2024/12/20/khang-chien-chong-my.jpg')
+    center/cover no-repeat;
   z-index: -2;
 }
 
@@ -34,7 +36,12 @@
   inset: 0;
   background:
     radial-gradient(ellipse at 50% 28%, rgba(10, 10, 21, 0.28) 0%, rgba(10, 10, 21, 0.68) 70%),
-    linear-gradient(180deg, rgba(10, 10, 21, 0.32) 0%, rgba(26, 20, 40, 0.56) 50%, rgba(13, 13, 26, 0.74) 100%);
+    linear-gradient(
+      180deg,
+      rgba(10, 10, 21, 0.32) 0%,
+      rgba(26, 20, 40, 0.56) 50%,
+      rgba(13, 13, 26, 0.74) 100%
+    );
 }
 
 .war-landing__grain {
@@ -64,10 +71,20 @@
 }
 
 @keyframes wl-float {
-  0%   { transform: translateY(100vh) scale(0); opacity: 0; }
-  10%  { opacity: 0.9; }
-  90%  { opacity: 0.9; }
-  100% { transform: translateY(-80px) scale(1); opacity: 0; }
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-80px) scale(1);
+    opacity: 0;
+  }
 }
 
 /* ---------- scrollable area ---------- */
@@ -105,8 +122,14 @@
 }
 
 @keyframes wl-fadeDown {
-  from { opacity: 0; transform: translateY(-28px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .war-landing__ornament {
@@ -177,8 +200,12 @@
 }
 
 @keyframes wl-fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .war-landing__quote-text {
@@ -248,8 +275,14 @@
 }
 
 @keyframes wl-fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .war-landing__stat {
@@ -299,7 +332,9 @@
   letter-spacing: 0.06em;
   cursor: pointer;
   box-shadow: 0 4px 25px rgba(255, 215, 0, 0.25);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
   animation: wl-fadeUp 1s ease-out 0.9s both;
 }
 
@@ -341,7 +376,9 @@
 /* ---------- responsive ---------- */
 
 @media (max-width: 860px) {
-  .war-landing__shell { gap: 26px; }
+  .war-landing__shell {
+    gap: 26px;
+  }
 
   .war-landing__stats {
     flex-wrap: wrap;
@@ -362,8 +399,12 @@
 }
 
 @media (max-width: 560px) {
-  .war-landing__scroll { padding: 20px 14px; }
-  .war-landing__shell  { gap: 18px; }
+  .war-landing__scroll {
+    padding: 20px 14px;
+  }
+  .war-landing__shell {
+    gap: 18px;
+  }
 
   .war-landing__title {
     font-size: clamp(1.4rem, 6vw, 2rem);
@@ -409,10 +450,22 @@
 /* ---------- small height screens ---------- */
 
 @media (max-height: 700px) {
-  .war-landing__scroll { padding: 20px 16px; }
-  .war-landing__shell  { gap: 16px; }
-  .war-landing__stat   { padding: 14px 12px; }
-  .war-landing__ornament { margin: 4px 0; }
-  .war-landing__quote-text { font-size: 1.05rem; }
-  .war-landing__cta { padding: 12px 32px; }
+  .war-landing__scroll {
+    padding: 20px 16px;
+  }
+  .war-landing__shell {
+    gap: 16px;
+  }
+  .war-landing__stat {
+    padding: 14px 12px;
+  }
+  .war-landing__ornament {
+    margin: 4px 0;
+  }
+  .war-landing__quote-text {
+    font-size: 1.05rem;
+  }
+  .war-landing__cta {
+    padding: 12px 32px;
+  }
 }
