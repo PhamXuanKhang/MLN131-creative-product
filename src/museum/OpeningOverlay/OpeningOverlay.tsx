@@ -107,10 +107,6 @@ export default function OpeningOverlay() {
 
   return (
     <div className="opening" ref={rootRef} data-theme="neutral" onPointerDown={startAudio}>
-      <button type="button" className="opening__skip" onClick={closeOpening}>
-        Bỏ qua mở đầu
-      </button>
-
       <div className="opening__grid">
         <section className="opening__content">
           <p className="opening__eyebrow opening__reveal">MLN131 · FPT University</p>

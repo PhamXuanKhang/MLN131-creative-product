@@ -9,26 +9,6 @@
   overflow: hidden;
 }
 
-.opening__skip {
-  position: absolute;
-  top: 18px;
-  right: 22px;
-  z-index: 3;
-  padding: 8px 18px;
-  background: rgba(8, 8, 8, 0.56);
-  border: 1px solid var(--c-line);
-  border-radius: var(--r-pill);
-  font-size: 0.76rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--c-ink-muted);
-}
-
-.opening__skip:hover {
-  color: var(--c-ink);
-  border-color: var(--c-accent);
-}
-
 .opening__grid {
   display: grid;
   grid-template-columns: 3fr 2fr;
