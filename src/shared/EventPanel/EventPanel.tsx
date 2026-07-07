@@ -1,23 +1,21 @@
 /**
  * Event Panel dùng chung — World, Vietnam, Knowledge, Quiz jump đều mở panel
  * này (root ở MuseumShell, remount theo ?event=<slug> nhờ key={slug}).
- * Paper reveal GSAP + typing summary (TextPlugin) + lightbox ảnh hero.
+ * Paper reveal GSAP + typing content + lightbox ảnh hero.
  */
 import { useEffect, useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { TextPlugin } from 'gsap/TextPlugin'
 import type { HistoricalEvent } from '@/types/events'
 import { ERAS } from '@/data/adapter'
 import EventImage from '@/shared/EventImage/EventImage'
 import './EventPanel.css'
 
-gsap.registerPlugin(TextPlugin)
 
 interface EventPanelProps {
   event: HistoricalEvent
   onClose: () => void
-  /** Typing text cho summary sau paper reveal */
+  /** Typing text cho nội dung sau paper reveal */
   enableTyping?: boolean
 }
 
@@ -25,6 +23,19 @@ export default function EventPanel({ event, onClose, enableTyping = true }: Even
   const rootRef = useRef<HTMLDivElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
   const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [typedText, setTypedText] = useState('')
+
+  const eraMeta = ERAS.find((e) => e.id === event.era)
+  const paragraphs = event.description
+    .split(/\n+/)
+    .map((p) => p.trim())
+    .filter(Boolean)
+  const firstParagraph = paragraphs[0] ?? ''
+  const isTyping = enableTyping && typedText.length > 0 && typedText.length < firstParagraph.length
+  const hasSources = event.sources.length > 0
+  const hasImage = Boolean(event.image.full)
+
+  const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   // Focus nút đóng khi mở; đóng thì trả focus về phần tử trước (marker/dot/row)
   useEffect(() => {
@@ -45,12 +56,24 @@ export default function EventPanel({ event, onClose, enableTyping = true }: Even
     return () => window.removeEventListener('keydown', onKey)
   }, [onClose, lightboxOpen])
 
+  useEffect(() => {
+    if (!enableTyping || !firstParagraph) return
+
+    const step = Math.max(1, Math.ceil(firstParagraph.length / 90))
+    let nextLength = 0
+    const tick = window.setInterval(() => {
+      nextLength = Math.min(firstParagraph.length, nextLength + step)
+      setTypedText(firstParagraph.slice(0, nextLength))
+      if (nextLength >= firstParagraph.length) window.clearInterval(tick)
+    }, 16)
+
+    return () => window.clearInterval(tick)
+  }, [enableTyping, event.slug, firstParagraph])
+
   useGSAP(
     () => {
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      if (prefersReduced) return
-      const summary = event.summary.trim()
-      const tl = gsap
+      if (prefersReducedMotion()) return
+      gsap
         .timeline()
         .fromTo(
           '.event-panel',
@@ -69,35 +92,9 @@ export default function EventPanel({ event, onClose, enableTyping = true }: Even
           { y: 0, opacity: 1, duration: 0.35, stagger: 0.07, ease: 'power2.out' },
           '-=0.2',
         )
-      if (enableTyping && summary) {
-        const el = rootRef.current?.querySelector('.event-panel__summary')
-        // Xoá text từ t=0 (trước khi panel hiện) rồi gõ lại sau reveal
-        tl.set('.event-panel__summary', { text: '' }, 0).to(
-          '.event-panel__summary',
-          {
-            text: summary,
-            duration: Math.min(2.2, summary.length * 0.018),
-            ease: 'none',
-            onStart: () => el?.classList.add('event-panel__summary--typing'),
-            onComplete: () => el?.classList.remove('event-panel__summary--typing'),
-          },
-          '-=0.1',
-        )
-      }
     },
-    { scope: rootRef, dependencies: [event.slug, enableTyping] },
+    { scope: rootRef, dependencies: [event.slug] },
   )
-
-  const eraMeta = ERAS.find((e) => e.id === event.era)
-  const normalizePanelText = (text: string) => text.trim().replace(/\s+/g, ' ')
-  const paragraphs = event.description
-    .split(/\n+/)
-    .map((p) => p.trim())
-    .filter(Boolean)
-    .filter((p, index) => index !== 0 || normalizePanelText(p) !== normalizePanelText(event.summary))
-  const hasSources = event.sources.length > 0
-  const hasSummary = Boolean(event.summary.trim())
-  const hasImage = Boolean(event.image.full)
 
   return (
     <div className="event-panel-root" ref={rootRef}>
@@ -147,19 +144,18 @@ export default function EventPanel({ event, onClose, enableTyping = true }: Even
             </p>
           )}
 
-          {hasSummary && (
-            <p className="event-panel__summary event-panel__reveal">{event.summary}</p>
-          )}
+          <div className="event-panel__body event-panel__reveal">
+            {paragraphs.length > 0 ? (
+              paragraphs.map((p, i) => (
+                <p key={i} className={i === 0 && isTyping ? 'event-panel__body-text--typing' : undefined}>
+                  {i === 0 && enableTyping ? typedText : p}
+                </p>
+              ))
+            ) : (
+              <p className="event-panel__missing">Nội dung chi tiết đang được nhóm bổ sung.</p>
+            )}
+          </div>
 
-          {(paragraphs.length > 0 || !hasSummary) && (
-            <div className="event-panel__body event-panel__reveal">
-              {paragraphs.length > 0 ? (
-                paragraphs.map((p, i) => <p key={i}>{p}</p>)
-              ) : (
-                <p className="event-panel__missing">Nội dung chi tiết đang được nhóm bổ sung.</p>
-              )}
-            </div>
-          )}
 
           {hasSources && (
             <div className="event-panel__sources event-panel__reveal">

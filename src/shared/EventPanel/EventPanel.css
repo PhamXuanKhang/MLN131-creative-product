@@ -102,17 +102,17 @@
   color: #6e5631;
 }
 
-/* Summary — đoạn lead, target của typing effect */
-.event-panel__summary {
+.event-panel__body {
   margin-top: 16px;
-  font-size: 0.98rem;
-  font-weight: 500;
-  line-height: 1.65;
-  color: #3a2f1d;
-  min-height: 1.65em; /* giữ chỗ khi text bị xoá lúc bắt đầu gõ */
+  font-size: 0.92rem;
+  line-height: 1.75;
 }
 
-.event-panel__summary--typing::after {
+.event-panel__body p:first-child {
+  min-height: 1.75em;
+}
+
+.event-panel__body-text--typing::after {
   content: '';
   display: inline-block;
   width: 2px;
@@ -127,12 +127,6 @@
   50% {
     opacity: 0;
   }
-}
-
-.event-panel__body {
-  margin-top: 16px;
-  font-size: 0.92rem;
-  line-height: 1.75;
 }
 
 .event-panel__body p + p {

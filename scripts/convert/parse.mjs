@@ -68,15 +68,6 @@ export function slugify(text, maxLen = 60) {
   return s
 }
 
-/** Câu đầu của đoạn mô tả làm summary, cap ~220 ký tự. */
-function firstSentence(text, cap = 220) {
-  const t = text.replace(/\s+/g, ' ').trim()
-  if (!t) return ''
-  const dot = t.indexOf('. ', 40)
-  let s = dot > 0 ? t.slice(0, dot + 1) : t
-  if (s.length > cap) s = `${s.slice(0, cap - 1).trimEnd()}…`
-  return s
-}
 
 /**
  * @param {string} filePath đường dẫn content.xlsx
@@ -168,7 +159,6 @@ export async function parseWorkbook(filePath) {
       dateLabel,
       year,
       locations,
-      summary: firstSentence(description) || title,
       description,
       image: { thumb: '', full: '' },
       imageSource,

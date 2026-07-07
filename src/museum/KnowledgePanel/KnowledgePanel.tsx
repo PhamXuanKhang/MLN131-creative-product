@@ -1,6 +1,6 @@
 /**
  * Knowledge Panel — tra cứu sự kiện (Ctrl+K hoặc nút Tra cứu trên header):
- * search không dấu trên title/summary + filter era (tái dùng EraFilter/store),
+ * search không dấu trên title/description + filter era (tái dùng EraFilter/store),
  * kết quả group theo giai đoạn; chọn → mở EventPanel qua ?event= trên route
  * hiện tại. Pattern command-palette (tham khảo 21st.dev), CSS thuần --c-*.
  */
@@ -52,7 +52,7 @@ export default function KnowledgePanel() {
   const filtered = ALL_EVENTS.filter(
     (ev) =>
       (!eraFilter || ev.era === eraFilter) &&
-      (!q || normalize(ev.title).includes(q) || normalize(ev.summary).includes(q)),
+      (!q || normalize(ev.title).includes(q) || normalize(ev.description).includes(q)),
   )
   const groups = ERAS.map((era) => ({
     era,

@@ -24,9 +24,7 @@ export interface HistoricalEvent {
   /** Năm đại diện để sort/timeline; 0 nếu không xác định được */
   year: number
   locations: EventLocation[]
-  /** Thông tin ngắn */
-  summary: string
-  /** Thông tin đi kèm (dài) */
+  /** Nội dung sự kiện từ docs/content.xlsx */
   description: string
   /** Đường dẫn theo asset pipeline; chuỗi rỗng nếu chưa có ảnh */
   image: { thumb: string; full: string }

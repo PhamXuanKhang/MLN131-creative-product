@@ -22,7 +22,7 @@ export default function GiayDoCard({ event, active, onOpen }: GiayDoCardProps) {
       <EventImage event={event} variant="thumb" className="giay-do-card__media" />
       <span className="giay-do-card__date">{event.dateLabel}</span>
       <span className="giay-do-card__title">{event.title}</span>
-      <span className="giay-do-card__summary">{event.summary}</span>
+      <span className="giay-do-card__summary">{event.description}</span>
       <span className="giay-do-card__more">Xem chi tiết →</span>
     </button>
   )
