@@ -89,7 +89,12 @@ export default function EventPanel({ event, onClose, enableTyping = true }: Even
   )
 
   const eraMeta = ERAS.find((e) => e.id === event.era)
-  const paragraphs = event.description.split(/\n+/).filter((p) => p.trim())
+  const normalizePanelText = (text: string) => text.trim().replace(/\s+/g, ' ')
+  const paragraphs = event.description
+    .split(/\n+/)
+    .map((p) => p.trim())
+    .filter(Boolean)
+    .filter((p, index) => index !== 0 || normalizePanelText(p) !== normalizePanelText(event.summary))
   const hasSources = event.sources.length > 0
   const hasSummary = Boolean(event.summary.trim())
   const hasImage = Boolean(event.image.full)
@@ -146,13 +151,15 @@ export default function EventPanel({ event, onClose, enableTyping = true }: Even
             <p className="event-panel__summary event-panel__reveal">{event.summary}</p>
           )}
 
-          <div className="event-panel__body event-panel__reveal">
-            {paragraphs.length > 0 ? (
-              paragraphs.map((p, i) => <p key={i}>{p}</p>)
-            ) : (
-              <p className="event-panel__missing">Nội dung chi tiết đang được nhóm bổ sung.</p>
-            )}
-          </div>
+          {(paragraphs.length > 0 || !hasSummary) && (
+            <div className="event-panel__body event-panel__reveal">
+              {paragraphs.length > 0 ? (
+                paragraphs.map((p, i) => <p key={i}>{p}</p>)
+              ) : (
+                <p className="event-panel__missing">Nội dung chi tiết đang được nhóm bổ sung.</p>
+              )}
+            </div>
+          )}
 
           {hasSources && (
             <div className="event-panel__sources event-panel__reveal">
