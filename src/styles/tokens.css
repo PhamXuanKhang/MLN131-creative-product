@@ -5,9 +5,9 @@
    1. THEME (--c-*): semantic tokens của bảo tàng, đổi theo
       data-theme trên <html> (neutral / world / vietnam).
       Component MỚI (shared/, museum/, pages/ mới) chỉ dùng layer này.
-   2. LEGACY (:root bên dưới): navy + vàng kim + đỏ cờ — còn được
-      MapView/QuizPage/LocationCard/Timeline cũ tiêu thụ; xoá dần
-      tuần 2–4. Component mới KHÔNG dùng --gold/--bg/--surface...
+   2. LEGACY (:root bên dưới): navy + vàng kim + đỏ cờ — chỉ còn
+      QuizPage cũ tiêu thụ; xoá tuần 4 khi làm lại Quiz.
+      Component mới KHÔNG dùng --gold/--bg/--surface...
       Font / radius / shadow dùng chung cho cả hai layer.
    ============================================================= */
 
@@ -48,6 +48,16 @@
   --c-ink-muted: rgba(245, 236, 216, 0.65);
   --c-line: rgba(245, 236, 216, 0.2);
   --c-glow: 0 0 18px rgba(198, 156, 93, 0.35);
+}
+
+/* ---- Era data colors ----
+   Màu theo giai đoạn (birth/lenin/post-lenin/vietnam) — theme-independent,
+   dùng cho marker/timeline/chips/legend ở mọi theme. KHÔNG phải legacy. */
+:root {
+  --era-birth: #d4a94e; /* vàng cổ */
+  --era-lenin: #c25b4e; /* đỏ gạch */
+  --era-post-lenin: #7f9db3; /* xanh thép */
+  --era-vietnam: #8fae62; /* xanh tre */
 }
 
 /* ---- Layer 2: LEGACY ---- */

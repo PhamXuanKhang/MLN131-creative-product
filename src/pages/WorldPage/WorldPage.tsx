@@ -1,29 +1,32 @@
 /**
- * World Mode — TUẦN 1: danh sách theo giai đoạn để chứng minh pipeline.
- * Tuần 2 thay bằng WorldRenderer (Leaflet + HorizontalTimeline).
+ * World Mode — WorldRenderer: Leaflet map full-viewport + EraFilter +
+ * HorizontalTimeline. Selection sống trong URL (?event=<slug>) —
+ * marker/timeline chỉ gọi select(slug), EventPanel do MuseumShell mở.
  */
-import { ERAS, getEventsByEra } from '@/data/adapter'
-import EventGrid from './EventGrid'
+import { getAllEvents } from '@/data/adapter'
+import { useSelectedEvent } from '@/museum/useSelectedEvent'
+import { useMuseumStore } from '@/store/useMuseumStore'
+import WorldMap from './WorldMap'
+import EraFilter from './EraFilter'
+import HorizontalTimeline from './HorizontalTimeline'
 import './WorldPage.css'
 
+const events = getAllEvents()
+
 export default function WorldPage() {
+  const { event: selected, select } = useSelectedEvent()
+  const eraFilter = useMuseumStore((s) => s.eraFilter)
+
   return (
     <div className="world-page">
-      {ERAS.map((era) => {
-        const events = getEventsByEra(era.id)
-        if (events.length === 0) return null
-        return (
-          <section key={era.id} className="world-page__era">
-            <header className="world-page__era-header">
-              <h2 className="world-page__era-title">{era.label}</h2>
-              <span className="world-page__era-range">
-                {era.range} · {events.length} sự kiện
-              </span>
-            </header>
-            <EventGrid events={events} />
-          </section>
-        )
-      })}
+      <WorldMap events={events} selected={selected} eraFilter={eraFilter} onSelect={select} />
+      <EraFilter />
+      <HorizontalTimeline
+        events={events}
+        activeSlug={selected?.slug ?? null}
+        eraFilter={eraFilter}
+        onSelect={select}
+      />
     </div>
   )
 }

@@ -48,6 +48,15 @@
   background-color: var(--c-bg);
 }
 
+.event-panel__hero-btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+}
+
 /* "Giấy" — nội dung trên nền paper của theme */
 .event-panel__paper {
   min-height: calc(100% - 260px);
@@ -91,6 +100,33 @@
   margin-top: 8px;
   font-size: 0.82rem;
   color: #6e5631;
+}
+
+/* Summary — đoạn lead, target của typing effect */
+.event-panel__summary {
+  margin-top: 16px;
+  font-size: 0.98rem;
+  font-weight: 500;
+  line-height: 1.65;
+  color: #3a2f1d;
+  min-height: 1.65em; /* giữ chỗ khi text bị xoá lúc bắt đầu gõ */
+}
+
+.event-panel__summary--typing::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -0.15em;
+  background: #8b6b3e;
+  animation: event-panel-caret 0.8s steps(1) infinite;
+}
+
+@keyframes event-panel-caret {
+  50% {
+    opacity: 0;
+  }
 }
 
 .event-panel__body {
@@ -142,6 +178,44 @@
   font-size: 0.72rem;
   color: #8a7a5e;
   overflow-wrap: anywhere;
+}
+
+/* Lightbox — single image, phủ trên panel trong cùng root (z 200) */
+.event-panel__lightbox {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.88);
+  cursor: zoom-out;
+}
+
+.event-panel__lightbox img {
+  max-width: min(1100px, 92vw);
+  max-height: 90vh;
+  border-radius: var(--r-sm);
+  box-shadow: var(--shadow-lg);
+  cursor: default;
+}
+
+.event-panel__lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: var(--r-full);
+  border: 1px solid var(--c-line);
+  background: color-mix(in srgb, var(--c-bg) 70%, transparent);
+  color: var(--c-ink);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.event-panel__lightbox-close:hover {
+  border-color: var(--c-accent);
 }
 
 @media (max-width: 720px) {

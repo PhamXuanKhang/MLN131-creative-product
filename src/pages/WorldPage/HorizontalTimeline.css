@@ -1,0 +1,157 @@
+/* Timeline ngang — thanh overlay đáy map; chỉ dots, label hiện khi hover/active */
+
+.h-timeline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  height: 76px;
+  background: color-mix(in srgb, var(--c-bg) 78%, transparent);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--c-line);
+}
+
+.h-timeline__scroller {
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}
+
+.h-timeline__track {
+  position: relative;
+  min-width: 1400px;
+  width: 100%;
+  height: 100%;
+}
+
+/* Lớp toạ độ cho axis/tick/dot — inset ngang 32px để dot đầu-cuối không
+   dính mép (left:% của absolute child tính theo padding box nên KHÔNG
+   dùng padding trên track được) */
+.h-timeline__inner {
+  position: absolute;
+  inset: 0 32px;
+}
+
+.h-timeline__axis {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 26px;
+  height: 1px;
+  background: var(--c-line);
+}
+
+.h-timeline__tick {
+  position: absolute;
+  bottom: 20px;
+  width: 1px;
+  height: 7px;
+  background: var(--c-line);
+  transform: translateX(-50%);
+}
+
+.h-timeline__tick span {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.62rem;
+  color: var(--c-ink-muted);
+  letter-spacing: 0.06em;
+}
+
+.h-timeline__dot {
+  position: absolute;
+  bottom: 20px;
+  width: 13px;
+  height: 13px;
+  padding: 0;
+  transform: translate(-50%, 50%);
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--c-paper) 60%, transparent);
+  background: var(--marker-color);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--marker-color) 45%, transparent);
+  cursor: pointer;
+  transition:
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.h-timeline__dot:hover {
+  box-shadow: 0 0 12px color-mix(in srgb, var(--marker-color) 80%, transparent);
+}
+
+.h-timeline__dot--active {
+  width: 19px;
+  height: 19px;
+  border-color: var(--c-paper);
+  box-shadow:
+    0 0 12px color-mix(in srgb, var(--marker-color) 85%, transparent),
+    0 0 26px color-mix(in srgb, var(--marker-color) 40%, transparent);
+}
+
+.h-timeline__dot--filtered {
+  opacity: 0.25;
+  cursor: default;
+}
+
+/* ---- Label card (hover / active) ---- */
+
+.h-timeline__label {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  max-width: 240px;
+  padding: 4px 10px;
+  border-radius: var(--r-sm);
+  background: color-mix(in srgb, var(--c-surface) 94%, transparent);
+  border: 1px solid var(--c-line);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  text-align: left;
+}
+
+.h-timeline__dot:hover .h-timeline__label,
+.h-timeline__dot--active .h-timeline__label {
+  opacity: 1;
+}
+
+/* Dot đầu/cuối track: neo label vào mép để không bị scroller cắt */
+.h-timeline__dot:first-of-type .h-timeline__label {
+  left: -8px;
+  transform: none;
+}
+
+.h-timeline__dot:last-of-type .h-timeline__label {
+  left: auto;
+  right: -8px;
+  transform: none;
+}
+
+.h-timeline__label-date {
+  font-size: 0.62rem;
+  color: var(--marker-color);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.h-timeline__label-title {
+  font-size: 0.72rem;
+  color: var(--c-ink);
+  white-space: nowrap;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
