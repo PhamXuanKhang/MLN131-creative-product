@@ -7,20 +7,10 @@
 import { create } from 'zustand'
 import type { EraId } from '@/types/events'
 
-const OPENING_SEEN_KEY = 'mln131-opening-seen'
-
-function hasSeenOpening(): boolean {
-  try {
-    return sessionStorage.getItem(OPENING_SEEN_KEY) === '1'
-  } catch {
-    return false
-  }
-}
-
 export type AmbientKey = 'world' | 'vietnam' | null
 
 interface MuseumState {
-  /** Opening overlay còn hiển thị không (seed đồng bộ từ sessionStorage — không flash) */
+  /** Opening overlay còn hiển thị không trong runtime hiện tại. Reload sẽ hiện lại. */
   openingVisible: boolean
   eraFilter: EraId | null
   audioMuted: boolean
@@ -34,20 +24,13 @@ interface MuseumState {
 }
 
 export const useMuseumStore = create<MuseumState>((set) => ({
-  openingVisible: !hasSeenOpening(),
+  openingVisible: true,
   eraFilter: null,
   audioMuted: false,
   ambient: null,
   isTransitioning: false,
 
-  dismissOpening: () => {
-    try {
-      sessionStorage.setItem(OPENING_SEEN_KEY, '1')
-    } catch {
-      /* private mode — bỏ qua */
-    }
-    set({ openingVisible: false })
-  },
+  dismissOpening: () => set({ openingVisible: false }),
   setEraFilter: (era) => set({ eraFilter: era }),
   toggleMute: () => set((s) => ({ audioMuted: !s.audioMuted })),
   setAmbient: (key) => set({ ambient: key }),

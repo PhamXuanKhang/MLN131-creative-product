@@ -1,7 +1,8 @@
 /**
- * Hiệu ứng đèn pin: pointermove (rAF-throttle) → ghi CSS var --torch-x/y
- * trực tiếp lên element — không re-render React, mask position là thứ
- * duy nhất thay đổi. Reduced-motion: không track (CSS hiển thị layer tĩnh).
+ * Hiệu ứng đèn pin trong cột phim: pointermove (rAF-throttle) → tween ngắn
+ * --torch-x/y trên element (overwrite: 'auto' tự giết tween cũ) — đèn "đuổi
+ * theo" chuột có độ trễ mượt, không re-render React. Chuột rời cột phim →
+ * trôi êm về giữa cuộn phim. Reduced-motion: không track (đèn tĩnh ở giữa).
  */
 import { useEffect, type RefObject } from 'react'
 import gsap from 'gsap'
@@ -24,15 +25,25 @@ export function useFlashlight(ref: RefObject<HTMLElement | null>): void {
         const rect = el.getBoundingClientRect()
         const x = ((lastEvent.clientX - rect.left) / rect.width) * 100
         const y = ((lastEvent.clientY - rect.top) / rect.height) * 100
-        gsap.killTweensOf(el, '--torch-x,--torch-y')
-        el.style.setProperty('--torch-x', `${x}%`)
-        el.style.setProperty('--torch-y', `${y}%`)
+        gsap.to(el, {
+          '--torch-x': `${x}%`,
+          '--torch-y': `${y}%`,
+          duration: 0.45,
+          ease: 'power3.out',
+          overwrite: 'auto',
+        })
       })
     }
 
     const onLeave = () => {
-      // Trôi về giữa khi chuột rời khỏi film
-      gsap.to(el, { '--torch-x': '50%', '--torch-y': '40%', duration: 1.2, ease: 'power2.out' })
+      // Trôi êm về mặc định: giữa cuộn phim
+      gsap.to(el, {
+        '--torch-x': '50%',
+        '--torch-y': '50%',
+        duration: 1.2,
+        ease: 'power2.out',
+        overwrite: 'auto',
+      })
     }
 
     el.addEventListener('pointermove', onMove)
@@ -41,6 +52,7 @@ export function useFlashlight(ref: RefObject<HTMLElement | null>): void {
       el.removeEventListener('pointermove', onMove)
       el.removeEventListener('pointerleave', onLeave)
       cancelAnimationFrame(raf)
+      gsap.killTweensOf(el, '--torch-x,--torch-y')
     }
   }, [ref])
 }

@@ -14,11 +14,13 @@
   top: 18px;
   right: 22px;
   z-index: 3;
-  padding: 6px 16px;
-  background: none;
+  padding: 8px 18px;
+  background: rgba(8, 8, 8, 0.56);
   border: 1px solid var(--c-line);
   border-radius: var(--r-pill);
-  font-size: 0.8rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--c-ink-muted);
 }
 
@@ -115,28 +117,30 @@
 .opening__film {
   position: relative;
   overflow: hidden;
+  overscroll-behavior: none;
   background-color: #080808;
   border-left: 1px solid var(--c-line);
   --torch-x: 50%;
-  --torch-y: 40%;
+  --torch-y: 50%;
 }
 
-/* Lỗ phim hai mép */
+/* Lỗ phim hai mép — đẩy sáng theo tông giấy sepia để đọc rõ hình cuộn phim */
 .opening__film::before,
 .opening__film::after {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 24px;
+  width: 26px;
   z-index: 2;
-  background-color: #050505;
+  background-color: #101010;
   background-image: repeating-linear-gradient(
     to bottom,
     transparent 0 10px,
-    #1c1c1c 10px 24px,
+    rgba(216, 200, 165, 0.38) 10px 24px,
     transparent 24px 34px
   );
+  box-shadow: inset 0 0 0 1px rgba(216, 200, 165, 0.14);
 }
 
 .opening__film::before {
@@ -147,6 +151,7 @@
   right: 8px;
 }
 
+/* Không đặt transform ở đây — GSAP toàn quyền quản (yPercent loop) */
 .film-reel {
   padding: 0 48px;
   will-change: transform;
@@ -185,33 +190,26 @@
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
-/* ---- Đèn pin: lớp tối có mask tròn theo chuột ---- */
+/* ---- Đèn pin: lớp tối trong cột phim, mask tròn theo chuột ---- */
 .opening__torch {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 3;
   pointer-events: none;
-  background-color: rgba(0, 0, 0, 0.82);
+  background-color: rgba(0, 0, 0, 0.72);
   -webkit-mask-image: radial-gradient(
-    circle 190px at var(--torch-x) var(--torch-y),
-    transparent 0 40%,
-    black 78%
+    circle 280px at var(--torch-x) var(--torch-y),
+    transparent 0 42%,
+    black 80%
   );
   mask-image: radial-gradient(
-    circle 190px at var(--torch-x) var(--torch-y),
-    transparent 0 40%,
-    black 78%
+    circle 280px at var(--torch-x) var(--torch-y),
+    transparent 0 42%,
+    black 80%
   );
 }
 
-@media (prefers-reduced-motion: reduce) {
-  /* Không track chuột — dim tĩnh nhẹ, reel đứng yên (GSAP đã gate trong JS) */
-  .opening__torch {
-    background-color: rgba(0, 0, 0, 0.45);
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-}
+/* Reduced-motion: đèn tĩnh ở giữa phim (JS không track), reel vẫn cuộn chậm */
 
 @media (max-width: 860px) {
   .opening__grid {

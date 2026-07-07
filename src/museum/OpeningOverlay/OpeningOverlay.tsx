@@ -1,42 +1,69 @@
 /**
- * Opening — intro overlay phủ lên shell (không phải route), hiện 1 lần/session.
- * Layout 60/40: nội dung + thống kê | cuộn phim dọc với hiệu ứng đèn pin.
+ * Opening — intro overlay phủ lên shell (không phải route), hiện mỗi lần load app.
+ * Layout 60/40: nội dung + thống kê | cuộn phim dọc với đèn pin bám chuột
+ * (chỉ trong cột phim, mặc định sáng giữa cuộn phim).
  * "BẮT ĐẦU HÀNH TRÌNH" → film transition đóng màn → shell (đã render sẵn
  * bên dưới với dữ liệu thật) lộ ra.
  */
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { getAllEvents, getStats } from '@/data/adapter'
 import { useMuseumStore } from '@/store/useMuseumStore'
 import { playTransition } from '@/shared/Transition/playTransition'
-import { play } from '@/shared/AudioManager/audioManager'
+import { play, startOpeningAmbient, stopOpeningAmbient } from '@/shared/AudioManager/audioManager'
 import FilmStrip from './FilmStrip'
 import { useFlashlight } from './useFlashlight'
 import './OpeningOverlay.css'
 
-const FILM_FRAME_COUNT = 12
+const MIN_FILM_FRAME_COUNT = 18
 
 export default function OpeningOverlay() {
   const rootRef = useRef<HTMLDivElement>(null)
   const filmRef = useRef<HTMLElement>(null)
+  const startedAudioRef = useRef(false)
   const dismissOpening = useMuseumStore((s) => s.dismissOpening)
 
   const stats = useMemo(() => getStats(), [])
-  const filmEvents = useMemo(
-    () =>
-      getAllEvents()
-        .filter((e) => e.image.thumb)
-        .slice(0, FILM_FRAME_COUNT),
-    [],
-  )
+  const filmEvents = useMemo(() => {
+    const eventsWithImages = getAllEvents().filter((event) => event.image.thumb)
+    if (eventsWithImages.length >= MIN_FILM_FRAME_COUNT) return eventsWithImages
+
+    const repeatedEvents = [...eventsWithImages]
+    while (repeatedEvents.length < MIN_FILM_FRAME_COUNT && eventsWithImages.length > 0) {
+      repeatedEvents.push(...eventsWithImages)
+    }
+    return repeatedEvents.slice(0, MIN_FILM_FRAME_COUNT)
+  }, [])
 
   useFlashlight(filmRef)
 
+  useEffect(() => {
+    startOpeningAmbient()
+    return () => stopOpeningAmbient()
+  }, [])
+
+  // Khoá scroll trang khi opening hiện — thanh scroll của shell phía sau nằm
+  // trên <html> (global.css set overflow-y: auto cho html nên khoá body không đủ)
+  useEffect(() => {
+    const prev = document.documentElement.style.overflowY
+    document.documentElement.style.overflowY = 'hidden'
+    return () => {
+      document.documentElement.style.overflowY = prev
+    }
+  }, [])
+
   const { contextSafe } = useGSAP(
     () => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-      gsap.to('.film-reel', { yPercent: -50, duration: 48, ease: 'none', repeat: -1 })
+      // Reduced-motion: vẫn giữ cuộn phim (chậm hơn) vì motion là cốt lõi
+      // của bảo tàng; chỉ bỏ entrance stagger. Đèn pin đứng yên (gate trong hook).
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      gsap.fromTo(
+        '.film-reel',
+        { yPercent: -50 },
+        { yPercent: 0, duration: reduced ? 84 : 28, ease: 'none', repeat: -1 },
+      )
+      if (reduced) return
       gsap
         .timeline()
         .from('.opening', { autoAlpha: 0, duration: 0.5, ease: 'power1.out' })
@@ -59,8 +86,16 @@ export default function OpeningOverlay() {
     })
   })
 
-  const handleStart = () => {
+  const startAudio = () => {
+    if (startedAudioRef.current) return
+    startedAudioRef.current = true
+    startOpeningAmbient()
+  }
+
+  const closeOpening = () => {
+    startAudio()
     play('click')
+    stopOpeningAmbient()
     fadeContent()
     // GỌI NGOÀI contextSafe của Opening: timeline của film transition phải
     // thuộc context của <Transition/>, không thì bị revert khi Opening unmount
@@ -71,9 +106,9 @@ export default function OpeningOverlay() {
   const yearCount = stats.yearSpan[1] - stats.yearSpan[0]
 
   return (
-    <div className="opening" ref={rootRef} data-theme="neutral">
-      <button type="button" className="opening__skip" onClick={dismissOpening}>
-        Bỏ qua ›
+    <div className="opening" ref={rootRef} data-theme="neutral" onPointerDown={startAudio}>
+      <button type="button" className="opening__skip" onClick={closeOpening}>
+        Bỏ qua mở đầu
       </button>
 
       <div className="opening__grid">
@@ -104,7 +139,7 @@ export default function OpeningOverlay() {
             </li>
           </ul>
 
-          <button type="button" className="opening__cta opening__reveal" onClick={handleStart}>
+          <button type="button" className="opening__cta opening__reveal" onClick={closeOpening}>
             Bắt đầu hành trình
           </button>
         </section>

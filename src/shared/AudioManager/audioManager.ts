@@ -9,6 +9,9 @@ export type SoundKey = 'click' | 'paper' | 'film' | 'ambient-world' | 'ambient-v
 const registry = new Map<SoundKey, HTMLAudioElement>()
 let muted = false
 let currentAmbient: SoundKey | null = null
+let openingContext: AudioContext | null = null
+let openingGain: GainNode | null = null
+let openingOscillators: OscillatorNode[] = []
 
 export function registerSound(key: SoundKey, src: string, loop = false): void {
   const audio = new Audio(src)
@@ -42,8 +45,46 @@ export function setAmbient(key: 'ambient-world' | 'ambient-vietnam' | null): voi
 export function setMuted(value: boolean): void {
   muted = value
   for (const audio of registry.values()) audio.muted = value
+  if (openingGain) openingGain.gain.value = value ? 0 : 0.035
   if (!value && currentAmbient) {
     const ambient = registry.get(currentAmbient)
     if (ambient) void ambient.play().catch(() => {})
   }
+}
+
+/** Nhạc nền opening nhẹ bằng Web Audio để không phụ thuộc asset ngoài. */
+export function startOpeningAmbient(): void {
+  if (openingContext) {
+    if (!muted) void openingContext.resume().catch(() => {})
+    return
+  }
+  if (muted) return
+  const AudioContextCtor = window.AudioContext
+  if (!AudioContextCtor) return
+
+  const context = new AudioContextCtor()
+  const gain = context.createGain()
+  gain.gain.value = 0.035
+  gain.connect(context.destination)
+
+  openingOscillators = [110, 164.81, 220].map((frequency) => {
+    const oscillator = context.createOscillator()
+    oscillator.type = 'sine'
+    oscillator.frequency.value = frequency
+    oscillator.connect(gain)
+    oscillator.start()
+    return oscillator
+  })
+
+  openingContext = context
+  openingGain = gain
+  void context.resume().catch(() => {})
+}
+
+export function stopOpeningAmbient(): void {
+  for (const oscillator of openingOscillators) oscillator.stop()
+  openingOscillators = []
+  void openingContext?.close().catch(() => {})
+  openingContext = null
+  openingGain = null
 }
