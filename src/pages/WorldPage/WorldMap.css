@@ -7,6 +7,11 @@
   z-index: 0;
 }
 
+/* Nền tối thay #ddd mặc định — không lộ dải xám ngoài vùng tile / khi tile chưa tải */
+.world-map .leaflet-container {
+  background: var(--c-bg);
+}
+
 /* ---- Marker DivIcon ---- */
 
 .world-marker-wrap {

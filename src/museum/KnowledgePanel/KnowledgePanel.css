@@ -1,0 +1,162 @@
+/* Knowledge Panel — overlay tra cứu (z 150: trên header 100, dưới event-panel 200).
+   Chỉ token --c-* / --era-* → chạy đúng ở cả ba theme. */
+
+.knowledge {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 14vh 16px 24px;
+}
+
+.knowledge__backdrop {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--c-bg) 60%, transparent);
+  backdrop-filter: blur(3px);
+}
+
+.knowledge__box {
+  position: relative;
+  width: min(640px, 100%);
+  max-height: 68vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-md);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: knowledge-in 0.18s ease-out;
+}
+
+@keyframes knowledge-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .knowledge__box {
+    animation: none;
+  }
+}
+
+.knowledge__input {
+  padding: 15px 18px;
+  border: none;
+  border-bottom: 1px solid var(--c-line);
+  background: transparent;
+  color: var(--c-ink);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+.knowledge__input::placeholder {
+  color: var(--c-ink-muted);
+}
+
+.knowledge__input:focus {
+  outline: none;
+  border-bottom-color: var(--c-accent);
+}
+
+/* EraFilter tái dùng nguyên trạng — style gốc (WorldPage.css) là absolute trên map */
+.knowledge__filter {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.knowledge__filter .era-filter {
+  position: static;
+  border: none;
+  padding: 0;
+}
+
+.knowledge__results {
+  overflow-y: auto;
+  padding: 6px 8px 12px;
+}
+
+.knowledge__empty {
+  margin: 0;
+  padding: 24px 16px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--c-ink-muted);
+}
+
+.knowledge__group-title {
+  margin: 0;
+  padding: 12px 10px 4px;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+}
+
+.knowledge__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.knowledge__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  border: none;
+  border-radius: var(--r-sm);
+  background: none;
+  text-align: left;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.knowledge__row:hover,
+.knowledge__row:focus-visible {
+  background: color-mix(in srgb, var(--c-accent) 14%, transparent);
+}
+
+.knowledge__dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.knowledge__title {
+  flex: 1;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--c-ink);
+}
+
+.knowledge__date {
+  flex: none;
+  font-size: 0.72rem;
+  white-space: nowrap;
+  color: var(--c-ink-muted);
+}
+
+@media (max-width: 720px) {
+  .knowledge {
+    padding-top: 8vh;
+  }
+
+  .knowledge__box {
+    max-height: 78vh;
+  }
+
+  .knowledge__date {
+    display: none;
+  }
+}

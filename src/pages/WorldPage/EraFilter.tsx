@@ -16,6 +16,7 @@ export default function EraFilter() {
       <button
         type="button"
         className={`era-filter__chip${eraFilter === null ? ' era-filter__chip--active' : ''}`}
+        aria-pressed={eraFilter === null}
         onClick={() => setEraFilter(null)}
       >
         Tất cả
@@ -25,6 +26,7 @@ export default function EraFilter() {
           key={era.id}
           type="button"
           className={`era-filter__chip${eraFilter === era.id ? ' era-filter__chip--active' : ''}`}
+          aria-pressed={eraFilter === era.id}
           style={{ '--marker-color': ERA_COLOR[era.id] } as React.CSSProperties}
           title={`${era.label} (${era.range})`}
           onClick={() => setEraFilter(eraFilter === era.id ? null : era.id)}

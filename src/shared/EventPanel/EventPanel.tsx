@@ -23,7 +23,17 @@ interface EventPanelProps {
 
 export default function EventPanel({ event, onClose, enableTyping = true }: EventPanelProps) {
   const rootRef = useRef<HTMLDivElement>(null)
+  const closeRef = useRef<HTMLButtonElement>(null)
   const [lightboxOpen, setLightboxOpen] = useState(false)
+
+  // Focus nút đóng khi mở; đóng thì trả focus về phần tử trước (marker/dot/row)
+  useEffect(() => {
+    const previous = document.activeElement
+    closeRef.current?.focus()
+    return () => {
+      if (previous instanceof HTMLElement) previous.focus()
+    }
+  }, [])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -93,7 +103,13 @@ export default function EventPanel({ event, onClose, enableTyping = true }: Even
         aria-modal="true"
         aria-labelledby="event-panel-title"
       >
-        <button type="button" className="event-panel__close" onClick={onClose} aria-label="Đóng">
+        <button
+          ref={closeRef}
+          type="button"
+          className="event-panel__close"
+          onClick={onClose}
+          aria-label="Đóng"
+        >
           ✕
         </button>
 

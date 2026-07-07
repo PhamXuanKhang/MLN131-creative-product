@@ -79,6 +79,14 @@
     opacity 0.2s ease;
 }
 
+/* Hit-area touch ~27px quanh dot 13px (không đổi hình ảnh) */
+.h-timeline__dot::after {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+}
+
 .h-timeline__dot:hover {
   box-shadow: 0 0 12px color-mix(in srgb, var(--marker-color) 80%, transparent);
 }

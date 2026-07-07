@@ -1,19 +1,15 @@
 /* =============================================================
    DESIGN TOKENS — single source of truth (xem DESIGN.md)
 
-   Hai layer:
    1. THEME (--c-*): semantic tokens của bảo tàng, đổi theo
       data-theme trên <html> (neutral / world / vietnam).
-      Component MỚI (shared/, museum/, pages/ mới) chỉ dùng layer này.
-   2. LEGACY (:root bên dưới): navy + vàng kim + đỏ cờ — chỉ còn
-      QuizPage cũ tiêu thụ; xoá tuần 4 khi làm lại Quiz.
-      Component mới KHÔNG dùng --gold/--bg/--surface...
-      Font / radius / shadow dùng chung cho cả hai layer.
+      Component chỉ dùng layer này (+ --era-*).
+   2. SHARED (:root bên dưới): font / radius / shadow dùng chung
+      mọi theme. (Layer màu legacy đã xoá tuần 4.)
    ============================================================= */
 
 /* ---- Layer 1: THEME (data-theme) ----
-   Chỉ định nghĩa khi data-theme được set (MuseumShell/Opening tự set),
-   để trang legacy chưa có data-theme vẫn fallback về token cũ. */
+   Chỉ định nghĩa khi data-theme được set (MuseumShell/Opening tự set). */
 [data-theme='neutral'] {
   /* Neutral — Opening, Quiz, Knowledge: nền tối trung tính, giấy sáng */
   --c-bg: #0f0f0f;
@@ -60,59 +56,12 @@
   --era-vietnam: #8fae62; /* xanh tre */
 }
 
-/* ---- Layer 2: LEGACY ---- */
+/* ---- Layer 2: SHARED (font / radius / shadow, mọi theme) ---- */
 :root {
   /* ---- Fonts ---- */
   --font-display: 'Playfair Display', 'Times New Roman', serif; /* headline serif */
   --font-title: 'Noto Serif', 'Times New Roman', serif; /* landing hero */
   --font-body: 'Roboto', system-ui, Avenir, Helvetica, Arial, sans-serif;
-
-  /* ---- Nền tối (canvas & surfaces) ---- */
-  --bg-deep: #050816; /* landing hero */
-  --bg: #0a0a15; /* canvas chuẩn */
-  --surface: #14141e; /* panel / hint */
-  --surface-2: #1a1a2e; /* card gradient (điểm sáng) */
-  --surface-3: #16213e; /* card gradient (điểm tối) */
-
-  /* ---- Vàng kim (primary) ---- */
-  --gold: #ffd700;
-  --gold-light: #ffec8b;
-  --gold-mid: #f0c040;
-  --gold-deep: #daa520;
-  --gold-amber: #ffb300;
-  --gold-muted: #b8a068; /* eyebrow */
-  --gold-tint: #f5e8b9; /* text trên nền sáng */
-  --gold-sand: #d4c5a0; /* trích dẫn */
-
-  /* ---- Đỏ cờ Việt Nam (secondary) ---- */
-  --red: #da251d;
-  --red-bright: #ff4444;
-  --red-soft: #ff6b6b;
-
-  /* ---- Text (neutral) ---- */
-  --text-strong: #ffffff;
-  --n-100: #eeeeee;
-  --n-200: #dddddd;
-  --n-300: #cccccc;
-  --n-400: #aaaaaa;
-  --n-500: #999999;
-  --n-600: #888888;
-  --n-700: #666666;
-  --n-800: #555555;
-  --text: rgba(255, 255, 255, 0.87);
-  --text-muted: rgba(255, 255, 255, 0.6);
-  --text-faint: rgba(255, 255, 255, 0.5);
-
-  /* ---- Semantic (quiz feedback) ---- */
-  --success: #4caf50;
-  --error: #f44336;
-  --info: #64b5f6;
-
-  /* ---- Border / hairline ---- */
-  --border-gold-faint: rgba(255, 215, 0, 0.15);
-  --border-gold: rgba(255, 215, 0, 0.3);
-  --hairline: rgba(255, 255, 255, 0.15);
-  --hairline-soft: rgba(255, 255, 255, 0.08);
 
   /* ---- Radius ---- */
   --r-xs: 3px;
@@ -120,14 +69,10 @@
   --r-md: 12px;
   --r-lg: 16px;
   --r-xl: 20px;
-  --r-2xl: 24px;
-  --r-3xl: 28px;
   --r-pill: 50px;
   --r-full: 9999px;
 
-  /* ---- Glow / shadow (chữ ký hình ảnh) ---- */
-  --glow-gold-sm: 0 0 12px rgba(255, 215, 0, 0.4);
-  --glow-gold-md: 0 0 20px rgba(255, 215, 0, 0.6);
+  /* ---- Shadow ---- */
   --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);

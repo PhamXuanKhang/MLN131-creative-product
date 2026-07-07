@@ -1,15 +1,16 @@
-// LEGACY (park, chưa mount) — khung UI tái dùng tuần 4 với nội dung câu hỏi
-// do nhóm review; hiện chạy trên quizPlaceholder + eventSlug thay campaignId.
-import { useState, useMemo } from 'react'
+/**
+ * Quiz — phòng trắc nghiệm (theme neutral, shell set theo route).
+ * Khung chạy trên quizPlaceholder; nội dung câu hỏi do nhóm bổ sung sau
+ * (data thuần, không đụng code). "Xem trên bản đồ" nhảy về World qua ?event=.
+ */
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { quizQuestions } from '@/data/quizPlaceholder'
 import { getEventBySlug } from '@/data/adapter'
 import type { QuizQuestion } from '@/types/events'
 import './QuizPage.css'
 
-interface QuizPageProps {
-  onBack: () => void
-  onViewEvent: (eventSlug: string) => void
-}
+const TOTAL_QUESTIONS = 10
 
 function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array]
@@ -20,17 +21,20 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffled
 }
 
-const TOTAL_QUESTIONS = 10
+const makeQuestions = () => shuffleArray(quizQuestions).slice(0, TOTAL_QUESTIONS)
 
-const PARTICLES = [...Array(15)].map(() => ({
-  left: `${Math.random() * 100}%`,
-  animationDelay: `${Math.random() * 5}s`,
-  animationDuration: `${8 + Math.random() * 8}s`,
-}))
+function getGrade(score: number, total: number) {
+  const pct = (score / total) * 100
+  if (pct >= 90) return { label: 'Xuất sắc!', modifier: 'quiz-grade--excellent' }
+  if (pct >= 70) return { label: 'Giỏi!', modifier: 'quiz-grade--good' }
+  if (pct >= 50) return { label: 'Khá!', modifier: 'quiz-grade--fair' }
+  return { label: 'Cần ôn lại!', modifier: 'quiz-grade--weak' }
+}
 
-function QuizPage({ onBack, onViewEvent }: QuizPageProps) {
-  const questions = useMemo(() => shuffleArray(quizQuestions).slice(0, TOTAL_QUESTIONS), [])
+function QuizPage() {
+  const navigate = useNavigate()
 
+  const [questions, setQuestions] = useState(makeQuestions)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [selectedOption, setSelectedOption] = useState<number | null>(null)
   const [showResult, setShowResult] = useState(false)
@@ -40,6 +44,9 @@ function QuizPage({ onBack, onViewEvent }: QuizPageProps) {
   const [wrongCount, setWrongCount] = useState(0)
 
   const current: QuizQuestion = questions[currentIndex]
+
+  const goToMap = () => navigate('/the-gioi')
+  const viewEventOnMap = (slug: string) => navigate(`/the-gioi?event=${slug}`)
 
   const handleSelect = (index: number) => {
     if (showResult) return
@@ -70,32 +77,23 @@ function QuizPage({ onBack, onViewEvent }: QuizPageProps) {
   }
 
   const handleRestart = () => {
-    window.location.reload()
-  }
-
-  const getGrade = () => {
-    const pct = (score / questions.length) * 100
-    if (pct >= 90) return { label: 'Xuất sắc! 🏆', color: '#ffd700' }
-    if (pct >= 70) return { label: 'Giỏi! 🎖️', color: '#4caf50' }
-    if (pct >= 50) return { label: 'Khá! 👍', color: '#ff9800' }
-    return { label: 'Cần ôn lại! 📖', color: '#ff5252' }
+    setQuestions(makeQuestions())
+    setCurrentIndex(0)
+    setSelectedOption(null)
+    setShowResult(false)
+    setScore(0)
+    setFinished(false)
+    setAnsweredCorrectly(null)
+    setWrongCount(0)
   }
 
   // === FINISHED SCREEN ===
   if (finished) {
-    const grade = getGrade()
+    const grade = getGrade(score, questions.length)
     return (
       <div className="quiz-page">
-        <div className="quiz-bg">
-          <div className="quiz-particles">
-            {PARTICLES.map((style, i) => (
-              <div key={i} className="q-particle" style={style} />
-            ))}
-          </div>
-        </div>
-
-        <div className="quiz-result-card">
-          <div className="result-icon">📋</div>
+        <div className={`quiz-result-card ${grade.modifier}`}>
+          <p className="result-eyebrow">Trắc nghiệm · Kết quả</p>
           <h1>Kết quả kiểm tra</h1>
 
           <div className="result-score-ring">
@@ -106,10 +104,7 @@ function QuizPage({ onBack, onViewEvent }: QuizPageProps) {
                 cy="60"
                 r="50"
                 className="ring-fill"
-                style={{
-                  strokeDasharray: `${(score / questions.length) * 314} 314`,
-                  stroke: grade.color,
-                }}
+                style={{ strokeDasharray: `${(score / questions.length) * 314} 314` }}
               />
             </svg>
             <div className="score-text">
@@ -118,9 +113,7 @@ function QuizPage({ onBack, onViewEvent }: QuizPageProps) {
             </div>
           </div>
 
-          <p className="result-grade" style={{ color: grade.color }}>
-            {grade.label}
-          </p>
+          <p className="result-grade">{grade.label}</p>
           <p className="result-detail">
             Bạn trả lời đúng {score}/{questions.length} câu hỏi (
             {Math.round((score / questions.length) * 100)}%)
@@ -128,10 +121,10 @@ function QuizPage({ onBack, onViewEvent }: QuizPageProps) {
 
           <div className="result-actions">
             <button className="btn-restart" onClick={handleRestart}>
-              🔄 Làm lại
+              Làm lại
             </button>
-            <button className="btn-back-map" onClick={onBack}>
-              🗺️ Về bản đồ
+            <button className="btn-back-map" onClick={goToMap}>
+              Về bản đồ
             </button>
           </div>
         </div>
@@ -142,23 +135,12 @@ function QuizPage({ onBack, onViewEvent }: QuizPageProps) {
   // === QUESTION SCREEN ===
   return (
     <div className="quiz-page">
-      <div className="quiz-bg">
-        <div className="quiz-particles">
-          {PARTICLES.map((style, i) => (
-            <div key={i} className="q-particle" style={style} />
-          ))}
-        </div>
-      </div>
-
-      {/* Header */}
       <header className="quiz-header">
-        <button className="quiz-back-btn" onClick={onBack}>
+        <button className="quiz-back-btn" onClick={goToMap}>
           ← Quay lại bản đồ
         </button>
-        <h1>
-          <span className="quiz-flag">🇻🇳</span> Kiểm tra kiến thức
-        </h1>
-        <p className="quiz-subtitle">Kháng chiến chống Mỹ 1960 - 1975</p>
+        <p className="quiz-eyebrow">Chủ nghĩa xã hội khoa học</p>
+        <h1>Kiểm tra kiến thức</h1>
       </header>
 
       {/* Progress */}
@@ -210,16 +192,17 @@ function QuizPage({ onBack, onViewEvent }: QuizPageProps) {
           <div
             className={`explanation-box ${answeredCorrectly ? 'explanation-correct' : 'explanation-wrong'}`}
           >
-            <p className="explanation-label">
-              {answeredCorrectly ? '✅ Chính xác!' : '❌ Chưa đúng!'}
-            </p>
+            <p className="explanation-label">{answeredCorrectly ? 'Chính xác!' : 'Chưa đúng!'}</p>
             <p>{current.explanation}</p>
             {current.eventSlug &&
               (() => {
                 const event = getEventBySlug(current.eventSlug)
                 return event ? (
-                  <button className="btn-go-to-map" onClick={() => onViewEvent(current.eventSlug)}>
-                    🗺️ Xem sự kiện «{event.title}» trên bản đồ
+                  <button
+                    className="btn-go-to-map"
+                    onClick={() => viewEventOnMap(current.eventSlug)}
+                  >
+                    Xem sự kiện «{event.title}» trên bản đồ
                   </button>
                 ) : null
               })()}
@@ -246,7 +229,9 @@ function QuizPage({ onBack, onViewEvent }: QuizPageProps) {
 
       {/* Score indicator */}
       <div className="quiz-score-indicator">
-        ✅ {score} đúng &nbsp;|&nbsp; ❌ {wrongCount} sai
+        <span className="quiz-score-indicator__correct">{score} đúng</span>
+        <span aria-hidden="true"> · </span>
+        <span className="quiz-score-indicator__wrong">{wrongCount} sai</span>
       </div>
     </div>
   )

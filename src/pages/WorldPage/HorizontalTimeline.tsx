@@ -70,7 +70,7 @@ export default function HorizontalTimeline({
   }, [activeSlug])
 
   return (
-    <div className="h-timeline">
+    <div className="h-timeline" role="group" aria-label="Dòng thời gian sự kiện">
       <div className="h-timeline__scroller" ref={scrollerRef}>
         <div className="h-timeline__track">
           <div className="h-timeline__inner">
@@ -108,6 +108,7 @@ export default function HorizontalTimeline({
                   disabled={filtered}
                   onClick={() => onSelect(event.slug)}
                   aria-label={`${event.dateLabel} — ${event.title}`}
+                  aria-current={isActive || undefined}
                 >
                   <span className="h-timeline__label">
                     <span className="h-timeline__label-date">{event.dateLabel}</span>

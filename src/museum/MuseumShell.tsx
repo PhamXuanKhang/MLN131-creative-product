@@ -2,10 +2,11 @@
  * Shell bảo tàng — layout route: header + mode switcher LUÔN giống nhau,
  * chỉ theme và nội dung (Outlet) đổi theo route.
  */
-import { useLayoutEffect } from 'react'
+import { Suspense, useEffect, useLayoutEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Header from './Header'
 import OpeningOverlay from './OpeningOverlay/OpeningOverlay'
+import KnowledgePanel from './KnowledgePanel/KnowledgePanel'
 import { useSelectedEvent } from './useSelectedEvent'
 import EventPanel from '@/shared/EventPanel/EventPanel'
 import Transition from '@/shared/Transition/Transition'
@@ -26,6 +27,7 @@ export default function MuseumShell() {
   const theme = THEME_BY_PATH[pathname] ?? 'world'
   const { event, select } = useSelectedEvent()
   const openingVisible = useMuseumStore((s) => s.openingVisible)
+  const knowledgeOpen = useMuseumStore((s) => s.knowledgeOpen)
   const setAmbientMode = useMuseumStore((s) => s.setAmbient)
   useAudio()
 
@@ -35,12 +37,28 @@ export default function MuseumShell() {
     setAmbientMode(theme === 'neutral' ? null : theme)
   }, [theme, setAmbientMode])
 
+  // Ctrl/Cmd+K toggle Knowledge Panel — bỏ qua khi Opening còn phủ
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault()
+        const state = useMuseumStore.getState()
+        if (!state.openingVisible) state.setKnowledgeOpen(!state.knowledgeOpen)
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
+
   return (
     <div className="museum-shell">
       <Header />
       <main className="museum-shell__main">
-        <Outlet />
+        <Suspense fallback={<div className="museum-shell__loading">Đang mở phòng…</div>}>
+          <Outlet />
+        </Suspense>
       </main>
+      {knowledgeOpen && <KnowledgePanel />}
       {event && <EventPanel key={event.slug} event={event} onClose={() => select(null)} />}
       {openingVisible && <OpeningOverlay />}
       <Transition />

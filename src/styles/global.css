@@ -15,9 +15,9 @@
   line-height: 1.5;
   font-weight: 400;
   color-scheme: dark;
-  color: var(--text);
-  /* --c-bg (theme mới) thắng khi data-theme được set; fallback về nền legacy */
-  background-color: var(--c-bg, var(--bg));
+  /* Fallback hex = giá trị neutral, cho khoảnh khắc trước khi React set data-theme */
+  color: var(--c-ink, rgba(255, 255, 255, 0.9));
+  background-color: var(--c-bg, #0f0f0f);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -44,12 +44,12 @@ body {
 
 a {
   font-weight: 500;
-  color: var(--gold);
+  color: var(--c-accent);
   text-decoration: inherit;
 }
 
 a:hover {
-  color: var(--gold-light);
+  color: color-mix(in srgb, var(--c-accent) 80%, white);
 }
 
 button {
@@ -65,11 +65,11 @@ button {
 }
 
 button:hover {
-  border-color: var(--gold);
+  border-color: var(--c-accent);
 }
 
 button:focus,
 button:focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--c-accent);
   outline-offset: 2px;
 }

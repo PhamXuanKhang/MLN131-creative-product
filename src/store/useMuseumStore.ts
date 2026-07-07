@@ -16,11 +16,14 @@ interface MuseumState {
   audioMuted: boolean
   ambient: AmbientKey
   isTransitioning: boolean
+  /** Knowledge Panel (tra cứu, Ctrl+K) đang mở. */
+  knowledgeOpen: boolean
   dismissOpening: () => void
   setEraFilter: (era: EraId | null) => void
   toggleMute: () => void
   setAmbient: (key: AmbientKey) => void
   setTransitioning: (value: boolean) => void
+  setKnowledgeOpen: (value: boolean) => void
 }
 
 export const useMuseumStore = create<MuseumState>((set) => ({
@@ -29,10 +32,12 @@ export const useMuseumStore = create<MuseumState>((set) => ({
   audioMuted: false,
   ambient: null,
   isTransitioning: false,
+  knowledgeOpen: false,
 
   dismissOpening: () => set({ openingVisible: false }),
   setEraFilter: (era) => set({ eraFilter: era }),
   toggleMute: () => set((s) => ({ audioMuted: !s.audioMuted })),
   setAmbient: (key) => set({ ambient: key }),
   setTransitioning: (value) => set({ isTransitioning: value }),
+  setKnowledgeOpen: (value) => set({ knowledgeOpen: value }),
 }))

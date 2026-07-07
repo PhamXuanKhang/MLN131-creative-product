@@ -5,7 +5,7 @@
  * "BẮT ĐẦU HÀNH TRÌNH" → film transition đóng màn → shell (đã render sẵn
  * bên dưới với dữ liệu thật) lộ ra.
  */
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { getAllEvents, getStats } from '@/data/adapter'
@@ -18,22 +18,29 @@ import './OpeningOverlay.css'
 
 const MIN_FILM_FRAME_COUNT = 18
 
+// Data từ adapter là tĩnh trong suốt phiên → tính một lần ở module scope
+const stats = getStats()
+const filmEvents = (() => {
+  const eventsWithImages = getAllEvents().filter((event) => event.image.thumb)
+  if (eventsWithImages.length >= MIN_FILM_FRAME_COUNT) return eventsWithImages
+
+  const repeatedEvents = [...eventsWithImages]
+  while (repeatedEvents.length < MIN_FILM_FRAME_COUNT && eventsWithImages.length > 0) {
+    repeatedEvents.push(...eventsWithImages)
+  }
+  return repeatedEvents.slice(0, MIN_FILM_FRAME_COUNT)
+})()
+
 export default function OpeningOverlay() {
   const rootRef = useRef<HTMLDivElement>(null)
   const filmRef = useRef<HTMLElement>(null)
+  const ctaRef = useRef<HTMLButtonElement>(null)
   const startedAudioRef = useRef(false)
   const dismissOpening = useMuseumStore((s) => s.dismissOpening)
 
-  const stats = useMemo(() => getStats(), [])
-  const filmEvents = useMemo(() => {
-    const eventsWithImages = getAllEvents().filter((event) => event.image.thumb)
-    if (eventsWithImages.length >= MIN_FILM_FRAME_COUNT) return eventsWithImages
-
-    const repeatedEvents = [...eventsWithImages]
-    while (repeatedEvents.length < MIN_FILM_FRAME_COUNT && eventsWithImages.length > 0) {
-      repeatedEvents.push(...eventsWithImages)
-    }
-    return repeatedEvents.slice(0, MIN_FILM_FRAME_COUNT)
+  // Focus CTA khi mở — Enter là vào được bảo tàng ngay
+  useEffect(() => {
+    ctaRef.current?.focus()
   }, [])
 
   useFlashlight(filmRef)
@@ -135,7 +142,12 @@ export default function OpeningOverlay() {
             </li>
           </ul>
 
-          <button type="button" className="opening__cta opening__reveal" onClick={closeOpening}>
+          <button
+            ref={ctaRef}
+            type="button"
+            className="opening__cta opening__reveal"
+            onClick={closeOpening}
+          >
             Bắt đầu hành trình
           </button>
         </section>

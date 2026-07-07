@@ -1,7 +1,7 @@
 /**
- * Audio skeleton — module thuần (không React). File âm thanh thật được gắn
- * tuần 4; hiện registry rỗng nên mọi lệnh đều no-op an toàn.
- * Đăng ký file: registerSound('click', '/audio/click.mp3') khi có asset.
+ * Audio — module thuần (không React). initSounds() đăng ký đường dẫn asset
+ * trong public/audio/ (xem README ở đó); file chưa tồn tại thì play() vẫn
+ * no-op an toàn nhờ catch — nhóm bỏ mp3 vào là kêu, không cần sửa code.
  */
 
 export type SoundKey = 'click' | 'paper' | 'film' | 'ambient-world' | 'ambient-vietnam'
@@ -18,6 +18,15 @@ export function registerSound(key: SoundKey, src: string, loop = false): void {
   audio.loop = loop
   audio.muted = muted
   registry.set(key, audio)
+}
+
+/** Gọi một lần lúc khởi động app (main.tsx). */
+export function initSounds(): void {
+  registerSound('click', '/audio/click.mp3')
+  registerSound('paper', '/audio/paper.mp3')
+  registerSound('film', '/audio/film.mp3')
+  registerSound('ambient-world', '/audio/ambient-world.mp3', true)
+  registerSound('ambient-vietnam', '/audio/ambient-vietnam.mp3', true)
 }
 
 /** Phát hiệu ứng một lần (click / paper / film). No-op nếu chưa có file. */

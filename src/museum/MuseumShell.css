@@ -57,6 +57,7 @@
   border-radius: var(--r-pill);
   font-size: 0.85rem;
   font-weight: 500;
+  white-space: nowrap;
   color: var(--c-ink-muted);
   transition:
     color 0.2s ease,
@@ -74,6 +75,33 @@
 
 .mode-switcher__link--active:hover {
   color: var(--c-bg);
+}
+
+.museum-header__search {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  padding: 8px 14px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-pill);
+  background: none;
+  font-size: 0.8rem;
+  color: var(--c-ink-muted);
+}
+
+.museum-header__search:hover {
+  border-color: var(--c-accent);
+  color: var(--c-ink);
+}
+
+.museum-header__search kbd {
+  padding: 1px 6px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-xs);
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  color: var(--c-ink-muted);
 }
 
 .museum-header__mute {
@@ -98,7 +126,18 @@
   flex-direction: column;
 }
 
-@media (max-width: 720px) {
+/* Suspense fallback lúc tải chunk phòng — nền để shell lo, không nháy trắng */
+.museum-shell__loading {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  font-size: 0.85rem;
+  color: var(--c-ink-muted);
+}
+
+/* 860px (content-driven): dưới mức này header không đủ chỗ cho switcher
+   một hàng — thả switcher xuống hàng riêng, ẩn hint Ctrl K */
+@media (max-width: 860px) {
   .museum-header {
     flex-wrap: wrap;
     gap: 12px;
@@ -109,5 +148,9 @@
     order: 3;
     width: 100%;
     justify-content: center;
+  }
+
+  .museum-header__search kbd {
+    display: none;
   }
 }
