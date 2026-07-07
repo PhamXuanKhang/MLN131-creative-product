@@ -1,357 +1,247 @@
 ---
-version: 1.0
-name: hanh-trinh-cuu-nuoc-design
-description: Hệ thiết kế cho ứng dụng giáo dục lịch sử "Hồ Chí Minh – Hành Trình Cứu Nước" (10 chiến dịch kháng chiến chống Mỹ 1960–1975). Ngôn ngữ hình ảnh mang tính tưởng niệm, trang nghiêm và yêu nước — nền tối navy làm canvas, vàng kim (#ffd700) là màu chủ đạo, đỏ cờ Việt Nam (#da251d) là màu phụ; chữ serif hiển thị (Playfair Display cho tiêu đề, Noto Serif cho hero landing) kết hợp sans body (Roboto). Chữ ký hình ảnh là góc bo mềm, gradient vàng, và hiệu ứng glow vàng thay cho đổ bóng phẳng.
+version: 2.0
+name: bao-tang-so-cnxh-design
+description: Hệ thiết kế cho "Bảo tàng số tương tác — Chủ nghĩa xã hội khoa học" (MLN131 · FPT University). Một bảo tàng, nhiều phòng — ba theme đổi qua data-theme trên <html> (neutral / world / vietnam) trên cùng một bộ semantic token --c-*; ngôn ngữ hình ảnh "phim tư liệu + giấy dó" — nền tối, giấy sáng làm bề mặt nội dung, accent đất (đồng cổ / nâu phim / tre), glow accent thay bóng phẳng. Serif hiển thị (Playfair Display) + Noto Serif (hero) + Roboto (body). Motion là cốt lõi nhưng reduced-motion là đường chính — CSS mặc định luôn là trạng thái hoàn chỉnh.
 
-colors:
-  primary: "#ffd700"
-  on-primary: "#0a0a15"
-  bg-deep: "#050816"
-  bg: "#0a0a15"
-  surface: "#14141e"
-  surface-2: "#1a1a2e"
-  surface-3: "#16213e"
-  gold: "#ffd700"
-  gold-light: "#ffec8b"
-  gold-mid: "#f0c040"
-  gold-deep: "#daa520"
-  gold-amber: "#ffb300"
-  gold-muted: "#b8a068"
-  gold-tint: "#f5e8b9"
-  gold-sand: "#d4c5a0"
-  red: "#da251d"
-  red-bright: "#ff4444"
-  red-soft: "#ff6b6b"
-  text-strong: "#ffffff"
-  text: "rgba(255,255,255,0.87)"
-  text-muted: "rgba(255,255,255,0.6)"
-  text-faint: "rgba(255,255,255,0.5)"
-  n-100: "#eeeeee"
-  n-300: "#cccccc"
-  n-500: "#999999"
-  n-700: "#666666"
-  success: "#4caf50"
-  error: "#f44336"
-  info: "#64b5f6"
-  border-gold-faint: "rgba(255,215,0,0.15)"
-  border-gold: "rgba(255,215,0,0.3)"
-  hairline: "rgba(255,255,255,0.15)"
-  hairline-soft: "rgba(255,255,255,0.08)"
+themes:
+  neutral: # Opening, Quiz, Knowledge — nền tối trung tính, giấy sáng
+    c-bg: "#0f0f0f"
+    c-surface: "#1c1c1c"
+    c-paper: "#efe6d4"
+    c-accent: "#b89b6a"
+    c-ink: "rgba(255,255,255,0.9)"
+    c-ink-muted: "rgba(255,255,255,0.6)"
+    c-line: "rgba(255,255,255,0.14)"
+    c-glow: "0 0 18px rgba(184,155,106,0.35)"
+  world: # old film — phòng Thế giới
+    c-bg: "#111111"
+    c-surface: "#1a1a1a"
+    c-paper: "#d8c8a5"
+    c-accent: "#8b6b3e"
+    c-ink: "rgba(228,218,197,0.92)"
+    c-ink-muted: "rgba(228,218,197,0.6)"
+    c-line: "rgba(216,200,165,0.18)"
+    c-glow: "0 0 18px rgba(216,200,165,0.3)"
+  vietnam: # tre & giấy dó — phòng Việt Nam
+    c-bg: "#17361e"
+    c-surface: "#406343"
+    c-paper: "#f5ecd8"
+    c-accent: "#c69c5d"
+    c-ink: "rgba(245,236,216,0.94)"
+    c-ink-muted: "rgba(245,236,216,0.65)"
+    c-line: "rgba(245,236,216,0.2)"
+    c-glow: "0 0 18px rgba(198,156,93,0.35)"
+
+era-colors: # theme-independent — marker / timeline / chips / legend ở mọi theme
+  era-birth: "#d4a94e" # vàng cổ
+  era-lenin: "#c25b4e" # đỏ gạch
+  era-post-lenin: "#7f9db3" # xanh thép
+  era-vietnam: "#8fae62" # xanh tre
+
+paper-ink: # mực nâu trên nền --c-paper (hardcode có chủ đích, xem Colors)
+  ink-strong: "#211a10" # tiêu đề trên giấy
+  ink: "#2c2417" # body trên giấy
+  ink-soft: "#3a2f1d" # summary/lead
+  ink-label: "#6e5631" # nhãn phụ, era pill
+  ink-accent: "#8b6b3e" # date, caret, đường kẻ
+  ink-link: "#8b5a2b" # link nguồn
+  ink-faint: "#8a7a5e" # credit, thiếu dữ liệu
 
 typography:
-  hero-title:
+  display: # Playfair Display — tiêu đề mục, tên sự kiện, chỉ số, watermark năm
+    fontFamily: PlayfairDisplay, "Times New Roman", serif
+    token: --font-display
+  title: # Noto Serif — hero (Opening title dùng display; token giữ cho landing-scale)
     fontFamily: NotoSerif, "Times New Roman", serif
-    fontSize: clamp(1.8rem, 4vw, 3.2rem)
-    fontWeight: 700
-    lineHeight: 1.22
-    letterSpacing: 0.04em
-  display-lg:
-    fontFamily: PlayfairDisplay, "Times New Roman", serif
-    fontSize: 1.8rem
-    fontWeight: 700
-    lineHeight: 1.2
-  display-md:
-    fontFamily: PlayfairDisplay, "Times New Roman", serif
-    fontSize: 1.5rem
-    fontWeight: 700
-    letterSpacing: 0.5px
-  display-sm:
-    fontFamily: PlayfairDisplay, "Times New Roman", serif
-    fontSize: 1.4rem
-    fontWeight: 700
-  eyebrow:
-    fontFamily: PlayfairDisplay, "Times New Roman", serif
-    fontSize: 1.2rem
-    fontWeight: 400
-    letterSpacing: 0.2em
-    textTransform: uppercase
-  stat-number:
-    fontFamily: PlayfairDisplay, "Times New Roman", serif
-    fontSize: clamp(2rem, 3vw, 2.5rem)
-    fontWeight: 700
-    lineHeight: 1
-  quote:
-    fontFamily: PlayfairDisplay, "Times New Roman", serif
-    fontSize: 1.3rem
-    fontWeight: 400
-    fontStyle: italic
-    lineHeight: 1.8
-  body-lg:
+    token: --font-title
+  body: # Roboto — nội dung, nhãn, metadata
     fontFamily: Roboto, system-ui, sans-serif
-    fontSize: 1.15rem
-    fontWeight: 600
-    lineHeight: 1.6
-  body:
-    fontFamily: Roboto, system-ui, sans-serif
-    fontSize: 0.95rem
-    fontWeight: 400
-    lineHeight: 1.7
-  body-sm:
-    fontFamily: Roboto, system-ui, sans-serif
-    fontSize: 0.9rem
-    fontWeight: 400
-    lineHeight: 1.6
-  caption:
-    fontFamily: Roboto, system-ui, sans-serif
-    fontSize: 0.85rem
-    fontWeight: 400
-  micro:
-    fontFamily: Roboto, system-ui, sans-serif
-    fontSize: 0.78rem
-    fontWeight: 600
-  badge:
-    fontFamily: Roboto, system-ui, sans-serif
-    fontSize: 0.75rem
-    fontWeight: 600
-    letterSpacing: 0.5px
+    token: --font-body
+  scale:
+    opening-title: "clamp(2.4rem, 5.2vw, 4.2rem) / 700 / 1.12"
+    section-title: "clamp(1.9rem, 4vw, 3rem) / 1.2"
+    panel-title: "1.35rem / 1.35"
+    card-title: "1.12rem / 700 / 1.35"
+    stat-number: "2rem (display)"
+    year-watermark: "clamp(3.5rem, 9vw, 7rem) / 700, màu paper 10% opacity"
+    eyebrow: "0.75–0.78rem, letter-spacing 0.22–0.28em, uppercase, màu --c-accent"
+    body: "0.92–0.98rem / 1.65–1.75"
+    label-micro: "0.68–0.78rem"
 
-rounded:
+rounded: # token --r-* (dùng chung mọi theme)
   xs: 3px
   sm: 8px
   md: 12px
   lg: 16px
   xl: 20px
-  2xl: 24px
-  3xl: 28px
   pill: 50px
   full: 9999px
   circle: 50%
 
-spacing:
-  xxs: 2px
-  xs: 4px
-  sm: 8px
-  md: 12px
-  lg: 16px
-  xl: 20px
-  2xl: 24px
-  3xl: 32px
-  4xl: 40px
-
 elevation:
-  glow-gold-sm: "0 0 12px rgba(255,215,0,0.4)"
-  glow-gold-md: "0 0 20px rgba(255,215,0,0.6)"
-  shadow-sm: "0 2px 12px rgba(0,0,0,0.3)"
+  glow-theme: "var(--c-glow) — chữ ký nâng độ theo theme (accent glow)"
   shadow-md: "0 8px 30px rgba(0,0,0,0.3)"
   shadow-lg: "0 10px 40px rgba(0,0,0,0.5)"
+  paper-vignette: "inset 0 0 28px rgba(139,107,62,0.12) — vignette ấm trên card giấy"
+
+z-index:
+  parallax: 0
+  content: 1
+  wheel-timeline: 5
+  header: 100
+  event-panel: 200
+  opening: 300
+  film-transition: 400
 
 components:
-  hero-title:
-    fontFamily: "{typography.hero-title}"
-    fill: "linear-gradient(135deg, {colors.gold}, {colors.gold-light}, {colors.gold-deep})"
-    note: "Gradient vàng clip vào chữ (background-clip:text)."
-  eyebrow:
-    textColor: "{colors.gold-muted}"
-    typography: "{typography.eyebrow}"
-  stat-tile:
-    backgroundColor: "rgba(255,255,255,0.04)"
-    borderColor: "{colors.border-gold-faint}"
-    numberColor: "{colors.gold}"
-    labelColor: "{colors.n-600}"
-    typography: "{typography.stat-number}"
-    rounded: "{rounded.lg}"
-    note: "Panel kính mờ (backdrop-blur) chứa 4 chỉ số, phân cách bằng viền vàng mờ."
-  cta-button:
-    backgroundColor: "linear-gradient(135deg, {colors.gold}, {colors.gold-mid}, {colors.gold-deep})"
-    textColor: "{colors.on-primary}"
+  museum-header:
+    surface: "color-mix(var(--c-bg) 82%, transparent) + backdrop-blur 8px"
+    border: "1px solid var(--c-line)"
+    position: "sticky top 0, z 100"
+  mode-switcher:
+    shape: "pill (--r-pill), viền --c-line"
+    active: "nền --c-accent, chữ --c-bg"
+    note: "Click thường đi qua film transition; ctrl/middle-click giữ hành vi trình duyệt."
+  opening-cta:
+    backgroundColor: "var(--c-accent)"
+    textColor: "var(--c-bg)"
     rounded: "{rounded.pill}"
-    padding: "{spacing.lg} 42px"
-    shadow: "0 4px 25px rgba(255,215,0,0.25)"
-    note: "Nút hành động chính, viên thuốc vàng gradient + glow vàng."
-  map-header:
-    backgroundColor: "linear-gradient(180deg, rgba(10,10,15,0.95), transparent)"
-    titleColor: "{colors.text-strong}"
-    typography: "{typography.display-md}"
-    subtitleColor: "{colors.text-faint}"
-  quiz-nav-btn:
-    backgroundColor: "rgba(255,255,255,0.07)"
-    borderColor: "{colors.border-gold}"
-    textColor: "{colors.gold}"
-    rounded: "{rounded.md}"
-    padding: "10px 22px"
-    shadow: "{elevation.shadow-sm}"
-    note: "Nút kính mờ viền vàng ở góc header bản đồ."
-  guide-hint:
-    backgroundColor: "rgba(20,20,30,0.9)"
-    borderColor: "{colors.border-gold}"
-    rounded: "{rounded.3xl}"
-    note: "Pill gợi ý thao tác, pulse glow vàng."
-  timeline-dot:
-    backgroundColor: "{colors.red}"
-    activeBackgroundColor: "{colors.gold}"
-    activeGlow: "{elevation.glow-gold-md}"
-    rounded: "{rounded.circle}"
-    note: "Chấm dòng thời gian đỏ; active chuyển vàng + glow."
-  location-card:
-    backgroundColor: "linear-gradient(135deg, {colors.surface-2}, {colors.surface-3})"
-    borderColor: "rgba(255,215,0,0.2)"
-    titleColor: "{colors.gold}"
-    rounded: "{rounded.lg}"
-    shadow: "{elevation.shadow-lg}"
-    note: "Panel trượt chi tiết chiến dịch/trận đánh."
-  collapsible-section:
-    borderColor: "{colors.hairline-soft}"
+    shadow: "var(--c-glow)"
+    note: "Viên thuốc accent + glow — nút hành động chính duy nhất của Opening."
+  film-transition:
+    note: "Màn film che kín (yPercent -100→0), onCovered chạy lúc bị che (navigate/đổi theme), rồi mở xuống. Reduced-motion: chạy onCovered ngay, không film."
+  event-panel:
+    surface: "var(--c-surface), trượt từ phải, width min(520px, 100%)"
+    paper: "var(--c-paper) + mực nâu {paper-ink}, paper reveal clip-path + typing caret #8b6b3e"
+    note: "Panel chi tiết DÙNG CHUNG mọi mode — mở qua ?event=<slug>, đóng bằng Esc/backdrop."
+  world-marker:
+    color: "var(--era-*) theo giai đoạn, DivIcon glow"
+    active: "glow mạnh + scale"
+  h-timeline-dot:
+    color: "var(--era-*)"
+    note: "Vị trí 0..1 theo năm (useTimeline) + spreadPositions chống chồng."
+  era-filter-chip:
+    note: "Chip pill kiêm legend, màu --era-*."
+  giay-do-card:
+    backgroundColor: "var(--c-paper)"
+    ink: "{paper-ink}"
+    border: "1px dashed var(--c-accent) (active: solid + var(--c-glow))"
+    shadow: "{elevation.paper-vignette} + shadow-md"
     rounded: "{rounded.sm}"
-    guidelineAccent: "{colors.info}"
-    battlesAccent: "{colors.red-soft}"
-    significanceAccent: "{colors.gold}"
-    note: "Mục gập: Đường lối của Đảng (xanh), Các trận đánh (đỏ), Ý nghĩa lịch sử (vàng)."
-  type-badge:
-    campaignColor: "{colors.gold}"
-    battleColor: "{colors.red-soft}"
-    typography: "{typography.badge}"
-    rounded: "{rounded.md}"
-  quiz-card:
-    backgroundColor: "linear-gradient(135deg, {colors.surface-2}, {colors.surface-3})"
-    borderColor: "{colors.border-gold-faint}"
-    rounded: "{rounded.lg}"
-    shadow: "0 8px 40px rgba(0,0,0,0.4)"
-    questionColor: "{colors.n-100}"
-    typography: "{typography.body-lg}"
-  quiz-option:
-    backgroundColor: "rgba(255,255,255,0.04)"
-    borderColor: "rgba(255,255,255,0.1)"
-    textColor: "{colors.n-200}"
-    selectedColor: "{colors.gold}"
-    correctColor: "{colors.success}"
-    wrongColor: "{colors.error}"
-    rounded: "{rounded.md}"
-  score-ring:
-    trackColor: "{colors.hairline-soft}"
-    numberColor: "{colors.text-strong}"
-    note: "Vòng điểm SVG; màu ring theo grade (dynamic)."
-  sovereignty-label:
-    nameColor: "{colors.red}"
-    countryColor: "{colors.red}"
-    typography: "{typography.display-md}"
-    note: "Nhãn Hoàng Sa / Trường Sa + 'VIỆT NAM', đỏ viền trắng trên bản đồ."
+    note: "Button-card giấy dó của Vietnam Mode; hover lift -3px; media 4:3."
+  bamboo-stalk:
+    stroke: "color-mix(--era-vietnam 70%, --c-paper), 12px, linecap round"
+    note: "SVG pathLength=1, stroke-dashoffset scrub theo scroll; node mấu tre --era-vietnam + lá border-radius 0 100%."
+  parallax-background:
+    note: "4 lớp fixed sau content: trời (gradient tĩnh) → núi (silhouette color-mix surface/bg) → sương (feGaussianBlur, opacity 0.14) → tre tiền cảnh (tối). pointer-events none."
+  wheel-timeline:
+    note: "Cung ¼ bánh xe fixed mép phải (≥1024px), chấm THEO TỈ LỆ NĂM, progress fill --c-accent (pathLength=1), xoay nhẹ ±6° theo scroll. Active: --c-accent + glow."
 
 ---
 
-
 ## Overview
 
-"Hồ Chí Minh – Hành Trình Cứu Nước" là một sản phẩm giáo dục lịch sử: một single-page app (React + Vite + TypeScript) lấy **bản đồ Leaflet tương tác** làm trung tâm, tái hiện 10 chiến dịch lớn của cuộc kháng chiến chống Mỹ 1960–1975 qua ba màn: **Landing → Bản đồ → Quiz**. Toàn bộ nội dung bằng tiếng Việt, giọng điệu trang nghiêm và tưởng niệm.
+"Bảo tàng số tương tác — Chủ nghĩa xã hội khoa học" là sản phẩm học phần MLN131: một single-page app (React + Vite + TypeScript) tổ chức như **một bảo tàng nhiều phòng** — Opening (sảnh phim), Thế giới (bản đồ Leaflet "old film"), Việt Nam (chuyện cuộn "tre – giấy dó"), Trắc nghiệm. Toàn bộ tiếng Việt, giọng trang nghiêm, tư liệu.
 
-Ngôn ngữ hình ảnh xoay quanh một bộ ba màu mang tính biểu tượng: **nền tối navy** làm canvas nghiêm cẩn, **vàng kim** (`{colors.gold}`) là màu chủ đạo cho tiêu đề, điểm nhấn và hành động, và **đỏ cờ Việt Nam** (`{colors.red}`) làm màu phụ cho chủ quyền (Hoàng Sa & Trường Sa), dòng thời gian và các nhấn mạnh. Vàng và đỏ gợi trực tiếp lá cờ Tổ quốc — đây là lựa chọn có chủ đích, không phải trang trí.
-
-Chữ mang phần lớn bản sắc. Ba face phân vai: **Noto Serif** cho tiêu đề hero của Landing; **Playfair Display** (serif hiển thị) cho mọi tiêu đề mục, tên chiến dịch, chỉ số và trích dẫn; **Roboto** (sans) cho nội dung, nhãn, metadata. Serif kể chuyện, sans dẫn hướng.
-
-Khác với ngôn ngữ editorial phẳng-góc-vuông, sản phẩm này dùng **góc bo mềm**, **gradient vàng** (clip vào chữ tiêu đề và tô nút), và **hiệu ứng glow vàng** làm chữ ký nâng độ (elevation) — thay cho đổ bóng cứng. Hairline vàng mờ và các panel kính mờ (backdrop-blur) tạo chiều sâu trên nền tối.
+Bản sắc thị giác là **"phim tư liệu + giấy dó"**: nền tối làm không gian trưng bày, **giấy sáng (`--c-paper`) là bề mặt nội dung** (panel chi tiết, card sự kiện) với mực nâu ấm, và **accent đất** (đồng cổ / nâu phim / tre) cho hành động, viền, glow. Ba phòng không đổi ngôn ngữ — chỉ đổi tông qua `data-theme` trên `<html>`: cùng một bộ semantic token `--c-*`, component viết một lần chạy đúng ở mọi phòng.
 
 **Đặc trưng chính:**
-- Bộ ba màu biểu tượng: nền tối + vàng kim (chủ đạo) + đỏ cờ (phụ) — gợi cờ Tổ quốc.
-- Hệ ba face: Noto Serif (hero) + Playfair Display (hiển thị) + Roboto (body).
-- Góc bo mềm ở mọi bề mặt tương tác; nút hành động là viên thuốc (pill) gradient vàng.
-- Glow vàng + gradient là chữ ký nâng độ, thay cho bóng phẳng.
-- Lớp phủ chủ quyền Hoàng Sa & Trường Sa với nhãn đỏ viền trắng — điểm nhấn nội dung–chính trị.
+- **Một hệ token, ba theme**: `neutral` / `world` / `vietnam` — component mới CHỈ dùng `--c-*` (+ `--era-*`, font/radius/shadow), không biết mình đang ở theme nào.
+- **Màu giai đoạn (`--era-*`) độc lập theme**: vàng cổ / đỏ gạch / xanh thép / xanh tre — ngôn ngữ dữ liệu xuyên suốt marker, timeline, chip, node tre.
+- **Giấy là nơi đọc**: nội dung dài luôn nằm trên `--c-paper` với thang mực nâu cố định; nền tối chỉ mang UI điều hướng.
+- **Glow accent (`--c-glow`) là chữ ký nâng độ** cho trạng thái active/CTA; bóng đen chỉ cho panel nổi lớn.
+- **Motion là nội dung nhưng reduced-motion là đường chính**: CSS mặc định luôn là trạng thái hoàn chỉnh; GSAP chỉ thêm chuyển động khi được phép.
 
 ## Colors
 
-### Chủ đạo & nhấn
-- **Vàng kim** (`{colors.gold}` — `#ffd700`): màu chủ đạo. Tiêu đề, điểm nhấn, viền, hành động, glow. Có cả thang phái sinh: `gold-light` `#ffec8b` (hover/điểm sáng gradient), `gold-mid` `#f0c040`, `gold-deep` `#daa520` (điểm tối gradient), `gold-amber` `#ffb300` (gradient nút "Tiếp"), `gold-muted` `#b8a068` (eyebrow), `gold-tint` `#f5e8b9` (chữ trên nền sáng), `gold-sand` `#d4c5a0` (trích dẫn).
-- **Đỏ cờ** (`{colors.red}` — `#da251d`): màu phụ. Nhãn chủ quyền, chấm dòng thời gian, popup, nút xác nhận/làm lại. Phái sinh: `red-bright` `#ff4444` (điểm sáng gradient), `red-soft` `#ff6b6b` (nhãn trận đánh).
+### Semantic theme tokens (`--c-*`)
+Đổi theo `[data-theme]` trên `<html>` (MuseumShell set theo route; Opening tự ghim `neutral`):
+- **`--c-bg` / `--c-surface`** — canvas và bề mặt nổi của phòng (neutral than, world đen phim, vietnam lục tre).
+- **`--c-paper`** — bề mặt nội dung sáng (giấy); world ngả vàng phim cũ, vietnam là giấy dó `#f5ecd8`.
+- **`--c-accent`** — hành động, viền active, glow: đồng cổ / nâu phim / tre-mật ong.
+- **`--c-ink` / `--c-ink-muted`** — chữ trên nền tối (không dùng trên giấy).
+- **`--c-line`** — hairline mờ; **`--c-glow`** — glow accent theo theme.
 
-### Bề mặt (nền tối)
-- **Bg-deep** (`{colors.bg-deep}` — `#050816`): nền sâu nhất, dùng cho hero Landing.
-- **Bg** (`{colors.bg}` — `#0a0a15`): canvas chuẩn (bản đồ, nền chung).
-- **Surface** (`{colors.surface}` — `#14141e`): panel/hint.
-- **Surface-2 / Surface-3** (`#1a1a2e` / `#16213e`): cặp điểm cho gradient thẻ (location-card, quiz-card, result-card).
+### Mực trên giấy (hardcode có chủ đích)
+Trên `--c-paper`, chữ dùng **thang nâu cố định** (không theo theme — giấy sáng ở mọi phòng): `#211a10` tiêu đề · `#2c2417` body · `#3a2f1d` lead · `#6e5631` nhãn · `#8b6b3e` date/caret/kẻ · `#8b5a2b` link · `#8a7a5e` credit. Precedent: EventPanel.css, GiayDoCard.css.
 
-### Chữ
-- **Text-strong** (`#ffffff`) cho tiêu đề nổi bật; **Text** (`rgba(255,255,255,0.87)`) là body mặc định; **Text-muted** (`0.6`) và **Text-faint** (`0.5`) cho phụ đề/metadata. Thang xám đục `n-100…n-800` (`#eee`→`#555`) cho phân cấp chữ trong thẻ.
+### Màu giai đoạn (`--era-*`, `:root`)
+`--era-birth #d4a94e` · `--era-lenin #c25b4e` · `--era-post-lenin #7f9db3` · `--era-vietnam #8fae62`. Map qua `ERA_COLOR` (src/pages/WorldPage/eraColors.ts). Đây là màu **dữ liệu**, không phải màu theme — giữ nguyên khi đổi phòng.
 
-### Ngữ nghĩa (quiz)
-- **Success** `#4caf50` (đáp án đúng), **Error** `#f44336` (đáp án sai), **Info** `#64b5f6` (mục "Đường lối của Đảng").
+### Layer 2 LEGACY (sẽ xoá tuần 4)
+`--gold / --bg / --surface / --red / --n-*`… trong `:root` của tokens.css chỉ còn QuizPage cũ tiêu thụ. **Component mới không được dùng.** Font (`--font-*`), radius (`--r-*`), shadow (`--shadow-*`) là token dùng chung, không phải legacy.
 
 ## Typography
 
-### Font Family
-1. **Noto Serif** — tiêu đề hero của Landing (`{typography.hero-title}`), fluid `clamp(1.8rem, 4vw, 3.2rem)`, weight 700.
-2. **Playfair Display** — serif hiển thị cho mọi tiêu đề mục, tên chiến dịch, chỉ số, trích dẫn (eyebrow, display-lg/md/sm, stat-number, quote).
-3. **Roboto** — sans cho body, nhãn, metadata, nút phụ (weights 300/400/500/700).
+1. **Playfair Display** (`--font-display`) — serif hiển thị: tiêu đề mục, tên sự kiện, chỉ số Opening, watermark năm.
+2. **Noto Serif** (`--font-title`) — dự phòng hero scale (landing cũ); hiện Opening dùng display.
+3. **Roboto** (`--font-body`) — body, nhãn, metadata, nút.
 
-### Nguyên tắc
-- **Serif kể chuyện, sans dẫn hướng.** Serif (Playfair/Noto) không mang nhãn cấu trúc nhỏ; Roboto không mang tiêu đề hiển thị.
-- **Tiêu đề hero là gradient vàng clip vào chữ** — chữ ký thị giác mạnh nhất của Landing.
-- **Trích dẫn dùng Playfair nghiêng, line-height 1.8** — nhịp thở dành cho câu nói Bác Hồ.
+Nguyên tắc: **serif kể chuyện, sans dẫn hướng** — Roboto không mang tiêu đề hiển thị, serif không mang nhãn cấu trúc nhỏ. Eyebrow luôn uppercase + letter-spacing rộng (0.22–0.28em) màu `--c-accent`.
 
 ## Layout
 
-### Hệ khoảng cách
-- **Đơn vị gốc**: 4px. Token: `xxs` 2 · `xs` 4 · `sm` 8 · `md` 12 · `lg` 16 · `xl` 20 · `2xl` 24 · `3xl` 32 · `4xl` 40.
-- Landing dùng shell canh giữa `min(100%, 960px)`; quiz dùng cột `max(660px)`; location-card rộng 500px trượt bên trái bản đồ.
-
-### Chiến lược responsive
-| Tên | Bề rộng | Thay đổi chính |
-|---|---|---|
-| Mobile | < 700–768px | Hero co (clamp), stats xếp dọc, timeline cuộn ngang, location-card về đáy màn hình. |
-| Desktop | ≥ 768px | Bố cục đầy đủ, location-card cạnh trái, timeline trải ngang. |
-
-Bản đồ Leaflet chiếm toàn màn (`100vw × 100vh`) với nền `{colors.bg}`; các lớp UI (header, timeline, card) nổi lên trên bằng `z-index`.
+- Header sticky (z 100) + `main` flex-column; mỗi phòng tự chọn: World full-viewport (`flex:1; overflow:hidden`), Vietnam document-flow cao nhiều viewport (scroller là `<html>` — bắt buộc cho ScrollTrigger).
+- Nội dung đọc canh giữa `max-width` ~1080px; hiệu ứng (parallax, film) full-bleed phía sau/trên.
+- Responsive desktop-first: <720px giản lược hiệu ứng (tắt sương/tiền cảnh, tre về mép trái, 1 cột); WheelTimeline chỉ ≥1024px.
 
 ## Elevation & Depth
 
 | Mức | Xử lý | Dùng cho |
 |---|---|---|
-| Mức 0 — Phẳng | Không viền, không bóng. | Nền, phần lớn bề mặt. |
-| Mức 1 — Hairline vàng | 1px viền vàng mờ (`{colors.border-gold-faint}` / `{colors.border-gold}`). | Stat-tile, quiz-card, nút viền. |
-| Mức 2 — Glow vàng | `{elevation.glow-gold-sm}` / `glow-gold-md`. | Chấm timeline active, guide-hint pulse, focus. |
-| Mức 3 — Bóng thẻ | `{elevation.shadow-md}` / `shadow-lg`. | Location-card, quiz-card, popup. |
+| 0 — Phẳng | Không viền/bóng | Nền, đa số bề mặt |
+| 1 — Hairline | `1px var(--c-line)` | Header, chip, nút viền, mấu nối |
+| 2 — Glow accent | `var(--c-glow)` | Active (dot/card/marker), CTA, focus |
+| 3 — Bóng panel | `--shadow-md/lg` (+ vignette ấm trên giấy) | EventPanel, card giấy dó, lightbox |
 
-Khác với ngôn ngữ editorial phẳng–góc-vuông: sản phẩm này **dùng glow vàng và gradient làm chữ ký nâng độ**. Bóng đen chỉ dành cho panel nổi lớn.
+Thứ tự lớp cố định: parallax 0 → content 1 → wheel 5 → header 100 → panel 200 → opening 300 → film transition 400.
+
+## Motion
+
+- **GSAP + ScrollTrigger cho scene** (film strip, tre mọc scrub, bloom card, parallax, film transition, paper reveal, typing); **CSS cho micro-interaction** (hover lift, focus, opacity nhỏ).
+- **Reduced-motion là đường chính**: check `matchMedia('(prefers-reduced-motion: reduce)')` đầu mỗi `useGSAP`, early-return trước khi tạo tween — CSS mặc định đã là trạng thái cuối (tre vẽ đủ, card hiện, progress fill đủ). Ngoại lệ có chủ đích: cuộn phim Opening giữ motion chậm hơn (motion là cốt lõi trải nghiệm đó).
+- Bloom/reveal dùng `toggleActions` (không scrub) để không bao giờ đứng nửa chừng; scrub chỉ cho tiến trình liên tục (tre, parallax, progress).
+- Idiom: `gsap.registerPlugin` module scope; mọi tween trong `useGSAP({ scope, dependencies, revertOnUpdate: true })` khi dependency đổi layout.
 
 ## Shapes
 
-### Thang bo góc
-| Token | Giá trị | Dùng |
-|---|---|---|
-| `{rounded.xs}` | 3px | Thanh tiến trình, scrollbar. |
-| `{rounded.sm}` | 8px | Mục gập, item trận đánh, lightbox. |
-| `{rounded.md}` | 12px | Ô đáp án, badge loại, nút nav bản đồ. |
-| `{rounded.lg}` | 16px | Thẻ (location-card, quiz-card), stat-tile. |
-| `{rounded.xl}` | 20px | Badge năm, result-card. |
-| `{rounded.pill}` | 50px | Nút CTA chính (viên thuốc). |
-| `{rounded.circle}` | 50% | Chấm timeline, avatar tròn, nút đóng. |
+| Token | Dùng |
+|---|---|
+| `--r-xs` 3px | Media trong card, nhãn wheel |
+| `--r-sm` 8px | Card giấy dó, lightbox img, nút mặc định |
+| `--r-pill` 50px | Mode switcher, CTA, era pill, skip |
+| `--r-full` / circle | Nút đóng tròn, chấm timeline/wheel, node |
 
-### Hình học ảnh
-- Ảnh chiến dịch trong location-card: 16:9-ish, cao 200px, zoom nhẹ khi hover, mở lightbox khi bấm.
-- Marker chiến dịch: sao vàng/đỏ; marker trận đánh: ⚔.
+Hình học đặc trưng: lá tre `border-radius: 0 100% 0 100%`; viền giấy dó `dashed var(--c-accent)`; sprocket phim bằng repeating-gradient.
 
 ## Components
 
-### Signature
-- **`hero-title`** — tiêu đề Landing, Noto Serif, gradient vàng clip vào chữ.
-- **`cta-button`** — viên thuốc gradient vàng (`{rounded.pill}`) + glow, chữ màu `{colors.on-primary}` (nền tối).
-- **`stat-tile`** — panel kính mờ chứa 4 chỉ số (10 chiến dịch / 35 trận đánh / 15 năm / ∞ hy sinh), số màu vàng, viền vàng mờ.
-- **`sovereignty-label`** — nhãn Hoàng Sa / Trường Sa + "VIỆT NAM", đỏ `{colors.red}` viền trắng, nổi trên bản đồ.
+### Shell & điều hướng
+- **`museum-header`** — kính mờ tối, hairline dưới, sticky; brand eyebrow accent + title display.
+- **`mode-switcher`** — pill 3 phòng; active nền accent chữ bg; click thường đi qua **film transition** (theme flip lúc màn che), ctrl/middle-click giữ nguyên.
+- **`film-transition`** — màn che toàn cục (z 400), API mệnh lệnh `playTransition(onCovered)`.
 
-### Bản đồ
-- **`map-header`** — dải gradient tối trên đỉnh, tiêu đề Playfair trắng, phụ đề mờ.
-- **`quiz-nav-btn`** — nút kính mờ viền vàng dẫn sang Quiz.
-- **`guide-hint`** — pill gợi ý thao tác, pulse glow vàng.
-- **`timeline-dot`** — chấm dòng thời gian đỏ; active chuyển vàng + glow, phóng to.
-
-### Thẻ chi tiết (`location-card`)
-- Nền gradient `{colors.surface-2}`→`{colors.surface-3}`, viền vàng mờ, bóng lớn, trượt vào từ trái.
-- **`collapsible-section`** — ba mục gập với màu accent riêng: **Đường lối của Đảng** (`{colors.info}` xanh), **Các trận đánh** (`{colors.red-soft}` đỏ), **Ý nghĩa lịch sử** (`{colors.gold}` vàng).
-- **`type-badge`** — nhãn "Chiến dịch" (vàng) / "Trận đánh" (đỏ).
-
-### Quiz
-- **`quiz-card`** — thẻ câu hỏi gradient tối, viền vàng mờ, tiêu đề câu hỏi màu `{colors.n-100}`.
-- **`quiz-option`** — ô đáp án; trạng thái `selected` (vàng), `correct` (`{colors.success}`), `wrong` (`{colors.error}`).
-- **`score-ring`** — vòng điểm SVG; màu ring đổi theo xếp loại (Xuất sắc/Giỏi/Khá/Cần ôn lại).
+### Trưng bày
+- **`event-panel`** — panel chi tiết dùng chung (z 200): hero ảnh, giấy `--c-paper` với paper reveal + typing caret, nguồn, lightbox. Mở qua `?event=<slug>`.
+- **`world-marker` / `h-timeline-dot` / `era-filter-chip`** — bộ World: màu `--era-*`, active glow; timeline 0..1 theo năm (useTimeline + spreadPositions).
+- **`giay-do-card`** — button-card giấy dó (Vietnam): media 4:3, date uppercase nâu, title display, summary clamp 3 dòng; bloom từ node khi motion.
+- **`bamboo-stalk` + `vn-node`** — thân tre SVG scrub theo scroll, node mấu + lá tại mỗi sự kiện, watermark năm sau section.
+- **`parallax-background`** — 4 lớp fixed (trời/núi/sương/tre) tốc độ -8/-16/-28 yPercent.
+- **`wheel-timeline`** — cung ¼ mép phải, chấm theo tỉ lệ năm (lộ khe 1946→1976), progress fill accent, điều hướng nhanh.
+- **`opening`** — sảnh 60/40: nội dung + stats | cuộn phim dọc + đèn pin bám chuột; CTA pill accent.
 
 ## Do's & Don'ts
 
 ### Do
-- Giữ vàng kim `{colors.gold}` là màu chủ đạo cho tiêu đề, điểm nhấn và hành động; đỏ cờ `{colors.red}` cho chủ quyền, timeline và nhấn mạnh. Bộ ba vàng–đỏ–nền tối gợi cờ Tổ quốc.
-- Đặt tiêu đề hiển thị bằng serif (Noto Serif cho hero, Playfair cho mục), body bằng Roboto.
-- Dùng glow vàng và gradient làm chữ ký nâng độ; giữ góc bo mềm ở mọi bề mặt tương tác.
-- Mọi màu/gradient/bo góc/glow lấy từ token trong `src/index.css` (`var(--…)`), không hardcode literal mới.
+- Mọi màu/viền/glow/bo góc lấy từ token: `--c-*`, `--era-*`, `--r-*`, `--shadow-*`, `--font-*`. Trên giấy dùng đúng thang mực nâu đã liệt kê.
+- Viết component "mù theme" — chỉ `--c-*`, để cả ba phòng dùng được.
+- CSS mặc định = trạng thái hoàn chỉnh; GSAP chỉ thêm motion sau check reduced-motion.
+- Serif (display) cho tiêu đề, Roboto cho body/nhãn; eyebrow uppercase accent.
+- Active/CTA nâng độ bằng `var(--c-glow)`; hover card lift nhẹ -2/-3px.
 
 ### Don't
-- Đừng thêm màu nhấn thứ ba ngoài vàng–đỏ (trừ ngữ nghĩa quiz xanh/đỏ/lam-info). Bản sắc là bộ ba biểu tượng.
-- Đừng chuyển sang nền sáng hay đen-trắng thuần — sẽ làm mất biểu tượng cờ Tổ quốc gắn với nội dung.
-- Đừng ép góc vuông–phẳng kiểu tạp chí công nghệ; sản phẩm này mềm và có chiều sâu (bo góc + glow).
-- Đừng đặt Roboto cho tiêu đề hiển thị hay serif cho nhãn cấu trúc nhỏ.
+- Đừng dùng token Layer-2 legacy (`--gold`, `--bg`, `--red`…) cho bất kỳ component mới nào — chúng sẽ bị xoá tuần 4.
+- Đừng hardcode màu mới ngoài thang mực-trên-giấy; cần sắc thái mới thì `color-mix` từ token.
+- Đừng đặt chữ `--c-ink` lên giấy hay mực nâu lên nền tối.
+- Đừng hide-content-chờ-GSAP (nội dung ẩn vĩnh viễn khi reduced-motion); đừng scrub các reveal rời rạc.
+- Đừng thêm scroller phụ (overflow) cho trang scroll-story — ScrollTrigger bám `<html>`.

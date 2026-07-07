@@ -1,26 +1,6 @@
+/* Trang Việt Nam — full-bleed, document-flow scroll (KHÔNG overflow riêng:
+   ScrollTrigger bám scroller mặc định là <html>). */
 .vietnam-page {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 32px clamp(16px, 4vw, 48px) 64px;
-  max-width: 1280px;
+  position: relative;
   width: 100%;
-  margin: 0 auto;
-}
-
-.vietnam-page__header {
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--c-line);
-}
-
-.vietnam-page__title {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  color: var(--c-paper);
-}
-
-.vietnam-page__sub {
-  margin-top: 4px;
-  font-size: 0.85rem;
-  color: var(--c-ink-muted);
 }

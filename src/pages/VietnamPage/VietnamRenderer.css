@@ -1,0 +1,237 @@
+/* VietnamRenderer — chỉ dùng token Layer-1 (--c-*, --era-*, font/radius/shadow).
+   Mặc định mọi thứ ở trạng thái hoàn chỉnh: tre vẽ đủ (dashoffset 0), card hiện đủ —
+   reduced-motion là đường chính, GSAP chỉ thêm motion. */
+
+.vn-renderer {
+  position: relative;
+  width: 100%;
+}
+
+.vn-renderer__content {
+  position: relative;
+  z-index: 1;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 48px);
+}
+
+/* ---- Intro ---- */
+.vn-intro {
+  min-height: 55vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 96px 0 40px;
+}
+
+.vn-intro__eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+}
+
+.vn-intro__title {
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.2;
+  color: var(--c-paper);
+}
+
+.vn-intro__sub {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: var(--c-ink-muted);
+}
+
+.vn-intro__hint {
+  margin-top: 40px;
+  font-size: 0.85rem;
+  color: var(--c-ink-muted);
+}
+
+/* ---- Sections + thân tre ---- */
+.vn-sections {
+  position: relative;
+}
+
+.vn-stalk {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 100%;
+  overflow: visible;
+}
+
+.vn-stalk__main {
+  fill: none;
+  stroke: color-mix(in srgb, var(--era-vietnam) 70%, var(--c-paper));
+  stroke-width: 12px;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0; /* mặc định vẽ đủ — GSAP fromTo(1→0) khi motion bật */
+}
+
+.vn-stalk__highlight {
+  fill: none;
+  stroke: color-mix(in srgb, var(--c-paper) 60%, var(--era-vietnam));
+  stroke-width: 3px;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  opacity: 0.55;
+}
+
+.vn-section {
+  position: relative;
+  min-height: 75vh;
+  display: grid;
+  grid-template-columns: 1fr 72px 1fr;
+  column-gap: clamp(16px, 3vw, 40px);
+  align-items: center;
+}
+
+/* Node mấu tre — thanh ngang cắt thân + lá */
+.vn-node {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+  position: relative;
+  z-index: 1;
+  width: 30px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: color-mix(in srgb, var(--era-vietnam) 80%, var(--c-paper));
+  box-shadow: 0 0 10px rgba(143, 174, 98, 0.5);
+}
+
+.vn-node::after {
+  content: '';
+  position: absolute;
+  left: 55%;
+  top: -13px;
+  width: 24px;
+  height: 11px;
+  background-color: var(--era-vietnam);
+  border-radius: 0 100% 0 100%;
+  transform: rotate(-28deg);
+  transform-origin: left bottom;
+  opacity: 0.85;
+}
+
+/* Cuống nối node → card (chiều theo parity) */
+.vn-section::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: clamp(16px, 3vw, 40px);
+  height: 1px;
+  background-color: var(--c-line);
+}
+
+.vn-section:nth-of-type(odd)::after {
+  right: calc(50% + 36px);
+}
+
+.vn-section:nth-of-type(even)::after {
+  left: calc(50% + 36px);
+}
+
+/* Card xen kẽ trái/phải quanh trục tre */
+.vn-section:nth-of-type(odd) .giay-do-card {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: end;
+}
+
+.vn-section:nth-of-type(even) .giay-do-card {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: start;
+}
+
+/* Watermark năm — phía đối diện card */
+.vn-section__year {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  font-weight: 700;
+  line-height: 1;
+  color: color-mix(in srgb, var(--c-paper) 10%, transparent);
+  pointer-events: none;
+  user-select: none;
+}
+
+.vn-section:nth-of-type(odd) .vn-section__year {
+  left: calc(50% + 64px);
+}
+
+.vn-section:nth-of-type(even) .vn-section__year {
+  right: calc(50% + 64px);
+}
+
+/* ---- Outro ---- */
+.vn-outro {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 0 120px;
+}
+
+.vn-outro__quote {
+  max-width: 560px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--c-ink);
+}
+
+/* ---- Mobile: 1 cột, tre về mép trái, giản lược ---- */
+@media (max-width: 720px) {
+  .vn-section {
+    grid-template-columns: 56px 1fr;
+    min-height: 60vh;
+  }
+
+  .vn-stalk {
+    left: 28px;
+    transform: none;
+  }
+
+  .vn-node,
+  .vn-section:nth-of-type(odd) .vn-node,
+  .vn-section:nth-of-type(even) .vn-node {
+    grid-column: 1;
+  }
+
+  .vn-section:nth-of-type(odd) .giay-do-card,
+  .vn-section:nth-of-type(even) .giay-do-card {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .vn-section::after {
+    display: none;
+  }
+
+  .vn-section__year,
+  .vn-section:nth-of-type(odd) .vn-section__year,
+  .vn-section:nth-of-type(even) .vn-section__year {
+    left: auto;
+    right: 8px;
+    top: 12%;
+    font-size: 3rem;
+  }
+}

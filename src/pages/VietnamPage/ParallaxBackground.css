@@ -1,0 +1,74 @@
+/* Parallax 4 lớp — fixed sau content (z-index 0), không nhận pointer.
+   Lớp cao 130% + neo đáy để tween yPercent không lộ mép. */
+
+.vn-parallax {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.vn-parallax__layer {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+/* (1) Trời — gradient tĩnh, speed 0 */
+.vn-parallax__sky {
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--c-bg) 62%, var(--c-paper)) 0%,
+    color-mix(in srgb, var(--c-bg) 85%, var(--c-paper)) 34%,
+    var(--c-bg) 68%
+  );
+}
+
+/* (2) Núi */
+.vn-parallax__mountains {
+  bottom: -6%;
+  height: 72%;
+  will-change: auto;
+}
+
+.vn-parallax__mountain-far {
+  fill: color-mix(in srgb, var(--c-surface) 55%, var(--c-bg));
+}
+
+.vn-parallax__mountain-near {
+  fill: color-mix(in srgb, var(--c-surface) 82%, var(--c-bg));
+}
+
+/* (3) Sương */
+.vn-parallax__mist {
+  bottom: -10%;
+  height: 80%;
+  will-change: transform;
+}
+
+.vn-parallax__mist ellipse {
+  fill: color-mix(in srgb, var(--c-paper) 75%, var(--c-bg));
+  opacity: 0.14;
+}
+
+/* (4) Tre tiền cảnh */
+.vn-parallax__foreground {
+  bottom: -14%;
+  height: 118%;
+  will-change: transform;
+}
+
+.vn-parallax__bamboo path {
+  fill: color-mix(in srgb, var(--c-bg) 68%, #000);
+  opacity: 0.9;
+}
+
+/* Mobile: giản lược — bỏ sương + tiền cảnh, giữ trời + núi tĩnh */
+@media (max-width: 720px) {
+  .vn-parallax__mist,
+  .vn-parallax__foreground {
+    display: none;
+  }
+}

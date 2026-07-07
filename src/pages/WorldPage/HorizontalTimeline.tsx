@@ -4,7 +4,8 @@
  * active đổi (click marker/deep-link) → auto-center dot trong scroller.
  */
 import { useEffect, useMemo, useRef } from 'react'
-import { useTimeline, type TimelineItem } from '@/shared/timeline/useTimeline'
+import { useTimeline } from '@/shared/timeline/useTimeline'
+import { spreadPositions } from '@/shared/timeline/spreadPositions'
 import type { EraId, HistoricalEvent } from '@/types/events'
 import { ERA_COLOR } from './eraColors'
 import './HorizontalTimeline.css'
@@ -21,26 +22,6 @@ function estimateYear(event: HistoricalEvent, events: HistoricalEvent[]): number
   const next = mates.find((e) => e.order > event.order)
   if (prev && next) return Math.round((prev.year + next.year) / 2)
   return prev?.year ?? next?.year ?? 0
-}
-
-/**
- * Chống chồng dot (2 event cùng 1848, cụm 1831–1878 dày): quét trái→phải
- * đảm bảo khoảng cách tối thiểu, vượt 1 thì scale lại toàn bộ.
- */
-function spreadPositions(items: TimelineItem[], minGap = 0.011): TimelineItem[] {
-  const sorted = [...items].sort((a, b) => a.position - b.position)
-  let prev = -Infinity
-  const spread = sorted.map((item) => {
-    const pos = Math.max(item.position, prev + minGap)
-    prev = pos
-    return { ...item, position: pos }
-  })
-  const last = spread[spread.length - 1]
-  if (last && last.position > 1) {
-    const scale = 1 / last.position
-    return spread.map((i) => ({ ...i, position: i.position * scale }))
-  }
-  return spread
 }
 
 interface HorizontalTimelineProps {
