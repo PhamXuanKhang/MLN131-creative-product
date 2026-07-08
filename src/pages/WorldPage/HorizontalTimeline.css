@@ -1,165 +1,238 @@
-/* Timeline ngang — thanh overlay đáy map; chỉ dots, label hiện khi hover/active */
+/* Timeline ngang — thanh overlay đáy map; ~9 cụm sự kiện + nút ◀ ▶ hai đầu */
 
 .h-timeline {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 10;
-  height: 76px;
+  /* Trên EventPanel (200), dưới OpeningOverlay (300) — để ◀ ▶ bấm được
+     liên tục khi panel đang mở */
+  z-index: 210;
+  display: flex;
+  align-items: stretch;
+  height: 96px;
   background: color-mix(in srgb, var(--c-bg) 78%, transparent);
   backdrop-filter: blur(8px);
   border-top: 1px solid var(--c-line);
 }
 
-.h-timeline__scroller {
-  height: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: thin;
+/* Thanh timeline nổi trên panel → chừa đáy panel đúng chiều cao thanh
+   (chỉ ở phòng Thế giới — data-theme trên <html>) */
+:root[data-theme='world'] .event-panel {
+  padding-bottom: 96px;
 }
 
-.h-timeline__track {
-  position: relative;
-  min-width: 1400px;
-  width: 100%;
-  height: 100%;
-}
+/* ---- Nút điều hướng ◀ ▶ ---- */
 
-/* Lớp toạ độ cho axis/tick/dot — inset ngang 32px để dot đầu-cuối không
-   dính mép (left:% của absolute child tính theo padding box nên KHÔNG
-   dùng padding trên track được) */
-.h-timeline__inner {
-  position: absolute;
-  inset: 0 32px;
-}
-
-.h-timeline__axis {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 26px;
-  height: 1px;
-  background: var(--c-line);
-}
-
-.h-timeline__tick {
-  position: absolute;
-  bottom: 20px;
-  width: 1px;
-  height: 7px;
-  background: var(--c-line);
-  transform: translateX(-50%);
-}
-
-.h-timeline__tick span {
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.62rem;
+.h-timeline__nav {
+  flex-shrink: 0;
+  width: 44px;
+  border: none;
+  background: none;
   color: var(--c-ink-muted);
-  letter-spacing: 0.06em;
-}
-
-.h-timeline__dot {
-  position: absolute;
-  bottom: 20px;
-  width: 13px;
-  height: 13px;
-  padding: 0;
-  transform: translate(-50%, 50%);
-  border-radius: 50%;
-  border: 1.5px solid color-mix(in srgb, var(--c-paper) 60%, transparent);
-  background: var(--marker-color);
-  box-shadow: 0 0 8px color-mix(in srgb, var(--marker-color) 45%, transparent);
   cursor: pointer;
   transition:
-    box-shadow 0.2s ease,
-    opacity 0.2s ease;
+    color 0.2s ease,
+    background 0.2s ease;
 }
 
-/* Hit-area touch ~27px quanh dot 13px (không đổi hình ảnh) */
-.h-timeline__dot::after {
-  content: '';
-  position: absolute;
-  inset: -7px;
-  border-radius: 50%;
+.h-timeline__nav:first-child {
+  border-right: 1px solid var(--c-line);
 }
 
-.h-timeline__dot:hover {
-  box-shadow: 0 0 12px color-mix(in srgb, var(--marker-color) 80%, transparent);
+.h-timeline__nav:last-child {
+  border-left: 1px solid var(--c-line);
 }
 
-.h-timeline__dot--active {
-  width: 19px;
-  height: 19px;
-  border-color: var(--c-paper);
-  box-shadow:
-    0 0 12px color-mix(in srgb, var(--marker-color) 85%, transparent),
-    0 0 26px color-mix(in srgb, var(--marker-color) 40%, transparent);
+.h-timeline__nav:hover:not(:disabled) {
+  color: var(--c-ink);
+  background: color-mix(in srgb, var(--c-surface) 60%, transparent);
 }
 
-.h-timeline__dot--filtered {
-  opacity: 0.25;
+.h-timeline__nav:disabled {
+  opacity: 0.3;
   cursor: default;
 }
 
-/* ---- Label card (hover / active) ---- */
+.h-timeline__nav:focus-visible {
+  outline: 2px solid var(--c-ink-muted);
+  outline-offset: -2px;
+}
 
-.h-timeline__label {
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
+/* ---- Dải cụm ---- */
+
+/* Không hiện scrollbar — cụm co giãn để luôn vừa khung; màn quá hẹp thì
+   vẫn lăn/kéo được (overflow auto) + auto-center sự kiện active */
+.h-timeline__scroller {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.h-timeline__scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.h-timeline__track {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+  padding: 0 12px;
+}
+
+.h-timeline__group {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 1px;
-  max-width: 240px;
-  padding: 4px 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex: 1 1 0;
+  min-width: 64px;
+  max-width: 200px;
+  overflow: hidden;
+  padding: 6px 10px;
   border-radius: var(--r-sm);
-  background: color-mix(in srgb, var(--c-surface) 94%, transparent);
-  border: 1px solid var(--c-line);
-  box-shadow: var(--shadow-sm);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.15s ease;
-  text-align: left;
+  transition:
+    background 0.2s ease,
+    opacity 0.2s ease;
 }
 
-.h-timeline__dot:hover .h-timeline__label,
-.h-timeline__dot--active .h-timeline__label {
-  opacity: 1;
+.h-timeline__group--active {
+  background: color-mix(in srgb, var(--marker-color) 12%, transparent);
 }
 
-/* Dot đầu/cuối track: neo label vào mép để không bị scroller cắt */
-.h-timeline__dot:first-of-type .h-timeline__label {
-  left: -8px;
-  transform: none;
+.h-timeline__group--filtered {
+  opacity: 0.25;
 }
 
-.h-timeline__dot:last-of-type .h-timeline__label {
-  left: auto;
-  right: -8px;
-  transform: none;
+/* ---- Đầu cụm: badge số + khoảng năm ---- */
+
+.h-timeline__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  max-width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
-.h-timeline__label-date {
-  font-size: 0.62rem;
+.h-timeline__head:disabled {
+  cursor: default;
+}
+
+.h-timeline__head:focus-visible {
+  outline: 2px solid var(--marker-color);
+  outline-offset: 3px;
+  border-radius: var(--r-xs);
+}
+
+.h-timeline__badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--c-paper) 60%, transparent);
+  background: var(--marker-color);
+  color: var(--c-bg);
+  font-size: 0.74rem;
+  font-weight: 700;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--marker-color) 45%, transparent);
+  transition: box-shadow 0.2s ease;
+}
+
+.h-timeline__head:hover:not(:disabled) .h-timeline__badge {
+  box-shadow: 0 0 12px color-mix(in srgb, var(--marker-color) 80%, transparent);
+}
+
+.h-timeline__range {
+  font-size: 0.82rem;
+  font-weight: 700;
   color: var(--marker-color);
   letter-spacing: 0.04em;
   white-space: nowrap;
-  max-width: 220px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.h-timeline__label-title {
-  font-size: 0.72rem;
+/* ---- Dãy chấm sự kiện trong cụm ---- */
+
+.h-timeline__dots {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 14px;
+}
+
+.h-timeline__dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--marker-color);
+  opacity: 0.45;
+  cursor: pointer;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Hit-area touch ~20px quanh chấm 8px */
+.h-timeline__dot::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+}
+
+.h-timeline__dot:hover:not(:disabled) {
+  opacity: 1;
+}
+
+.h-timeline__dot:disabled {
+  cursor: default;
+}
+
+.h-timeline__dot:focus-visible {
+  outline: 2px solid var(--marker-color);
+  outline-offset: 2px;
+  opacity: 1;
+}
+
+.h-timeline__dot--active {
+  opacity: 1;
+  transform: scale(1.4);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--marker-color) 85%, transparent);
+}
+
+/* ---- Dòng sự kiện đang xem (chỉ trong cụm active) ---- */
+
+.h-timeline__current {
+  max-width: 100%;
+  font-size: 0.68rem;
   color: var(--c-ink);
   white-space: nowrap;
-  max-width: 220px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.h-timeline__current b {
+  color: var(--marker-color);
+  letter-spacing: 0.04em;
+}
+
+.h-timeline__count {
+  color: var(--c-ink-muted);
 }
