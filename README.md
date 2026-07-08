@@ -2,7 +2,7 @@
 
 Bảo tàng số tương tác về **Chủ nghĩa xã hội khoa học** — hành trình ~33 sự kiện qua 4 giai đoạn, từ phong trào công nhân Lyon 1831 đến Việt Nam hôm nay. Hai khu trưng bày (World / Việt Nam) là hai *renderer* của cùng một bộ dữ liệu, kèm khu trắc nghiệm. Toàn bộ nội dung bằng tiếng Việt.
 
-> Sản phẩm học phần MLN131 (FPT University). Kế hoạch xây dựng: [PLAN.md](./PLAN.md) · Design system: [DESIGN.md](./DESIGN.md).
+> Sản phẩm học phần MLN131 (FPT University). Design system: [DESIGN.md](./DESIGN.md).
 
 ## Tính năng (theo roadmap 4 tuần)
 

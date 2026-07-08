@@ -1,5 +1,5 @@
 /**
- * Kiểu dữ liệu chính của bảo tàng — theo PLAN.md §2.2.
+ * Kiểu dữ liệu chính của bảo tàng.
  * Nguồn: docs/content.xlsx → scripts/convert → src/data/content.json → adapter.ts.
  */
 
