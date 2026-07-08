@@ -67,6 +67,77 @@
   }
 }
 
+/* ---- Nhãn chủ quyền Hoàng Sa / Trường Sa ---- */
+
+.world-sovereignty-wrap {
+  background: transparent !important;
+  border: none !important;
+  pointer-events: none;
+}
+
+.world-sovereignty {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 3px 8px;
+  background: color-mix(in srgb, var(--c-bg) 72%, transparent);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-sm);
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  color: var(--c-ink);
+  white-space: nowrap;
+  text-align: center;
+}
+
+.world-sovereignty__nation {
+  font-size: 0.55rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+}
+
+/* Zoom xa: chỉ nhãn gộp; z>=5 (.map-near): tách 2 nhãn theo quần đảo */
+.world-sovereignty--near {
+  display: none;
+}
+
+.map-near .world-sovereignty--near {
+  display: flex;
+}
+
+.map-near .world-sovereignty--far {
+  display: none;
+}
+
+/* Nhãn "Biển Đông" — khối che kích thước cố định đè lên nhãn biển đa ngữ của
+   tile; nền #262626 hardcode CÓ CHỦ ĐÍCH = đúng màu biển CARTO dark_all để
+   lớp che không lộ mép. Chỉ hiện z>=5 (ZoomGate toggle class). */
+.world-sea-label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 116px;
+  background: #262626;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--c-ink-muted);
+  white-space: nowrap;
+}
+
+.map-near .world-sea-label {
+  display: flex;
+}
+
 /* ---- Leaflet chrome theo token ---- */
 
 .world-map .leaflet-tooltip {
