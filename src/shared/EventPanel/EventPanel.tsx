@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Event Panel dùng chung — World, Vietnam, Knowledge, Quiz jump đều mở panel
  * này (root ở MuseumShell, remount theo ?event=<slug> nhờ key={slug}).
  * Paper reveal GSAP + typing content + lightbox ảnh hero.
@@ -22,7 +22,7 @@ interface EventPanelProps {
 export default function EventPanel({ event, onClose, enableTyping = true }: EventPanelProps) {
   const rootRef = useRef<HTMLDivElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
-  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const [typedText, setTypedText] = useState('')
 
   const eraMeta = ERAS.find((e) => e.id === event.era)
@@ -33,7 +33,8 @@ export default function EventPanel({ event, onClose, enableTyping = true }: Even
   const firstParagraph = paragraphs[0] ?? ''
   const isTyping = enableTyping && typedText.length > 0 && typedText.length < firstParagraph.length
   const hasSources = event.sources.length > 0
-  const hasImage = Boolean(event.image.full)
+  const images = event.images?.length ? event.images : event.image.full ? [event.image] : []
+  const hasImage = images.length > 0
 
   const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -49,12 +50,12 @@ export default function EventPanel({ event, onClose, enableTyping = true }: Even
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== 'Escape') return
-      if (lightboxOpen) setLightboxOpen(false)
+      if (lightboxIndex !== null) setLightboxIndex(null)
       else onClose()
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [onClose, lightboxOpen])
+  }, [onClose, lightboxIndex])
 
   useEffect(() => {
     if (!enableTyping || !firstParagraph) return
@@ -119,7 +120,7 @@ export default function EventPanel({ event, onClose, enableTyping = true }: Even
           <button
             type="button"
             className="event-panel__hero-btn"
-            onClick={() => setLightboxOpen(true)}
+            onClick={() => setLightboxIndex(0)}
             aria-label="Phóng to ảnh"
           >
             <EventImage event={event} variant="full" className="event-panel__hero" />
@@ -171,36 +172,43 @@ export default function EventPanel({ event, onClose, enableTyping = true }: Even
               </ul>
             </div>
           )}
-
-          {event.imageSource && (
-            <p className="event-panel__credit event-panel__reveal">
-              Nguồn ảnh:{' '}
-              <a href={event.imageSource} target="_blank" rel="noreferrer">
-                {event.imageSource}
-              </a>
-            </p>
+          {images.length > 1 && (
+            <div className="event-panel__gallery event-panel__reveal" aria-label="Thư viện ảnh">
+              {images.map((image, index) => (
+                <button
+                  key={image.full}
+                  type="button"
+                  className="event-panel__gallery-item"
+                  onClick={() => setLightboxIndex(index)}
+                  aria-label={`Phóng to ảnh ${index + 1}`}
+                >
+                  <img src={image.thumb} alt={`${event.title} - ảnh ${index + 1}`} loading="lazy" />
+                </button>
+              ))}
+            </div>
           )}
         </div>
       </aside>
 
-      {lightboxOpen && (
+      {lightboxIndex !== null && images[lightboxIndex] && (
         <div
           className="event-panel__lightbox"
           role="dialog"
           aria-label={`Ảnh: ${event.title}`}
-          onClick={() => setLightboxOpen(false)}
+          onClick={() => setLightboxIndex(null)}
         >
           <button
             type="button"
             className="event-panel__lightbox-close"
-            onClick={() => setLightboxOpen(false)}
+            onClick={() => setLightboxIndex(null)}
             aria-label="Đóng ảnh"
           >
             ✕
           </button>
-          <img src={event.image.full} alt={event.title} onClick={(e) => e.stopPropagation()} />
+          <img src={images[lightboxIndex].full} alt={event.title} onClick={(e) => e.stopPropagation()} />
         </div>
       )}
     </div>
   )
 }
+

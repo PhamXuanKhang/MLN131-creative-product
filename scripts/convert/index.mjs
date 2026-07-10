@@ -31,6 +31,8 @@ for (const event of events) {
   if (!patch) continue
   const { imageUrl, ...fields } = patch
   if (imageUrl) event._raw.imageUrl = imageUrl
+  if (fields.preferRaw) event._raw.preferRaw = true
+  delete fields.preferRaw
   Object.assign(event, fields)
   // Field đã được override thì không còn tính là thiếu
   event.incomplete = event.incomplete.filter((f) => !(f in fields) || !fields[f])

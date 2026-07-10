@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Kiểu dữ liệu chính của bảo tàng.
  * Nguồn: docs/content.xlsx → scripts/convert → src/data/content.json → adapter.ts.
  */
@@ -28,7 +28,7 @@ export interface HistoricalEvent {
   description: string
   /** Đường dẫn theo asset pipeline; chuỗi rỗng nếu chưa có ảnh */
   image: { thumb: string; full: string }
-  imageSource: string
+  images?: { thumb: string; full: string }[]
   sources: string[]
   /** Các field còn thiếu từ xlsx */
   incomplete?: string[]
@@ -50,3 +50,4 @@ export interface QuizQuestion {
   /** Trỏ tới HistoricalEvent.slug để jump "xem sự kiện trên bản đồ" */
   eventSlug: string
 }
+

@@ -29,3 +29,6 @@ assets/raw/*
 *.njsproj
 *.sln
 *.sw?
+
+# Ảnh crawl tạm để lọc thủ công — không cần commit nếu public/images đã export
+assets/crawled/

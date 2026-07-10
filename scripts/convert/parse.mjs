@@ -18,7 +18,6 @@ const COLS = {
   description: 6,
   sources: 7,
   image: 8,
-  imageSource: 9,
 }
 
 /** Giá trị thô của ô (Date/number/string) — dùng cho cột B. */
@@ -142,7 +141,6 @@ export async function parseWorkbook(filePath) {
     const imageText = cellText(row, COLS.image)
     const imageLink = cellText(row, COLS.image, { preferLink: true })
     const rawImageUrl = /File:/.test(imageText) && !/File:/.test(imageLink) ? imageText : imageLink
-    const imageSource = cellText(row, COLS.imageSource, { preferLink: true })
 
     const incomplete = []
     if (!year) incomplete.push('year')
@@ -161,7 +159,7 @@ export async function parseWorkbook(filePath) {
       locations,
       description,
       image: { thumb: '', full: '' },
-      imageSource,
+      images: [],
       sources,
       incomplete,
       // _raw giữ text gốc cho report + bước ảnh; index.mjs sẽ strip trước khi ghi JSON

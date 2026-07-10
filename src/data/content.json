@@ -22,12 +22,14 @@
         "thumb": "/images/thumb/birth-01.jpg",
         "full": "/images/optimized/birth-01.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/birth-01.jpg",
+          "full": "/images/optimized/birth-01.jpg"
+        }
+      ],
       "sources": [
         "https://www.gadagne-lyon.fr/sites/gadagne/files/medias/documents/2020-12/MHL-Gadagne_ThemedSheet_19th-TheCanutRevolts.pdf?utm_source=chatgpt.com"
-      ],
-      "incomplete": [
-        "imageSource"
       ]
     },
     {
@@ -50,12 +52,14 @@
         "thumb": "/images/thumb/birth-02.jpg",
         "full": "/images/optimized/birth-02.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/birth-02.jpg",
+          "full": "/images/optimized/birth-02.jpg"
+        }
+      ],
       "sources": [
         "https://www.nationalarchives.gov.uk/education/resources/what-was-chartism/?utm_source=chatgpt.com"
-      ],
-      "incomplete": [
-        "imageSource"
       ]
     },
     {
@@ -78,12 +82,14 @@
         "thumb": "/images/thumb/birth-03.jpg",
         "full": "/images/optimized/birth-03.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/birth-03.jpg",
+          "full": "/images/optimized/birth-03.jpg"
+        }
+      ],
       "sources": [
         "https://www.deutschlandmuseum.de/en/history/calendar/1844-06-04-the-weavers-revolt/?utm_source=chatgpt.com"
-      ],
-      "incomplete": [
-        "imageSource"
       ]
     },
     {
@@ -111,12 +117,14 @@
         "thumb": "/images/thumb/birth-04.jpg",
         "full": "/images/optimized/birth-04.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/birth-04.jpg",
+          "full": "/images/optimized/birth-04.jpg"
+        }
+      ],
       "sources": [
         "https://thinhvuongvietnam.com/Content/ky-niem-202-nam-ngay-sinh-cmac-551818---552020-cmac-va-hanh-trinh-den-voi-chu-nghia-cong-san-31623?utm_source=chatgpt.com"
-      ],
-      "incomplete": [
-        "imageSource"
       ]
     },
     {
@@ -139,12 +147,14 @@
         "thumb": "/images/thumb/birth-05.jpg",
         "full": "/images/optimized/birth-05.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/birth-05.jpg",
+          "full": "/images/optimized/birth-05.jpg"
+        }
+      ],
       "sources": [
         "https://tulieuvankien.dangcongsan.vn/ho-so-su-kien-nhan-chung/su-kien-va-nhan-chung/tuyen-ngon-dang-cong-san-thang-2-1848-3385?utm_source=chatgpt.com"
-      ],
-      "incomplete": [
-        "imageSource"
       ]
     },
     {
@@ -167,12 +177,14 @@
         "thumb": "/images/thumb/birth-06.jpg",
         "full": "/images/optimized/birth-06.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/birth-06.jpg",
+          "full": "/images/optimized/birth-06.jpg"
+        }
+      ],
       "sources": [
         "https://www.history.com/a-year-in-history/1848?utm_source=chatgpt.com"
-      ],
-      "incomplete": [
-        "imageSource"
       ]
     },
     {
@@ -195,12 +207,14 @@
         "thumb": "/images/thumb/birth-07.jpg",
         "full": "/images/optimized/birth-07.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/birth-07.jpg",
+          "full": "/images/optimized/birth-07.jpg"
+        }
+      ],
       "sources": [
         "https://tulieuvankien.dangcongsan.vn/ho-so-su-kien-nhan-chung/phong-trao-cong-san-cong-nhan-quoc-te/quoc-te-cong-san/quoc-te-i-1864-1876-103?utm_source=chatgpt.com"
-      ],
-      "incomplete": [
-        "imageSource"
       ]
     },
     {
@@ -223,12 +237,14 @@
         "thumb": "/images/thumb/birth-08.jpg",
         "full": "/images/optimized/birth-08.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/birth-08.jpg",
+          "full": "/images/optimized/birth-08.jpg"
+        }
+      ],
       "sources": [
         "https://germanhistorydocs.org/en/forging-an-empire-bismarckian-germany-1866-1890/karl-marx-capital-das-kapital-cover-of-the-1st-edition-1867?utm_source=chatgpt.com"
-      ],
-      "incomplete": [
-        "imageSource"
       ]
     },
     {
@@ -251,12 +267,14 @@
         "thumb": "/images/thumb/birth-09.jpg",
         "full": "/images/optimized/birth-09.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/birth-09.jpg",
+          "full": "/images/optimized/birth-09.jpg"
+        }
+      ],
       "sources": [
         "https://www.quanlynhanuoc.vn/2024/06/18/cong-xa-pari-mo-hinh-nha-nuoc-vo-san-dau-tien-va-y-nghia-doi-voi-xay-dung-nha-nuoc-phap-quyen-xa-hoi-chu-nghia-o-viet-nam-hien-nay/"
-      ],
-      "incomplete": [
-        "imageSource"
       ]
     },
     {
@@ -279,12 +297,14 @@
         "thumb": "/images/thumb/birth-10.jpg",
         "full": "/images/optimized/birth-10.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/birth-10.jpg",
+          "full": "/images/optimized/birth-10.jpg"
+        }
+      ],
       "sources": [
         "https://tulieuvankien.dangcongsan.vn/c-mac-angghen-lenin-ho-chi-minh/c-mac/nghien-cuu-hoc-tap-tu-tuong/gia-tri-tu-tuong-cua-chu-nghia-mac-mai-truong-ton-3700"
-      ],
-      "incomplete": [
-        "imageSource"
       ]
     },
     {
@@ -307,12 +327,14 @@
         "thumb": "/images/thumb/birth-11.jpg",
         "full": "/images/optimized/birth-11.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/birth-11.jpg",
+          "full": "/images/optimized/birth-11.jpg"
+        }
+      ],
       "sources": [
         "https://luatminhkhue.vn/gioi-thieu-khai-quat-tac-pham-chong-duyrinh-cua-ph-angghen.aspx"
-      ],
-      "incomplete": [
-        "imageSource"
       ]
     },
     {
@@ -335,7 +357,12 @@
         "thumb": "/images/thumb/lenin-01.jpg",
         "full": "/images/optimized/lenin-01.jpg"
       },
-      "imageSource": "https://en.wikipedia.org/wiki/What_Is_to_Be_Done%3F",
+      "images": [
+        {
+          "thumb": "/images/thumb/lenin-01.jpg",
+          "full": "/images/optimized/lenin-01.jpg"
+        }
+      ],
       "sources": [
         "https://en.wikipedia.org/wiki/What_Is_to_Be_Done%3F"
       ]
@@ -357,15 +384,17 @@
       ],
       "description": "Dưới sự lãnh đạo trực tiếp của Lênin và Đảng Bolshevik, lực lượng công nhân, binh lính và thủy thủ đã lật đổ Chính phủ lâm thời tư sản, giành chính quyền về tay các Xô viết. Đây là cuộc cách mạng vô sản đầu tiên trên thế giới giành thắng lợi.",
       "image": {
-        "thumb": "",
-        "full": ""
+        "thumb": "/images/thumb/lenin-02.jpg",
+        "full": "/images/optimized/lenin-02.jpg"
       },
-      "imageSource": "https://www.baoquankhu7.vn/cach-mang-thang-muoi-nga-chi-ra-con-duong-giai-phong-dan-toc-viet-nam--1378944605-0041678s34010gs",
+      "images": [
+        {
+          "thumb": "/images/thumb/lenin-02.jpg",
+          "full": "/images/optimized/lenin-02.jpg"
+        }
+      ],
       "sources": [
         "https://www.baoquankhu7.vn/cach-mang-thang-muoi-nga-chi-ra-con-duong-giai-phong-dan-toc-viet-nam--1378944605-0041678s34010gs"
-      ],
-      "incomplete": [
-        "image"
       ]
     },
     {
@@ -388,7 +417,12 @@
         "thumb": "/images/thumb/lenin-03.jpg",
         "full": "/images/optimized/lenin-03.jpg"
       },
-      "imageSource": "https://special.vietnamplus.vn/su-ra-doi-cua-quoc-te-cong-san-quoc-te-iii-vao-thang-3-1919-da-thuc-day-su-phat-trien-manh-me-phong-trao-cong-san-va-cong-nhan-quoc-te-doi-voi-viet-nam-quoc-te-cong-san-co-vai-tro-quan-trong-tro/",
+      "images": [
+        {
+          "thumb": "/images/thumb/lenin-03.jpg",
+          "full": "/images/optimized/lenin-03.jpg"
+        }
+      ],
       "sources": [
         "https://tulieuvankien.dangcongsan.vn/ho-so-su-kien-nhan-chung/phong-trao-cong-san-cong-nhan-quoc-te/quoc-te-cong-san/quoc-te-iii-1919-1943-101"
       ]
@@ -413,7 +447,12 @@
         "thumb": "/images/thumb/lenin-04.jpg",
         "full": "/images/optimized/lenin-04.jpg"
       },
-      "imageSource": "https://nbtv.vn/tinh-than-chinh-sach-kinh-te-moi-trong-cong-cuoc-doi-moi-voi-khat-vong-phat-trien-dat-nuoc-phon-vinh-hanh-phuc-29108.html",
+      "images": [
+        {
+          "thumb": "/images/thumb/lenin-04.jpg",
+          "full": "/images/optimized/lenin-04.jpg"
+        }
+      ],
       "sources": [
         "https://nbtv.vn/tinh-than-chinh-sach-kinh-te-moi-trong-cong-cuoc-doi-moi-voi-khat-vong-phat-trien-dat-nuoc-phon-vinh-hanh-phuc-29108.html"
       ]
@@ -438,7 +477,12 @@
         "thumb": "/images/thumb/lenin-05.jpg",
         "full": "/images/optimized/lenin-05.jpg"
       },
-      "imageSource": "https://vpdf.org.vn/tin-tuc-su-kien/chinh-tri-xa-hoi/su-ra-doi-cua-lien-bang-xo-viet-mot-the-ky-nhin-lai.html",
+      "images": [
+        {
+          "thumb": "/images/thumb/lenin-05.jpg",
+          "full": "/images/optimized/lenin-05.jpg"
+        }
+      ],
       "sources": [
         "https://vi.wikipedia.org/wiki/Hi%E1%BB%87p_%C6%B0%E1%BB%9Bc_v%E1%BB%81_vi%E1%BB%87c_th%C3%A0nh_l%E1%BA%ADp_Li%C3%AAn_X%C3%B4"
       ]
@@ -463,7 +507,12 @@
         "thumb": "/images/thumb/lenin-06.jpg",
         "full": "/images/optimized/lenin-06.jpg"
       },
-      "imageSource": "https://tulieuvankien.dangcongsan.vn/c-mac-angghen-lenin-ho-chi-minh/v-i-lenin/tieu-su-cuoc-doi-va-su-nghiep/tieu-su-v-i-lenin-154",
+      "images": [
+        {
+          "thumb": "/images/thumb/lenin-06.jpg",
+          "full": "/images/optimized/lenin-06.jpg"
+        }
+      ],
       "sources": [
         "https://tulieuvankien.dangcongsan.vn/c-mac-angghen-lenin-ho-chi-minh/v-i-lenin/tieu-su-cuoc-doi-va-su-nghiep/tieu-su-v-i-lenin-154"
       ]
@@ -493,7 +542,12 @@
         "thumb": "/images/thumb/post-lenin-01.jpg",
         "full": "/images/optimized/post-lenin-01.jpg"
       },
-      "imageSource": "https://upload.wikimedia.org/wikipedia/commons/8/85/Mao_Proclaiming_New_China.JPG",
+      "images": [
+        {
+          "thumb": "/images/thumb/post-lenin-01.jpg",
+          "full": "/images/optimized/post-lenin-01.jpg"
+        }
+      ],
       "sources": [
         "https://bktt.vn/%C4%90%E1%BA%A3ng_C%E1%BB%99ng_s%E1%BA%A3n_Trung_Qu%E1%BB%91c"
       ]
@@ -525,15 +579,17 @@
       ],
       "description": "-Sau Chiến tranh thế giới thứ hai, Liên Xô mở rộng ảnh hưởng sang Đông Âu, góp phần hình thành hệ thống các nước xã hội chủ nghĩa ở châu Âu (Ba Lan, Tiệp Khắc, Đông Đức, Hungary, Romania, Bulgaria, Albania, v.v.\n\n-Thắng lợi của Hồng quân Liên Xô và phong trào giải phóng dân tộc thúc đẩy sự mở rộng của trật tự xã hội chủ nghĩa trên phạm vi toàn cầu, tạo tiền đề cho sự đối lập giữa hai hệ thống: tư bản chủ nghĩa và xã hội chủ nghĩa.",
       "image": {
-        "thumb": "",
-        "full": ""
+        "thumb": "/images/thumb/post-lenin-02.jpg",
+        "full": "/images/optimized/post-lenin-02.jpg"
       },
-      "imageSource": "https://vi.wikipedia.org/wiki/Chi%E1%BA%BFn_tranh_th%E1%BA%BF_gi%E1%BB%9Bi_th%E1%BB%A9_hai",
+      "images": [
+        {
+          "thumb": "/images/thumb/post-lenin-02.jpg",
+          "full": "/images/optimized/post-lenin-02.jpg"
+        }
+      ],
       "sources": [
         "https://vi.wikipedia.org/wiki/Chi%E1%BA%BFn_tranh_th%E1%BA%BF_gi%E1%BB%9Bi_th%E1%BB%A9_hai"
-      ],
-      "incomplete": [
-        "image"
       ]
     },
     {
@@ -556,12 +612,14 @@
         "thumb": "/images/thumb/post-lenin-03.jpg",
         "full": "/images/optimized/post-lenin-03.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/post-lenin-03.jpg",
+          "full": "/images/optimized/post-lenin-03.jpg"
+        }
+      ],
       "sources": [
         "https://tulieuvankien.dangcongsan.vn/ho-so-su-kien-nhan-chung/su-kien-va-nhan-chung?page=1"
-      ],
-      "incomplete": [
-        "imageSource"
       ]
     },
     {
@@ -584,12 +642,14 @@
         "thumb": "/images/thumb/post-lenin-04.jpg",
         "full": "/images/optimized/post-lenin-04.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/post-lenin-04.jpg",
+          "full": "/images/optimized/post-lenin-04.jpg"
+        }
+      ],
       "sources": [
         "https://tulieuvankien.dangcongsan.vn/ho-so-su-kien-nhan-chung/su-kien-va-nhan-chung?page=1"
-      ],
-      "incomplete": [
-        "imageSource"
       ]
     },
     {
@@ -609,15 +669,17 @@
       ],
       "description": "- Hội nghị Trung ương 3 khóa XI Đảng Cộng sản Trung Quốc được coi là điểm khởi đầu chính thức của đường lối cải cách và mở cửa, chuyển trọng tâm từ đấu tranh giai cấp sang xây dựng kinh tế.\n\n- Hội nghị khẳng định đường lối “giải phóng tư tưởng, thực sự cầu thị”, mở ra quá trình hiện đại hóa bốn lĩnh vực (nông nghiệp, công nghiệp, quốc phòng, khoa học – kỹ thuật).",
       "image": {
-        "thumb": "",
-        "full": ""
+        "thumb": "/images/thumb/post-lenin-05.jpg",
+        "full": "/images/optimized/post-lenin-05.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/post-lenin-05.jpg",
+          "full": "/images/optimized/post-lenin-05.jpg"
+        }
+      ],
       "sources": [
         "http://vietnamese.china.org.cn/china_key_words/2022-10/12/content_78461979.htm"
-      ],
-      "incomplete": [
-        "image"
       ]
     },
     {
@@ -625,9 +687,9 @@
       "slug": "mo-hinh-che-do-xhcn-o-lien-xo-va-dong-au-sup-do-he-thong",
       "era": "post-lenin",
       "order": 6,
-      "title": "Mô hình chế độ XHCN ở Liên Xô và Đông Âu sụp đổ, hệ thống XHCN tan rã,,.",
-      "dateLabel": "Cuối thập niên 80 - đầu thập niên 90",
-      "year": 0,
+      "title": "Mô hình chế độ XHCN ở Liên Xô và Đông Âu sụp đổ, hệ thống XHCN tan rã.",
+      "dateLabel": "Cuối thập niên 1980 - đầu thập niên 1990",
+      "year": 1980,
       "locations": [
         {
           "lat": 52.518880746614514,
@@ -650,13 +712,14 @@
         "thumb": "/images/thumb/post-lenin-06.jpg",
         "full": "/images/optimized/post-lenin-06.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/post-lenin-06.jpg",
+          "full": "/images/optimized/post-lenin-06.jpg"
+        }
+      ],
       "sources": [
         "https://tapchilichsudang.vn/mot-so-yeu-to-tac-dong-den-su-hinh-thanh-duong-loi-xay-dung-chu-nghia-xa-hoi-o-mien-bac-1954-1975.html"
-      ],
-      "incomplete": [
-        "year",
-        "imageSource"
       ]
     },
     {
@@ -676,15 +739,17 @@
       ],
       "description": "- Đại hội XVI đã tổng kết quá trình lãnh đạo của Đảng Cộng sản Trung Quốc trong giai đoạn cải cách – mở cửa, xác lập tư tưởng “Ba đại diện” là cơ sở lý luận quan trọng để CPC tiếp tục cầm quyền trong điều kiện kinh tế thị trường xã hội chủ nghĩa\n\n- Đại hội đề ra mục tiêu tiếp tục hiện đại hóa, thúc đẩy công nghiệp hóa, đô thị hóa và hội nhập kinh tế quốc tế, vừa củng cố vai trò lãnh đạo của Đảng, vừa mở rộng thành phần kinh tế ngoài quốc doanh.",
       "image": {
-        "thumb": "",
-        "full": ""
+        "thumb": "/images/thumb/post-lenin-07.jpg",
+        "full": "/images/optimized/post-lenin-07.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/post-lenin-07.jpg",
+          "full": "/images/optimized/post-lenin-07.jpg"
+        }
+      ],
       "sources": [
         "https://vi.wikipedia.org/wiki/%C4%90%E1%BA%A1i_h%E1%BB%99i_%C4%90%E1%BA%A3ng_C%E1%BB%99ng_s%E1%BA%A3n_Trung_Qu%E1%BB%91c_l%E1%BA%A7n_th%E1%BB%A9_XVI"
-      ],
-      "incomplete": [
-        "image"
       ]
     },
     {
@@ -704,15 +769,17 @@
       ],
       "description": "- Đại hội XIX xác lập “Tư tưởng về chủ nghĩa xã hội đặc sắc Trung Quốc trong thời đại mới” của Tập Cận Bình, đưa tư tưởng này vào Cương lĩnh Đảng, khẳng định bước phát triển mới của mô hình XHCN mang đặc sắc Trung Quốc.\n\n- Đại hội đề ra mục tiêu đến giữa thế kỷ XXI xây dựng Trung Quốc trở thành nước xã hội chủ nghĩa hiện đại toàn diện, đồng thời nhấn mạnh vai trò lãnh đạo toàn diện của Đảng trong mọi lĩnh vực",
       "image": {
-        "thumb": "",
-        "full": ""
+        "thumb": "/images/thumb/post-lenin-08.jpg",
+        "full": "/images/optimized/post-lenin-08.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/post-lenin-08.jpg",
+          "full": "/images/optimized/post-lenin-08.jpg"
+        }
+      ],
       "sources": [
         "https://baotintuc.vn/phan-tichnhan-dinh/dai-hoi-xix-cua-dang-cong-san-trung-quoc-diem-khoi-dau-lich-su-moi-cua-trung-quoc-20171021102418925.htm"
-      ],
-      "incomplete": [
-        "image"
       ]
     },
     {
@@ -732,15 +799,17 @@
       ],
       "description": "Hội nghị thành lập Đảng do Nguyễn Ái Quốc chủ trì thông qua Chánh cương vắn tắt, Sách lược vắn tắt…; xác định con đường cách mạng Việt Nam là làm tư sản dân quyền cách mạng và thổ địa cách mạng để đi tới xã hội cộng sản.",
       "image": {
-        "thumb": "",
-        "full": ""
+        "thumb": "/images/thumb/vietnam-01.jpg",
+        "full": "/images/optimized/vietnam-01.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/vietnam-01.jpg",
+          "full": "/images/optimized/vietnam-01.jpg"
+        }
+      ],
       "sources": [
         "https://nhandan.vn/cuong-linh-xay-dung-dat-nuoc-trong-thoi-ky-qua-do-len-chu-nghia-xa-hoi-post935095.html?"
-      ],
-      "incomplete": [
-        "image"
       ]
     },
     {
@@ -760,15 +829,17 @@
       ],
       "description": "Cách mạng Tháng Tám giành chính quyền trên cả nước, chấm dứt chế độ thực dân - phong kiến; ngày 02/9/1945, Chủ tịch Hồ Chí Minh đọc Tuyên ngôn Độc lập, khai sinh nước Việt Nam Dân chủ Cộng hòa.",
       "image": {
-        "thumb": "",
-        "full": ""
+        "thumb": "/images/thumb/vietnam-02.jpg",
+        "full": "/images/optimized/vietnam-02.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/vietnam-02.jpg",
+          "full": "/images/optimized/vietnam-02.jpg"
+        }
+      ],
       "sources": [
         "https://nhandan.vn/cuong-linh-xay-dung-dat-nuoc-trong-thoi-ky-qua-do-len-chu-nghia-xa-hoi-post935095.html"
-      ],
-      "incomplete": [
-        "image"
       ]
     },
     {
@@ -779,18 +850,26 @@
       "title": "Cuộc Tổng tuyển cử đầu tiên của nước Việt Nam Dân chủ Cộng hòa được tổ chức.",
       "dateLabel": "06/01/1946",
       "year": 1946,
-      "locations": [],
+      "locations": [
+        {
+          "lat": 21.0372729,
+          "lng": 105.8333507,
+          "label": "Trên phạm vi cả nước"
+        }
+      ],
       "description": "Lần đầu tiên nhân dân cả nước thực hiện quyền bầu cử Quốc hội bằng phổ thông đầu phiếu, bầu Quốc hội khóa I của nước Việt Nam Dân chủ Cộng hòa.",
       "image": {
-        "thumb": "",
-        "full": ""
+        "thumb": "/images/thumb/vietnam-03.jpg",
+        "full": "/images/optimized/vietnam-03.jpg"
       },
-      "imageSource": "",
-      "sources": [],
-      "incomplete": [
-        "locations",
-        "sources",
-        "image"
+      "images": [
+        {
+          "thumb": "/images/thumb/vietnam-03.jpg",
+          "full": "/images/optimized/vietnam-03.jpg"
+        }
+      ],
+      "sources": [
+        "https://hvcsnd.edu.vn/cuoc-tong-tuyen-cu-dau-tien-cua-nuoc-viet-nam-dan-chu-cong-hoa-6-1-1946-13702"
       ]
     },
     {
@@ -808,16 +887,19 @@
           "label": "Hà Nội (Kỳ họp thứ nhất Quốc hội khóa VI)"
         }
       ],
-      "description": "Quốc hội khóa VI)\nSau khi đất nước thống nhất, Quốc hội quyết định lấy tên nước là Cộng hòa xã hội chủ nghĩa Việt Nam, thống nhất bộ máy nhà nước.",
+      "description": "Sau khi đất nước thống nhất, Quốc hội quyết định lấy tên nước là Cộng hòa xã hội chủ nghĩa Việt Nam, thống nhất bộ máy nhà nước.",
       "image": {
-        "thumb": "",
-        "full": ""
+        "thumb": "/images/thumb/vietnam-04.jpg",
+        "full": "/images/optimized/vietnam-04.jpg"
       },
-      "imageSource": "",
-      "sources": [],
-      "incomplete": [
-        "sources",
-        "image"
+      "images": [
+        {
+          "thumb": "/images/thumb/vietnam-04.jpg",
+          "full": "/images/optimized/vietnam-04.jpg"
+        }
+      ],
+      "sources": [
+        "https://qdnd.vn/tu-lieu-ho-so/ngay-nay-nam-xua/ngay-2-7-1976-quoc-hoi-quyet-nghi-lay-ten-nuoc-la-cong-hoa-xa-hoi-chu-nghia-viet-nam-698149"
       ]
     },
     {
@@ -837,14 +919,17 @@
       ],
       "description": "Đại hội VI đề ra đường lối Đổi mới toàn diện, trước hết là đổi mới kinh tế, chuyển từ cơ chế tập trung bao cấp sang nền kinh tế hàng hóa nhiều thành phần vận hành theo cơ chế thị trường có sự quản lý của Nhà nước.",
       "image": {
-        "thumb": "",
-        "full": ""
+        "thumb": "/images/thumb/vietnam-05.jpg",
+        "full": "/images/optimized/vietnam-05.jpg"
       },
-      "imageSource": "",
-      "sources": [],
-      "incomplete": [
-        "sources",
-        "image"
+      "images": [
+        {
+          "thumb": "/images/thumb/vietnam-05.jpg",
+          "full": "/images/optimized/vietnam-05.jpg"
+        }
+      ],
+      "sources": [
+        "https://qdnd.vn/chinh-tri/tin-tuc/cac-ky-dai-hoi-cua-dang-va-nhung-dau-an-lich-su-dai-hoi-lan-thu-vi-khoi-xuong-va-lanh-dao-su-nghiep-doi-moi-dat-nuoc-813798"
       ]
     },
     {
@@ -852,7 +937,7 @@
       "slug": "thong-qua-cuong-linh-xay-dung-dat-nuoc-trong-thoi-ky-qua-do",
       "era": "vietnam",
       "order": 6,
-      "title": "Thông qua Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội,.",
+      "title": "Thông qua Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội.",
       "dateLabel": "24–27/06/1991",
       "year": 1991,
       "locations": [
@@ -864,14 +949,25 @@
       ],
       "description": "Đại hội VII thông qua Cương lĩnh năm 1991, xác định mô hình xã hội xã hội chủ nghĩa và phương hướng xây dựng đất nước trong thời kỳ quá độ",
       "image": {
-        "thumb": "",
-        "full": ""
+        "thumb": "/images/thumb/vietnam-06.jpg",
+        "full": "/images/optimized/vietnam-06.jpg"
       },
-      "imageSource": "",
-      "sources": [],
-      "incomplete": [
-        "sources",
-        "image"
+      "images": [
+        {
+          "thumb": "/images/thumb/vietnam-06.jpg",
+          "full": "/images/optimized/vietnam-06.jpg"
+        },
+        {
+          "thumb": "/images/thumb/vietnam-06-02.jpg",
+          "full": "/images/optimized/vietnam-06-02.jpg"
+        },
+        {
+          "thumb": "/images/thumb/vietnam-06-03.jpg",
+          "full": "/images/optimized/vietnam-06-03.jpg"
+        }
+      ],
+      "sources": [
+        "https://dantri.com.vn/thoi-su/dai-hoi-vii-cua-dang-dua-dat-nuoc-di-theo-con-duong-doi-moi-20260115152225377.htm"
       ]
     },
     {
@@ -891,15 +987,17 @@
       ],
       "description": "Đại hội XI thông qua Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên CNXH (bổ sung, phát triển năm 2011); bổ sung nhiều nội dung về đặc trưng xã hội xã hội chủ nghĩa và phương hướng phát triển đất nước.",
       "image": {
-        "thumb": "",
-        "full": ""
+        "thumb": "/images/thumb/vietnam-07.jpg",
+        "full": "/images/optimized/vietnam-07.jpg"
       },
-      "imageSource": "",
+      "images": [
+        {
+          "thumb": "/images/thumb/vietnam-07.jpg",
+          "full": "/images/optimized/vietnam-07.jpg"
+        }
+      ],
       "sources": [
         "https://dcs.nhandan.vn/tu-lieu-tham-khao-cuoc-thi-trac-nghiem-tim-hieu-90-nam-lich-su-ve-vang-cua-dang-cong-san-viet-nam/tu-lieu-cuoc-thi/cuong-linh-xay-dung-dat-nuoc-trong-thoi-ky-qua-do-len-chu-nghia-xa-hoi-nam-1991-543533.html"
-      ],
-      "incomplete": [
-        "image"
       ]
     },
     {
@@ -919,14 +1017,17 @@
       ],
       "description": "Đại hội XIII tổng kết 35 năm Đổi mới (1986–2021), 30 năm thực hiện Cương lĩnh 1991, 10 năm thực hiện Cương lĩnh (bổ sung, phát triển năm 2011); đề ra mục tiêu phát triển đất nước đến năm 2025, 2030 và tầm nhìn 2045.",
       "image": {
-        "thumb": "",
-        "full": ""
+        "thumb": "/images/thumb/vietnam-08.jpg",
+        "full": "/images/optimized/vietnam-08.jpg"
       },
-      "imageSource": "",
-      "sources": [],
-      "incomplete": [
-        "sources",
-        "image"
+      "images": [
+        {
+          "thumb": "/images/thumb/vietnam-08.jpg",
+          "full": "/images/optimized/vietnam-08.jpg"
+        }
+      ],
+      "sources": [
+        "https://www.quanlynhanuoc.vn/2021/07/06/quan-diem-dai-hoi-xiii-cua-dang-ve-day-manh-chuyen-doi-so/"
       ]
     }
   ]

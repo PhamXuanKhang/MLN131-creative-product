@@ -1,4 +1,17 @@
 {
-  "_hướng-dẫn": "Patch thủ công theo event id, áp SAU khi parse xlsx và TRƯỚC khi tải ảnh. Dùng cho hàng có link ảnh là trang Category/bài báo không tự tải được: điền imageUrl là link ảnh trực tiếp. Có thể override mọi field của event (title, locations, imageSource...).",
-  "_ví-dụ": { "post-lenin-01": { "imageUrl": "https://upload.wikimedia.org/..." } }
+  "_note": "Manual patches by event id. Use imageUrl for a direct image URL. Use preferRaw to ignore crawled images and keep assets/raw/<id>.*.",
+  "_example": {
+    "post-lenin-01": {
+      "imageUrl": "https://upload.wikimedia.org/..."
+    }
+  },
+  "vietnam-04": {
+    "imageUrl": "https://file3.qdnd.vn/data/images/0/2022/06/26/hoangtruong_la/quoc_hoi_khoa_vi.jpg?dpi=150&quality=100&w=870"
+  },
+  "vietnam-05": {
+    "imageUrl": "https://file3.qdnd.vn/data/images/0/2025/01/29/upload_2176/dhvi.jpg?dpi=150&quality=100&w=870"
+  },
+  "post-lenin-02": {
+    "preferRaw": true
+  }
 }

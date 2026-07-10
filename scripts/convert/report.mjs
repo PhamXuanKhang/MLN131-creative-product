@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Báo cáo thiếu dữ liệu: in console + ghi docs/content-report.md để gửi nhóm.
  */
 
@@ -8,7 +8,6 @@ const FIELD_LABELS = {
   description: 'thông tin đi kèm (cột F)',
   sources: 'nguồn thông tin (cột G)',
   image: 'ảnh minh hoạ (cột H)',
-  imageSource: 'nguồn ảnh (cột I)',
 }
 
 export function buildReport({ events, eraHeaders, skipped, imageStats }) {
@@ -63,7 +62,7 @@ export function buildReport({ events, eraHeaders, skipped, imageStats }) {
     lines.push('## Ảnh không tải được')
     lines.push('')
     lines.push(
-      'Điền link ảnh trực tiếp vào cột H của xlsx, hoặc vào `scripts/convert/overrides.json` theo id.',
+      'Điền link ảnh trực tiếp vào cột H, hoặc crawl/chọn ảnh hợp lệ trong `assets/crawled/<id>/`.',
     )
     lines.push('')
     for (const f of imageStats.failed)
@@ -85,3 +84,4 @@ export function buildReport({ events, eraHeaders, skipped, imageStats }) {
 
   return { markdown: `${lines.join('\n')}\n`, summary }
 }
+
