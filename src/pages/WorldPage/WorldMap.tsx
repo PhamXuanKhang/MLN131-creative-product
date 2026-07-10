@@ -34,6 +34,11 @@ const sovereigntyIcon = (name: string, variant: string) =>
 // nhãn gốc không render, lớp che sẽ đè nhầm vùng khác.
 const SEA_LABEL = { lat: 15.06, lng: 114.95 }
 
+const WORLD_PAN_BOUNDS = L.latLngBounds(
+  [-85, -240] as [number, number],
+  [85, 240] as [number, number],
+)
+
 const seaIcon = new DivIcon({
   html: `<div class="world-sea-label"><span>Biển Đông</span></div>`,
   className: 'world-sovereignty-wrap',
@@ -117,8 +122,11 @@ export default function WorldMap({ events, selected, eraFilter, onSelect }: Worl
         // z8+ tile CARTO render nhãn hành chính TQ đặt trái phép trên Hoàng Sa
         // (Sansha/Qilianyu/Yongle Qundao) — cap z7; app chỉ cần z5 khi chọn event
         maxZoom={7}
+        maxBounds={WORLD_PAN_BOUNDS}
+        maxBoundsViscosity={0.35}
         zoomControl={false}
         scrollWheelZoom
+        worldCopyJump
         style={{ width: '100%', height: '100%' }}
       >
         <TileLayer
