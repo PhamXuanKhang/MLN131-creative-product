@@ -67,51 +67,109 @@
   }
 }
 
-/* ---- Nhãn chủ quyền Hoàng Sa / Trường Sa ---- */
+/* ---- Overlay DivIcon không tương tác (sao HS-TS / nhãn Việt hóa / Biển Đông) ---- */
 
-.world-sovereignty-wrap {
+.world-overlay-wrap {
   background: transparent !important;
   border: none !important;
   pointer-events: none;
 }
 
-.world-sovereignty {
+/* Sao chủ quyền Hoàng Sa / Trường Sa — sao vàng 5 cánh + tên nhỏ ngang cỡ
+   nhãn tỉnh của tile, chỉ hiện z>=5 (.map-near) */
+.world-archipelago {
   position: absolute;
   transform: translate(-50%, -50%);
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
-  gap: 1px;
-  padding: 3px 8px;
-  background: color-mix(in srgb, var(--c-bg) 72%, transparent);
-  border: 1px solid var(--c-line);
-  border-radius: var(--r-sm);
-  font-family: var(--font-body);
-  font-size: 0.6rem;
-  letter-spacing: 0.08em;
-  color: var(--c-ink);
+  gap: 2px;
   white-space: nowrap;
-  text-align: center;
 }
 
-.world-sovereignty__nation {
-  font-size: 0.55rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--c-accent);
-}
-
-/* Zoom xa: chỉ nhãn gộp; z>=5 (.map-near): tách 2 nhãn theo quần đảo */
-.world-sovereignty--near {
-  display: none;
-}
-
-.map-near .world-sovereignty--near {
+.map-near .world-archipelago {
   display: flex;
 }
 
-.map-near .world-sovereignty--far {
+.world-archipelago svg {
+  fill: var(--c-star);
+  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--c-star) 55%, transparent));
+}
+
+.world-archipelago span {
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: var(--c-ink-muted);
+}
+
+/* Nhãn Việt hóa — hộp đè đúng bbox chữ tiếng Anh nướng trong tile CARTO
+   (nền #0d0d0d hardcode CÓ CHỦ ĐÍCH = màu đất dark_all, cùng lý do #262626
+   của .world-sea-label). Chữ mô phỏng typography nhãn tile (#444/#3a3a3a).
+   Mỗi nhãn gắn 1 mức zoom qua data-zoom do ZoomGate set. */
+.world-vi-label {
+  position: absolute;
   display: none;
+  flex-direction: column;
+  justify-content: center;
+  background: #0d0d0d;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.15;
+  color: #444444;
+  white-space: nowrap;
+}
+
+.leaflet-container[data-zoom='3'] .world-vi-label--z3,
+.leaflet-container[data-zoom='4'] .world-vi-label--z4,
+.leaflet-container[data-zoom='5'] .world-vi-label--z5,
+.leaflet-container[data-zoom='6'] .world-vi-label--z6,
+.leaflet-container[data-zoom='7'] .world-vi-label--z7 {
+  display: flex;
+}
+
+/* Neo hộp theo phía dot của nhãn gốc: hộp nở về hướng ngược dot khi chữ dài hơn */
+.world-vi-label--right {
+  transform: translate(-100%, -50%);
+  align-items: flex-end;
+  padding-right: 2px;
+}
+
+.world-vi-label--left {
+  transform: translate(0, -50%);
+  align-items: flex-start;
+  padding-left: 2px;
+}
+
+.world-vi-label--center {
+  transform: translate(-50%, -50%);
+  align-items: center;
+}
+
+/* city: nhãn thành phố in hoa của tile (HANOI z7…); country: VIETNAM giãn rộng */
+.world-vi-label--city {
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.world-vi-label--country {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: #3a3a3a;
+}
+
+/* Dot thành phố của tile bị hộp che (honggai-z7) — vẽ lại */
+.world-vi-label i {
+  position: absolute;
+  right: 1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 1px;
+  background: #444444;
 }
 
 /* Nhãn "Biển Đông" — khối che kích thước cố định đè lên nhãn biển đa ngữ của

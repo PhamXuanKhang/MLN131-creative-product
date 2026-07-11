@@ -54,6 +54,10 @@
   --era-lenin: #c25b4e; /* đỏ gạch */
   --era-post-lenin: #7f9db3; /* xanh thép */
   --era-vietnam: #8fae62; /* xanh tre */
+
+  /* Sao chủ quyền Hoàng Sa/Trường Sa trên WorldMap — vàng cổ, cùng họ era-birth
+     nhưng là token riêng (không tái dùng màu dữ liệu era cho semantics khác) */
+  --c-star: #d4a94e;
 }
 
 /* ---- Layer 2: SHARED (font / radius / shadow, mọi theme) ---- */
