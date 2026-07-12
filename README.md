@@ -72,14 +72,12 @@ Import nội bộ dùng alias **`@/`** trỏ tới `src/`.
 
 **Vercel** (SPA rewrite trong `vercel.json`, `/api/*` đi vào Function trước): connect repo → framework Vite → build `npm run build` → output `dist/`. CI (`.github/workflows/ci.yml`) chạy lint + build mỗi lần push.
 
-### Chatbot Hỏi đáp — cấu hình OpenAI và Upstash Redis
+### Chatbot Hỏi đáp — cấu hình OpenAI
 
 Endpoint `api/chat.ts` (model cố định `gpt-5.4-mini`, OpenAI Responses API) đọc key từ biến môi trường phía server — key **không bao giờ** xuất hiện trong bundle frontend.
 
-Endpoint chỉ nhận `POST` và dùng Upstash Redis làm bộ đếm dùng chung giữa mọi Vercel Function instance, giới hạn mỗi địa chỉ IP tối đa 6 câu hỏi hợp lệ/phút trước khi gọi OpenAI. Nếu Redis thiếu cấu hình hoặc gặp lỗi, endpoint trả `503` và không gọi OpenAI.
-
-- **Production / Preview / Development trên Vercel**: Project → **Marketplace** → kết nối một Upstash Redis database để nhận `UPSTASH_REDIS_REST_URL` và `UPSTASH_REDIS_REST_TOKEN`; sau đó vào **Settings → Environment Variables**, thêm `OPENAI_API_KEY` cho các môi trường cần dùng và redeploy.
-- **Local**: `cp .env.example .env`, điền OpenAI key cùng hai giá trị Upstash Redis REST, rồi chạy `vercel dev` (Vite `npm run dev` **không** serve `/api` — chatbot sẽ báo lỗi thân thiện, các phần khác hoạt động bình thường).
+- **Production / Preview / Development trên Vercel**: Project → **Settings → Environment Variables**, thêm `OPENAI_API_KEY` cho các môi trường cần dùng và redeploy.
+- **Local**: `cp .env.example .env`, điền OpenAI key, rồi chạy `vercel dev` (Vite `npm run dev` **không** serve `/api` — chatbot sẽ báo lỗi thân thiện, các phần khác hoạt động bình thường).
 - Không commit `.env` (đã gitignore); repo chỉ chứa `.env.example` với tên biến.
 
 ## Nguồn dữ liệu & ghi công

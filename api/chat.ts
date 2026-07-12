@@ -20,26 +20,10 @@ const OPENAI_URL = 'https://api.openai.com/v1/responses'
 const MAX_MESSAGES = 12
 const MAX_MESSAGE_LENGTH = 4000
 const MAX_TOTAL_LENGTH = 20000
-const RATE_LIMIT_WINDOW_MS = 60_000
-const RATE_LIMIT_MAX_REQUESTS = 6
-const RATE_LIMIT_TIMEOUT_MS = 3000
-const RATE_LIMIT_SCRIPT = `
-local count = redis.call("INCR", KEYS[1])
-if count == 1 then
-  redis.call("PEXPIRE", KEYS[1], ARGV[1])
-end
-local ttl = redis.call("PTTL", KEYS[1])
-return {count, ttl}
-`.trim()
 
 interface IncomingMessage {
   role: 'user' | 'assistant'
   content: string
-}
-
-interface RateLimitResult {
-  allowed: boolean
-  resetAt: number
 }
 
 // Nhãn giai đoạn — bản sao từ src/data/adapter.ts (ERAS)
@@ -101,51 +85,6 @@ function jsonError(status: number, message: string): Response {
   return Response.json({ error: message }, { status, headers: { 'Cache-Control': 'no-store' } })
 }
 
-function getClientAddress(request: Request): string {
-  const forwarded =
-    request.headers.get('x-vercel-forwarded-for') ?? request.headers.get('x-forwarded-for')
-  const address = forwarded?.split(',')[0]?.trim() || request.headers.get('x-real-ip')?.trim()
-  return address || 'unknown'
-}
-
-async function consumeRateLimit(address: string): Promise<RateLimitResult> {
-  const redisUrl = process.env.UPSTASH_REDIS_REST_URL
-  const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN
-  if (!redisUrl || !redisToken) {
-    throw new Error('thiếu cấu hình Upstash Redis')
-  }
-
-  const response = await fetch(redisUrl, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${redisToken}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify([
-      'EVAL',
-      RATE_LIMIT_SCRIPT,
-      '1',
-      `museum:chat:rate:${address}`,
-      String(RATE_LIMIT_WINDOW_MS),
-    ]),
-    signal: AbortSignal.timeout(RATE_LIMIT_TIMEOUT_MS),
-  })
-  if (!response.ok) throw new Error(`Upstash Redis trả lỗi ${response.status}`)
-
-  const payload: unknown = await response.json()
-  const result = (payload as { result?: unknown }).result
-  if (!Array.isArray(result) || result.length !== 2) {
-    throw new Error('phản hồi Upstash Redis không hợp lệ')
-  }
-
-  const count = Number(result[0])
-  const ttl = Number(result[1])
-  if (!Number.isFinite(count) || !Number.isFinite(ttl) || ttl < 0) {
-    throw new Error('kết quả Upstash Redis không hợp lệ')
-  }
-  return { allowed: count <= RATE_LIMIT_MAX_REQUESTS, resetAt: Date.now() + ttl }
-}
-
 /** Chỉ nhận mảng messages hợp lệ, lượt cuối phải là câu hỏi của người dùng. */
 function parseMessages(body: unknown): IncomingMessage[] | null {
   if (typeof body !== 'object' || body === null) return null
@@ -201,27 +140,6 @@ export default async function handler(request: Request): Promise<Response> {
   }
   const messages = parseMessages(body)
   if (!messages) return jsonError(400, 'Câu hỏi trống hoặc quá dài.')
-
-  let rateLimit: RateLimitResult
-  try {
-    rateLimit = await consumeRateLimit(getClientAddress(request))
-  } catch (err) {
-    console.error('[api/chat] không kiểm tra được rate limit:', err)
-    return Response.json(
-      { error: 'Trợ lý tạm thời chưa sẵn sàng, vui lòng thử lại sau.' },
-      { status: 503, headers: { 'Cache-Control': 'no-store', 'Retry-After': '30' } },
-    )
-  }
-  if (!rateLimit.allowed) {
-    const retryAfter = Math.max(1, Math.ceil((rateLimit.resetAt - Date.now()) / 1000))
-    return Response.json(
-      { error: 'Bạn gửi câu hỏi quá nhanh. Vui lòng thử lại sau ít phút.' },
-      {
-        status: 429,
-        headers: { 'Cache-Control': 'no-store', 'Retry-After': String(retryAfter) },
-      },
-    )
-  }
 
   let upstream: globalThis.Response
   try {
