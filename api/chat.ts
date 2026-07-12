@@ -118,14 +118,9 @@ function extractOutputText(data: unknown): string | null {
   return null
 }
 
-export default async function handler(request: Request): Promise<Response> {
-  if (request.method !== 'POST') {
-    return Response.json(
-      { error: 'Phương thức không được hỗ trợ.' },
-      { status: 405, headers: { Allow: 'POST', 'Cache-Control': 'no-store' } },
-    )
-  }
-
+// Named export theo HTTP method → Vercel dùng Web API signature (Request → Response);
+// export default sẽ bị hiểu là (req, res) => void và Response trả về bị bỏ qua (request treo).
+export async function POST(request: Request): Promise<Response> {
   const apiKey = process.env.OPENAI_API_KEY
   if (!apiKey) {
     console.error('[api/chat] thiếu OPENAI_API_KEY')
