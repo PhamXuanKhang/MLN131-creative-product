@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Secret local (OPENAI_API_KEY cho vercel dev) — chỉ commit .env.example
+.env
+.env.*
+!.env.example
+
 # Ảnh gốc tải về trong bước convert — chỉ commit bản optimized/thumb trong public/images
 assets/raw/*
 !assets/raw/.gitkeep

@@ -67,6 +67,7 @@
   top: 0;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 1;
   width: 26px;
   height: 100%;
   background: url('/images/decor/bamboo-cane.webp') top center / 26px auto repeat-y;
@@ -86,29 +87,16 @@
   align-items: center;
 }
 
-/* Node mấu tre — thanh ngang cắt thân + lá */
-.vn-node {
-  grid-column: 2;
-  grid-row: 1;
-  justify-self: center;
-  position: relative;
-  z-index: 1;
-  width: 30px;
-  height: 10px;
-  border-radius: 5px;
-  background-color: color-mix(in srgb, var(--era-vietnam) 80%, var(--c-paper));
-  box-shadow: 0 0 10px rgba(143, 174, 98, 0.5);
-}
-
 /* Cành tre ảnh thật nối thân → card: gốc cành neo cạnh thân, ngọn + lá chui
-   xuống dưới card (card z-index cao hơn đè lên ngọn). Mặc định không clip
-   (hiện đủ) — GSAP reveal inset từ gốc ra ngọn khi motion. Card-trái dùng file
-   mirror sẵn (bamboo-branch-left.webp); rotate nhẹ quanh gốc cho dáng rủ. */
+   xuống dưới card. Lớp: cành (0) < thân (1) < card (2) — thân che gốc cành,
+   card đè lên ngọn cành. Mặc định không clip (hiện đủ) — GSAP reveal inset từ
+   gốc ra ngọn khi motion. Card-trái dùng file mirror sẵn
+   (bamboo-branch-left.webp); rotate nhẹ quanh gốc cho dáng rủ. */
 .vn-branch {
   position: absolute;
   top: 50%;
   width: clamp(100px, 12vw, 160px);
-  z-index: 1;
+  z-index: 0;
   pointer-events: none;
   user-select: none;
   filter: saturate(0.85) brightness(0.9);
@@ -195,12 +183,6 @@
   .vn-stalk {
     left: 28px;
     transform: none;
-  }
-
-  .vn-node,
-  .vn-section:nth-of-type(odd) .vn-node,
-  .vn-section:nth-of-type(even) .vn-node {
-    grid-column: 1;
   }
 
   .vn-section:nth-of-type(odd) .giay-do-card,

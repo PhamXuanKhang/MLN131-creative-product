@@ -13,12 +13,12 @@
 
 ## Tên sự kiện dài (>80 ký tự — cân nhắc rút gọn cột E)
 
-- `birth-01` (115 ký tự): Phong trào đấu tranh của giai cấp công nhân tại thành phố Lion, Pháp giương cao khẩu hiệu về kinh tế và chính trị,.
+- `birth-01` (114 ký tự): Phong trào đấu tranh của giai cấp công nhân tại thành phố Lyon, Pháp giương cao khẩu hiệu về kinh tế và chính trị.
 - `birth-02` (89 ký tự): Phong trào Hiến chương của những người lao động diễn ra tại nước Anh kéo dài trên 10 năm.
 - `birth-04` (139 ký tự): C. Mác và Ph. Ăngghen có sự chuyển biến về lập trường triết học và chính trị sang chủ nghĩa cộng sản thông qua các tác phẩm tại Đức và Anh.
 - `birth-05` (137 ký tự): Tác phẩm Tuyên ngôn của Đảng Cộng sản do C. Mác và Ph. Ăngghen soạn thảo được công bố trước toàn thế giới, đánh dấu sự ra đời của CNXHKH.
-- `birth-09` (85 ký tự): Sự kiện Công xã Pari tại Pháp tạo ra hình thái nhà nước mới của giai cấp công nhân,,.
-- `lenin-02` (124 ký tự): Cách mạng Tháng Mười Nga thành công, dẫn đến sự ra đời của Nhà nước Xôviết - nhà nước XHCN đầu tiên trên thế giới tại Nga,,.
+- `birth-09` (83 ký tự): Sự kiện Công xã Pari tại Pháp tạo ra hình thái nhà nước mới của giai cấp công nhân.
+- `lenin-02` (122 ký tự): Cách mạng Tháng Mười Nga thành công, dẫn đến sự ra đời của Nhà nước Xôviết - nhà nước XHCN đầu tiên trên thế giới tại Nga.
 - `lenin-05` (95 ký tự): Lênin lãnh đạo việc thành lập Liên bang Cộng hòa Xã hội Chủ nghĩa Xô viết (gọi tắt là Liên Xô).
 - `post-lenin-02` (91 ký tự): Chiến tranh thế giới thứ hai diễn ra, sau đó hệ thống xã hội chủ nghĩa thế giới hình thành.
 - `post-lenin-03` (133 ký tự): Hội nghị đại biểu các Đảng Cộng sản và công nhân quốc tế họp tại Mátxcơva, Nga thông qua 9 quy luật chung của công cuộc cải tạo XHCN.

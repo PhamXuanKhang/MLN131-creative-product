@@ -2,7 +2,7 @@ import ModeSwitcher from './ModeSwitcher'
 import { useMuseumStore } from '@/store/useMuseumStore'
 
 export default function Header() {
-  const setKnowledgeOpen = useMuseumStore((s) => s.setKnowledgeOpen)
+  const setChatOpen = useMuseumStore((s) => s.setChatOpen)
 
   return (
     <header className="museum-header">
@@ -14,10 +14,10 @@ export default function Header() {
       <button
         type="button"
         className="museum-header__search"
-        onClick={() => setKnowledgeOpen(true)}
-        title="Tra cứu sự kiện (Ctrl+K)"
+        onClick={() => setChatOpen(true)}
+        title="Hỏi đáp về nội dung bảo tàng (Ctrl+K)"
       >
-        Tra cứu
+        Hỏi đáp
         <kbd aria-hidden="true">Ctrl K</kbd>
       </button>
     </header>

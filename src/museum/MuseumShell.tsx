@@ -6,7 +6,7 @@ import { Suspense, useEffect, useLayoutEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Header from './Header'
 import OpeningOverlay from './OpeningOverlay/OpeningOverlay'
-import KnowledgePanel from './KnowledgePanel/KnowledgePanel'
+import ChatPanel from './ChatPanel/ChatPanel'
 import { useSelectedEvent } from './useSelectedEvent'
 import EventPanel from '@/shared/EventPanel/EventPanel'
 import Transition from '@/shared/Transition/Transition'
@@ -27,7 +27,7 @@ export default function MuseumShell() {
   const theme = THEME_BY_PATH[pathname] ?? 'world'
   const { event, select } = useSelectedEvent()
   const openingVisible = useMuseumStore((s) => s.openingVisible)
-  const knowledgeOpen = useMuseumStore((s) => s.knowledgeOpen)
+  const chatOpen = useMuseumStore((s) => s.chatOpen)
   const setAmbientMode = useMuseumStore((s) => s.setAmbient)
   useAudio()
 
@@ -37,13 +37,13 @@ export default function MuseumShell() {
     setAmbientMode(theme === 'neutral' ? null : theme)
   }, [theme, setAmbientMode])
 
-  // Ctrl/Cmd+K toggle Knowledge Panel — bỏ qua khi Opening còn phủ
+  // Ctrl/Cmd+K toggle Chat Panel (Hỏi đáp) — bỏ qua khi Opening còn phủ
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault()
         const state = useMuseumStore.getState()
-        if (!state.openingVisible) state.setKnowledgeOpen(!state.knowledgeOpen)
+        if (!state.openingVisible) state.setChatOpen(!state.chatOpen)
       }
     }
     window.addEventListener('keydown', onKey)
@@ -58,7 +58,7 @@ export default function MuseumShell() {
           <Outlet />
         </Suspense>
       </main>
-      {knowledgeOpen && <KnowledgePanel />}
+      {chatOpen && <ChatPanel />}
       {event && <EventPanel key={event.slug} event={event} onClose={() => select(null)} />}
       {openingVisible && <OpeningOverlay />}
       <Transition />

@@ -1,7 +1,7 @@
 /**
  * VietnamRenderer — kể chuyện cuộn dọc "tre mọc": thân tre ẢNH THẬT (đốt tre
- * repeat-y) chạy giữa, mỗi sự kiện một section (node mấu + CÀNH TRE ẢNH vươn
- * từ thân ra card giấy dó xen kẽ trái/phải), 2 khóm tre ảnh rủ hai mép nền đen.
+ * repeat-y) chạy giữa, mỗi sự kiện một section (CÀNH TRE ẢNH vươn từ thân ra
+ * card giấy dó xen kẽ trái/phải), 2 khóm tre ảnh rủ hai mép nền đen.
  * Click card → select(slug) mở EventPanel dùng chung từ MuseumShell.
  *
  * CSS mặc định là TRẠNG THÁI HOÀN CHỈNH (thân/cành hiện đủ, card hiện đủ) —
@@ -124,13 +124,12 @@ export default function VietnamRenderer({ era, events }: VietnamRendererProps) {
         { rotation: -6, ease: 'none', transformOrigin: '460px 260px', scrollTrigger: pageScrub },
       )
 
-      // Node pop → cành tre vươn ra (reveal clip-path từ gốc) → card bung
-      // đè lên ngọn cành — event-like, không scrub để không đứng nửa chừng
+      // Cành tre vươn ra (reveal clip-path từ gốc) → card bung đè lên
+      // ngọn cành — event-like, không scrub để không đứng nửa chừng
       gsap.utils.toArray<HTMLElement>('.vn-section').forEach((section, i) => {
         const card = section.querySelector('.giay-do-card')
-        const node = section.querySelector('.vn-node')
         const branch = section.querySelector('.vn-branch')
-        if (!card || !node) return
+        if (!card) return
         const cardOnLeft = i % 2 === 0 // nth-of-type(odd) → card bên trái trục tre
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -139,7 +138,6 @@ export default function VietnamRenderer({ era, events }: VietnamRendererProps) {
             toggleActions: 'play none none reverse',
           },
         })
-        tl.from(node, { scale: 0, duration: 0.35, ease: 'back.out(2)' }, 0)
         if (branch) {
           // Hiện dần từ gốc (phía thân tre) ra ngọn — card-trái dùng ảnh mirror
           // nên gốc nằm mép phải nội dung → thu inset trái thay vì inset phải
@@ -200,7 +198,6 @@ export default function VietnamRenderer({ era, events }: VietnamRendererProps) {
                   {event.year}
                 </span>
               )}
-              <span className="vn-node" aria-hidden="true" />
               {/* Cành mirror sẵn trong file cho card-trái — không scaleX(-1)
                   CSS vì mirror quanh origin gốc cành làm lệch hộp */}
               <img

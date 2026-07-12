@@ -1,6 +1,7 @@
 /* Nền đen + 2 khóm tre ảnh treo rủ hai mép — fixed sau content (z-index 0),
-   không nhận pointer. Khóm nghiêng nhẹ vào trong (rủ từ trên xuống), chân khóm
-   fade bằng mask để không lộ vết cắt ảnh; sway chỉ khi motion cho phép. */
+   không nhận pointer. Khóm nghiêng nhẹ vào trong (rủ từ trên xuống), cao 200vh
+   để gốc kéo dài ra ngoài viewport (container overflow:hidden cắt), không kết
+   thúc giữa màn hình; sway chỉ khi motion cho phép. */
 
 .vn-parallax {
   position: fixed;
@@ -14,7 +15,7 @@
   position: absolute;
   top: -2vh;
   width: clamp(180px, 22vw, 380px);
-  height: 72vh;
+  height: 200vh;
   transform-origin: top center;
 }
 
@@ -31,13 +32,14 @@
 .vn-parallax__bamboo img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: top;
   opacity: 0.22;
   transform-origin: top center;
-  /* Chân khóm tan dần — ảnh nguồn cắt ngang thân ở đáy */
-  mask-image: linear-gradient(180deg, #000 62%, transparent 96%);
-  -webkit-mask-image: linear-gradient(180deg, #000 62%, transparent 96%);
+  /* Fade chỉ ở đáy 200vh (ngoài viewport) — lưới an toàn che vết cắt ảnh
+     khi parallax yPercent kéo wrapper lên */
+  mask-image: linear-gradient(180deg, #000 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, #000 92%, transparent 100%);
 }
 
 /* Khóm phải: mirror trên img (không đặt trên wrapper để tween GSAP của wrapper

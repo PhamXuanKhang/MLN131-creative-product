@@ -11,6 +11,7 @@ Bảo tàng số tương tác về **Chủ nghĩa xã hội khoa học** — hà
 - **Vietnam Mode** (`/viet-nam`) — tuần 1 là danh sách; tuần 3 nâng lên bamboo scroll story.
 - **Event Panel dùng chung** — mở qua `?event=<slug>` (deep-link được), hero ảnh, mô tả, nguồn. ✅ tuần 1
 - **Trắc nghiệm** (`/trac-nghiem`) — khung tuần 4, nội dung câu hỏi do nhóm biên soạn.
+- **Hỏi đáp** (Ctrl+K hoặc nút trên header) — chatbot trả lời dựa riêng trên dữ liệu bảo tàng qua `/api/chat` (Vercel Function + OpenAI), kèm chip "Xem sự kiện" mở đúng Event Panel.
 
 ## Công nghệ
 
@@ -69,7 +70,17 @@ Import nội bộ dùng alias **`@/`** trỏ tới `src/`.
 
 ## Triển khai
 
-**Vercel** (SPA rewrite trong `vercel.json`): connect repo → framework Vite → build `npm run build` → output `dist/`. CI (`.github/workflows/ci.yml`) chạy lint + build mỗi lần push.
+**Vercel** (SPA rewrite trong `vercel.json`, `/api/*` đi vào Function trước): connect repo → framework Vite → build `npm run build` → output `dist/`. CI (`.github/workflows/ci.yml`) chạy lint + build mỗi lần push.
+
+### Chatbot Hỏi đáp — cấu hình OpenAI và Upstash Redis
+
+Endpoint `api/chat.ts` (model cố định `gpt-5.4-mini`, OpenAI Responses API) đọc key từ biến môi trường phía server — key **không bao giờ** xuất hiện trong bundle frontend.
+
+Endpoint chỉ nhận `POST` và dùng Upstash Redis làm bộ đếm dùng chung giữa mọi Vercel Function instance, giới hạn mỗi địa chỉ IP tối đa 6 câu hỏi hợp lệ/phút trước khi gọi OpenAI. Nếu Redis thiếu cấu hình hoặc gặp lỗi, endpoint trả `503` và không gọi OpenAI.
+
+- **Production / Preview / Development trên Vercel**: Project → **Marketplace** → kết nối một Upstash Redis database để nhận `UPSTASH_REDIS_REST_URL` và `UPSTASH_REDIS_REST_TOKEN`; sau đó vào **Settings → Environment Variables**, thêm `OPENAI_API_KEY` cho các môi trường cần dùng và redeploy.
+- **Local**: `cp .env.example .env`, điền OpenAI key cùng hai giá trị Upstash Redis REST, rồi chạy `vercel dev` (Vite `npm run dev` **không** serve `/api` — chatbot sẽ báo lỗi thân thiện, các phần khác hoạt động bình thường).
+- Không commit `.env` (đã gitignore); repo chỉ chứa `.env.example` với tên biến.
 
 ## Nguồn dữ liệu & ghi công
 

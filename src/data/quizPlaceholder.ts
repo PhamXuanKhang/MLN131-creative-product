@@ -34,12 +34,12 @@ export const quizQuestions: QuizQuestion[] = [
   },
   {
     id: 4,
-    question: 'Quốc tế I (Hội Liên hiệp Lao động Quốc tế) được thành lập vào năm nào?',
+    question: 'Quốc tế I (Hội Liên hiệp Công nhân Quốc tế) được thành lập vào năm nào?',
     options: ['1848', '1864', '1871', '1889'],
     correctIndex: 1,
     explanation:
       'Quốc tế I được thành lập ngày 28/9/1864 tại London nhằm đoàn kết và lãnh đạo phong trào công nhân quốc tế.',
-    eventSlug: 'quoc-te-i-hoi-lien-hiep-lao-dong-quoc-te-duoc-thanh-lap',
+    eventSlug: 'quoc-te-i-duoc-thanh-lap',
   },
   {
     id: 5,
@@ -48,7 +48,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 0,
     explanation:
       'Công xã Paris tồn tại từ ngày 18/3 đến 28/5/1871, là nhà nước kiểu mới đầu tiên của giai cấp công nhân.',
-    eventSlug: 'cong-xa-paris-ton-tai-tu-ngay-18-thang-3-den-28-thang-5-nam-1871',
+    eventSlug: 'su-kien-cong-xa-pari-tai-phap-tao-ra-hinh-thai-nha-nuoc-moi',
   },
   {
     id: 6,
@@ -57,7 +57,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 2,
     explanation:
       'Năm 1867, tập I của bộ Tư bản được xuất bản, đặt nền móng cho kinh tế chính trị học Mác-xít.',
-    eventSlug: 'tap-i-cua-bo-tu-ban-duoc-xuat-ban-lan-dau-nam-1867',
+    eventSlug: 'tap-i-bo-tu-ban-cua-c-mac-duoc-xuat-ban-tai-duc',
   },
   {
     id: 7,
@@ -66,7 +66,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 3,
     explanation:
       'Phong trào Hiến chương diễn ra ở Anh từ năm 1836 đến năm 1848, là phong trào chính trị rộng lớn đầu tiên của giai cấp công nhân.',
-    eventSlug: 'phong-trao-hien-chuong-dien-ra-tai-anh',
+    eventSlug: 'phong-trao-hien-chuong-cua-nhung-nguoi-lao-dong-dien-ra-tai',
   },
   {
     id: 8,
@@ -75,7 +75,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       'Năm 1831, công nhân dệt Lyon nổi dậy đấu tranh chống sự bóc lột của giai cấp tư sản.',
-    eventSlug: 'cuoc-khoi-nghia-cua-cong-nhan-det-lyon-lan-thu-nhat',
+    eventSlug: 'phong-trao-dau-tranh-cua-giai-cap-cong-nhan-tai-thanh-pho',
   },
   {
     id: 9,
@@ -89,7 +89,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 2,
     explanation:
       'Khẩu hiệu "Sống trong lao động hoặc chết trong chiến đấu" thể hiện tinh thần đấu tranh quyết liệt của công nhân Lyon.',
-    eventSlug: 'khau-hieu-song-trong-lao-dong-hoac-chet-trong-chien-dau',
+    eventSlug: 'phong-trao-dau-tranh-cua-giai-cap-cong-nhan-tai-thanh-pho',
   },
   {
     id: 10,
@@ -98,7 +98,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 2,
     explanation:
       'Tháng 6 năm 1844, công nhân dệt ở Xilêđi (Đức) đã nổi dậy chống lại sự áp bức và bóc lột.',
-    eventSlug: 'cuoc-noi-day-cua-cong-nhan-det-xiledi-duc-nam-1844',
+    eventSlug: 'phong-trao-cong-nhan-det-dien-ra-tai-thanh-pho-xiledi-nuoc',
   },
   {
     id: 11,
@@ -107,7 +107,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       'Tác phẩm "Làm gì?" (1902) khẳng định vai trò của đảng cách mạng kiểu mới của giai cấp công nhân.',
-    eventSlug: 'tac-pham-lam-gi-cua-v-i-lenin-nam-1902',
+    eventSlug: 'v-i-lenin-viet-tac-pham-lam-gi',
   },
   {
     id: 12,
@@ -121,7 +121,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 2,
     explanation:
       'Thắng lợi của Cách mạng Tháng Mười Nga năm 1917 đã đưa giai cấp công nhân lên nắm chính quyền và mở ra thời đại mới trong lịch sử nhân loại.',
-    eventSlug: 'cach-mang-thang-muoi-nga-va-su-ra-doi-nha-nuoc-xa-hoi-chu-nghia',
+    eventSlug: 'cach-mang-thang-muoi-nga-thanh-cong-dan-den-su-ra-doi-cua',
   },
   {
     id: 13,
@@ -130,7 +130,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 2,
     explanation:
       'Tác phẩm được viết năm 1875 nhằm phê phán những quan điểm sai lầm trong cương lĩnh của Đảng Công nhân Đức.',
-    eventSlug: 'phe-phan-cuong-linh-gota-nam-1875',
+    eventSlug: 'c-mac-viet-tac-pham-phe-phan-cuong-linh-gota',
   },
   {
     id: 14,
@@ -139,7 +139,7 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 2,
     explanation:
       'Ngày 30/12/1922, Liên bang Cộng hòa Xã hội Chủ nghĩa Xô viết chính thức được thành lập.',
-    eventSlug: 'lien-xo-duoc-thanh-lap-nam-1922',
+    eventSlug: 'lenin-lanh-dao-viec-thanh-lap-lien-bang-cong-hoa-xa-hoi-chu',
   },
   {
     id: 15,
@@ -153,6 +153,6 @@ export const quizQuestions: QuizQuestion[] = [
     correctIndex: 1,
     explanation:
       'Ph. Ăngghen là cộng sự thân thiết của C. Mác và cùng sáng lập chủ nghĩa xã hội khoa học.',
-    eventSlug: 'ph-angghen-cung-c-mac-sang-lap-chu-nghia-xa-hoi-khoa-hoc',
+    eventSlug: 'tac-pham-tuyen-ngon-cua-dang-cong-san-do-c-mac-va-ph',
   },
 ]

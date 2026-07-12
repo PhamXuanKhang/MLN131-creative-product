@@ -6,6 +6,7 @@
  */
 import { create } from 'zustand'
 import type { EraId } from '@/types/events'
+import type { ChatMessage } from '@/types/chat'
 
 export type AmbientKey = 'world' | 'vietnam' | null
 
@@ -15,25 +16,58 @@ interface MuseumState {
   eraFilter: EraId | null
   ambient: AmbientKey
   isTransitioning: boolean
-  /** Knowledge Panel (tra cứu, Ctrl+K) đang mở. */
-  knowledgeOpen: boolean
+  /** Chat Panel (hỏi đáp, Ctrl+K) đang mở. */
+  chatOpen: boolean
+  /** Lịch sử hội thoại — giữ trong store để đóng/mở panel không mất, hết phiên là mất. */
+  chatMessages: ChatMessage[]
+  /** Trạng thái request cũng ở store để đóng/mở panel không tạo request song song. */
+  chatPending: boolean
+  chatError: string | null
   dismissOpening: () => void
   setEraFilter: (era: EraId | null) => void
   setAmbient: (key: AmbientKey) => void
   setTransitioning: (value: boolean) => void
-  setKnowledgeOpen: (value: boolean) => void
+  setChatOpen: (value: boolean) => void
+  beginChatRequest: (message: ChatMessage) => boolean
+  completeChatRequest: (message: ChatMessage) => void
+  failChatRequest: (message: string) => void
 }
 
-export const useMuseumStore = create<MuseumState>((set) => ({
+export const useMuseumStore = create<MuseumState>((set, get) => ({
   openingVisible: true,
   eraFilter: null,
   ambient: null,
   isTransitioning: false,
-  knowledgeOpen: false,
+  chatOpen: false,
+  chatMessages: [],
+  chatPending: false,
+  chatError: null,
 
   dismissOpening: () => set({ openingVisible: false }),
   setEraFilter: (era) => set({ eraFilter: era }),
   setAmbient: (key) => set({ ambient: key }),
   setTransitioning: (value) => set({ isTransitioning: value }),
-  setKnowledgeOpen: (value) => set({ knowledgeOpen: value }),
+  setChatOpen: (value) => set({ chatOpen: value }),
+  beginChatRequest: (message) => {
+    if (get().chatPending) return false
+    set((s) => ({
+      chatMessages: [...s.chatMessages, message],
+      chatPending: true,
+      chatError: null,
+    }))
+    return true
+  },
+  completeChatRequest: (message) =>
+    set((s) => ({
+      chatMessages: [...s.chatMessages, message],
+      chatPending: false,
+      chatError: null,
+    })),
+  failChatRequest: (message) =>
+    set((s) => ({
+      chatMessages:
+        s.chatMessages.at(-1)?.role === 'user' ? s.chatMessages.slice(0, -1) : s.chatMessages,
+      chatPending: false,
+      chatError: message,
+    })),
 }))
