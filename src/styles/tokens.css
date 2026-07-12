@@ -35,9 +35,9 @@
 }
 
 [data-theme='vietnam'] {
-  /* Vietnam — tre & giấy dó */
-  --c-bg: #17361e;
-  --c-surface: #406343;
+  /* Vietnam — tre thật trên nền đen (đồng bộ nền world), giấy dó giữ bản sắc */
+  --c-bg: #111111;
+  --c-surface: #1a1a1a;
   --c-paper: #f5ecd8;
   --c-accent: #c69c5d;
   --c-ink: rgba(245, 236, 216, 0.94);

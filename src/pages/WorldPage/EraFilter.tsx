@@ -4,10 +4,16 @@
  * Pattern selector-chips (tham khảo 21st.dev), style bằng token --c-*.
  */
 import { ERAS } from '@/data/adapter'
+import type { EraMeta } from '@/types/events'
 import { useMuseumStore } from '@/store/useMuseumStore'
 import { ERA_COLOR, ERA_SHORT_LABEL } from './eraColors'
 
-export default function EraFilter() {
+interface EraFilterProps {
+  /** Danh sách era hiện chip — mặc định đủ 4; World truyền 3 (Việt Nam có phòng riêng). */
+  eras?: EraMeta[]
+}
+
+export default function EraFilter({ eras = ERAS }: EraFilterProps) {
   const eraFilter = useMuseumStore((s) => s.eraFilter)
   const setEraFilter = useMuseumStore((s) => s.setEraFilter)
 
@@ -21,7 +27,7 @@ export default function EraFilter() {
       >
         Tất cả
       </button>
-      {ERAS.map((era) => (
+      {eras.map((era) => (
         <button
           key={era.id}
           type="button"

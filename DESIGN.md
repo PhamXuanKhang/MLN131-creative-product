@@ -22,9 +22,9 @@ themes:
     c-ink-muted: "rgba(228,218,197,0.6)"
     c-line: "rgba(216,200,165,0.18)"
     c-glow: "0 0 18px rgba(216,200,165,0.3)"
-  vietnam: # tre & giấy dó — phòng Việt Nam
-    c-bg: "#17361e"
-    c-surface: "#406343"
+  vietnam: # tre thật trên nền đen (đồng bộ nền world) — phòng Việt Nam
+    c-bg: "#111111"
+    c-surface: "#1a1a1a"
     c-paper: "#f5ecd8"
     c-accent: "#c69c5d"
     c-ink: "rgba(245,236,216,0.94)"
@@ -130,10 +130,13 @@ components:
     rounded: "{rounded.sm}"
     note: "Button-card giấy dó của Vietnam Mode; hover lift -3px; media 4:3."
   bamboo-stalk:
-    stroke: "color-mix(--era-vietnam 70%, --c-paper), 12px, linecap round"
-    note: "SVG pathLength=1, stroke-dashoffset scrub theo scroll; node mấu tre --era-vietnam + lá border-radius 0 100%."
-  parallax-background:
-    note: "4 lớp fixed sau content: trời (gradient tĩnh) → núi (silhouette color-mix surface/bg) → sương (feGaussianBlur, opacity 0.14) → tre tiền cảnh (tối). pointer-events none."
+    image: "public/images/decor/bamboo-cane.webp — ảnh đốt tre thật, tile mấu-tới-mấu repeat-y (mối nối trùng mấu), width 26px, filter saturate 0.72 brightness 0.82, mask fade 90px đầu thân"
+    note: "Grow = clip-path inset dưới 100%→0 scrub theo scroll; MẶC ĐỊNH không clip (hiện đủ). Node mấu = pill --era-vietnam. Asset xuất từ scripts/decor/prepare-bamboo.mjs."
+  bamboo-branch:
+    image: "bamboo-branch.webp / bamboo-branch-left.webp (mirror sẵn trong file — không scaleX(-1) CSS vì lệch hộp quanh origin gốc cành)"
+    note: "Cành ảnh thật mỗi section, gốc neo cạnh thân (origin 4%/96% 72%), rotate ±16° dáng rủ, ngọn chui dưới card (card z 2 > cành z 1). Reveal = clip-path inset từ gốc ra ngọn trong timeline section, TRƯỚC card bloom; mặc định hiện đủ; <720px ẩn."
+  bamboo-side-decor:
+    note: "2 khóm tre ảnh thật (bamboo-cluster.webp) fixed góc trên trái/phải, rủ vào trong rotate ±4°, opacity 0.22, chân khóm mask fade; phải mirror trên img. Sway CSS ±0.7° chỉ khi motion; trôi yPercent -5 scrub. pointer-events none, z 0; <720px ẩn."
   wheel-timeline:
     note: "Cung ¼ bánh xe fixed mép phải (≥1024px), chấm THEO TỈ LỆ NĂM, progress fill --c-accent (pathLength=1), xoay nhẹ ±6° theo scroll. Active: --c-accent + glow."
 
@@ -156,7 +159,7 @@ Bản sắc thị giác là **"phim tư liệu + giấy dó"**: nền tối làm
 
 ### Semantic theme tokens (`--c-*`)
 Đổi theo `[data-theme]` trên `<html>` (MuseumShell set theo route; Opening tự ghim `neutral`):
-- **`--c-bg` / `--c-surface`** — canvas và bề mặt nổi của phòng (neutral than, world đen phim, vietnam lục tre).
+- **`--c-bg` / `--c-surface`** — canvas và bề mặt nổi của phòng (neutral than, world đen phim, vietnam đen cùng tông world — tre thật làm điểm nhấn).
 - **`--c-paper`** — bề mặt nội dung sáng (giấy); world ngả vàng phim cũ, vietnam là giấy dó `#f5ecd8`.
 - **`--c-accent`** — hành động, viền active, glow: đồng cổ / nâu phim / tre-mật ong.
 - **`--c-ink` / `--c-ink-muted`** — chữ trên nền tối (không dùng trên giấy).
@@ -186,7 +189,7 @@ Nguyên tắc: **serif kể chuyện, sans dẫn hướng** — Roboto không ma
 
 - Header sticky (z 100) + `main` flex-column; mỗi phòng tự chọn: World full-viewport (`flex:1; overflow:hidden`), Vietnam document-flow cao nhiều viewport (scroller là `<html>` — bắt buộc cho ScrollTrigger).
 - Nội dung đọc canh giữa `max-width` ~1080px; hiệu ứng (parallax, film) full-bleed phía sau/trên.
-- Responsive desktop-first: <720px giản lược hiệu ứng (tắt sương/tiền cảnh, tre về mép trái, 1 cột); WheelTimeline chỉ ≥1024px.
+- Responsive desktop-first: <720px giản lược hiệu ứng (ẩn khóm tre decor + cành, thân tre về mép trái, 1 cột); WheelTimeline chỉ ≥1024px.
 
 ## Elevation & Depth
 
@@ -226,10 +229,10 @@ Hình học đặc trưng: lá tre `border-radius: 0 100% 0 100%`; viền giấy
 
 ### Trưng bày
 - **`event-panel`** — panel chi tiết dùng chung (z 200): hero ảnh, giấy `--c-paper` với paper reveal + typing caret, nguồn, lightbox. Mở qua `?event=<slug>`.
-- **`world-marker` / `h-timeline-dot` / `era-filter-chip`** — bộ World: màu `--era-*`, active glow; timeline 0..1 theo năm (useTimeline + spreadPositions).
+- **`world-marker` / `h-timeline-dot` / `era-filter-chip`** — bộ World: màu `--era-*`, active glow; timeline 0..1 theo năm (useTimeline + spreadPositions). World chỉ trưng 3 giai đoạn quốc tế — sự kiện Việt Nam ở phòng riêng, deep-link (Quiz/Knowledge) tự về `/viet-nam?event=`.
 - **`giay-do-card`** — button-card giấy dó (Vietnam): media 4:3, date uppercase nâu, title display, summary clamp 3 dòng; bloom từ node khi motion.
-- **`bamboo-stalk` + `vn-node`** — thân tre SVG scrub theo scroll, node mấu + lá tại mỗi sự kiện, watermark năm sau section.
-- **`parallax-background`** — 4 lớp fixed (trời/núi/sương/tre) tốc độ -8/-16/-28 yPercent.
+- **`bamboo-stalk` + `vn-node` + `vn-branch`** — thân tre ẢNH THẬT (đốt tile repeat-y) grow bằng clip-path scrub; mỗi sự kiện: node mấu pill + cành tre ảnh reveal từ thân ra, card đè lên ngọn cành; watermark năm sau section.
+- **`bamboo-side-decor`** — 2 khóm tre ảnh thật rủ hai mép trên (opacity 0.22, sway khi motion, trôi -5 yPercent).
 - **`wheel-timeline`** — cung ¼ mép phải, chấm theo tỉ lệ năm (lộ khe 1946→1976), progress fill accent, điều hướng nhanh.
 - **`opening`** — sảnh 60/40: nội dung + stats | cuộn phim dọc + đèn pin bám chuột; CTA pill accent.
 

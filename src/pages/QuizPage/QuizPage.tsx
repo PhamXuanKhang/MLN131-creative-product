@@ -1,7 +1,8 @@
 /**
  * Quiz — phòng trắc nghiệm (theme neutral, shell set theo route).
  * Khung chạy trên quizPlaceholder; nội dung câu hỏi do nhóm bổ sung sau
- * (data thuần, không đụng code). "Xem trên bản đồ" nhảy về World qua ?event=.
+ * (data thuần, không đụng code). "Xem sự kiện" nhảy về World qua ?event=,
+ * riêng sự kiện Việt Nam về phòng Việt Nam (world map không còn mốc VN).
  */
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -46,7 +47,10 @@ function QuizPage() {
   const current: QuizQuestion = questions[currentIndex]
 
   const goToMap = () => navigate('/the-gioi')
-  const viewEventOnMap = (slug: string) => navigate(`/the-gioi?event=${slug}`)
+  const viewEvent = (slug: string) => {
+    const event = getEventBySlug(slug)
+    navigate(event?.era === 'vietnam' ? `/viet-nam?event=${slug}` : `/the-gioi?event=${slug}`)
+  }
 
   const handleSelect = (index: number) => {
     if (showResult) return
@@ -198,11 +202,9 @@ function QuizPage() {
               (() => {
                 const event = getEventBySlug(current.eventSlug)
                 return event ? (
-                  <button
-                    className="btn-go-to-map"
-                    onClick={() => viewEventOnMap(current.eventSlug)}
-                  >
-                    Xem sự kiện «{event.title}» trên bản đồ
+                  <button className="btn-go-to-map" onClick={() => viewEvent(current.eventSlug)}>
+                    Xem sự kiện «{event.title}»{' '}
+                    {event.era === 'vietnam' ? 'trong phòng Việt Nam' : 'trên bản đồ'}
                   </button>
                 ) : null
               })()}

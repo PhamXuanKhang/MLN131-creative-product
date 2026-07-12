@@ -1,13 +1,14 @@
 /**
- * VietnamRenderer — kể chuyện cuộn dọc "tre mọc": thân tre SVG chạy giữa,
- * mỗi sự kiện một section (node mấu tre + card giấy dó xen kẽ trái/phải),
- * nền parallax phía sau. Click card → select(slug) mở EventPanel dùng chung
- * từ MuseumShell (không render panel riêng).
+ * VietnamRenderer — kể chuyện cuộn dọc "tre mọc": thân tre ẢNH THẬT (đốt tre
+ * repeat-y) chạy giữa, mỗi sự kiện một section (node mấu + CÀNH TRE ẢNH vươn
+ * từ thân ra card giấy dó xen kẽ trái/phải), 2 khóm tre ảnh rủ hai mép nền đen.
+ * Click card → select(slug) mở EventPanel dùng chung từ MuseumShell.
  *
- * CSS mặc định là TRẠNG THÁI HOÀN CHỈNH (tre vẽ đủ, card hiện đủ) —
- * GSAP/ScrollTrigger chỉ thêm motion khi prefers-reduced-motion cho phép.
+ * CSS mặc định là TRẠNG THÁI HOÀN CHỈNH (thân/cành hiện đủ, card hiện đủ) —
+ * GSAP/ScrollTrigger chỉ thêm motion (reveal clip-path) khi
+ * prefers-reduced-motion cho phép.
  */
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -44,7 +45,10 @@ export default function VietnamRenderer({ era, events }: VietnamRendererProps) {
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) setActiveSlug(entry.target.getAttribute('data-slug'))
+          if (entry.isIntersecting) {
+            const slug = entry.target.getAttribute('data-slug')
+            setActiveSlug(slug)
+          }
         }
       },
       { rootMargin: '-45% 0px -45% 0px' },
@@ -53,23 +57,40 @@ export default function VietnamRenderer({ era, events }: VietnamRendererProps) {
     return () => observer.disconnect()
   }, [events.length])
 
-  const scrollToSection = (slug: string) => {
+  const scrollToSection = useCallback((slug: string) => {
     const section = rootRef.current?.querySelector(`.vn-section[data-slug="${CSS.escape(slug)}"]`)
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     section?.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'center' })
-  }
+  }, [])
+
+  // Deep-link ?event= (từ Quiz/Knowledge hoặc load thẳng URL) → cuộn tới section.
+  // Chờ opening đóng (opening khóa scroll <html>, cuộn sớm sẽ mất); bỏ qua nếu
+  // section đã ở giữa viewport (user vừa click card đang xem).
+  useEffect(() => {
+    if (openingVisible || !selected || selected.era !== 'vietnam') return
+    const section = rootRef.current?.querySelector(
+      `.vn-section[data-slug="${CSS.escape(selected.slug)}"]`,
+    )
+    if (!section) return
+    const bounds = section.getBoundingClientRect()
+    const centerTop = window.innerHeight * 0.45
+    const centerBottom = window.innerHeight * 0.55
+    if (bounds.top <= centerBottom && bounds.bottom >= centerTop) return
+    scrollToSection(selected.slug)
+  }, [selected, openingVisible, scrollToSection])
 
   useGSAP(
     () => {
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       if (prefersReduced) return
 
-      // Thân tre mọc theo scroll — ngòi bám reading line ~65% viewport
+      // Thân tre mọc theo scroll — reveal clip-path từ trên xuống,
+      // ngòi bám reading line ~65% viewport
       gsap.fromTo(
-        '.vn-stalk__main, .vn-stalk__highlight',
-        { strokeDashoffset: 1 },
+        '.vn-stalk',
+        { clipPath: 'inset(0 0 100% 0)' },
         {
-          strokeDashoffset: 0,
+          clipPath: 'inset(0 0 0% 0)',
           ease: 'none',
           scrollTrigger: {
             trigger: '.vn-sections',
@@ -80,17 +101,15 @@ export default function VietnamRenderer({ era, events }: VietnamRendererProps) {
         },
       )
 
-      // Parallax: 3 lớp trôi ngược tốc độ khác nhau theo cùng tiến trình trang
-      // (lớp fixed nên yPercent nhỏ là đủ chiều sâu; trời đứng yên)
+      // Khóm tre 2 bên trôi nhẹ ngược chiều cuộn theo tiến trình trang
+      // (lớp fixed nên yPercent nhỏ là đủ chiều sâu)
       const pageScrub = {
         trigger: '.vn-sections',
         start: 'top bottom',
         end: 'bottom top',
         scrub: 0.6,
       }
-      gsap.to('.vn-parallax__mountains', { yPercent: -8, ease: 'none', scrollTrigger: pageScrub })
-      gsap.to('.vn-parallax__mist', { yPercent: -16, ease: 'none', scrollTrigger: pageScrub })
-      gsap.to('.vn-parallax__foreground', { yPercent: -28, ease: 'none', scrollTrigger: pageScrub })
+      gsap.to('.vn-parallax__bamboo', { yPercent: -5, ease: 'none', scrollTrigger: pageScrub })
 
       // WheelTimeline: progress fill + xoay nhẹ rotor theo tiến trình trang
       gsap.fromTo(
@@ -105,33 +124,47 @@ export default function VietnamRenderer({ era, events }: VietnamRendererProps) {
         { rotation: -6, ease: 'none', transformOrigin: '460px 260px', scrollTrigger: pageScrub },
       )
 
-      // Node pop + card bung từ node — event-like, không scrub để card
-      // không bao giờ đứng nửa chừng
+      // Node pop → cành tre vươn ra (reveal clip-path từ gốc) → card bung
+      // đè lên ngọn cành — event-like, không scrub để không đứng nửa chừng
       gsap.utils.toArray<HTMLElement>('.vn-section').forEach((section, i) => {
         const card = section.querySelector('.giay-do-card')
         const node = section.querySelector('.vn-node')
+        const branch = section.querySelector('.vn-branch')
         if (!card || !node) return
         const cardOnLeft = i % 2 === 0 // nth-of-type(odd) → card bên trái trục tre
-        gsap
-          .timeline({
-            scrollTrigger: {
-              trigger: section,
-              start: 'top 70%',
-              toggleActions: 'play none none reverse',
-            },
-          })
-          .from(node, { scale: 0, duration: 0.35, ease: 'back.out(2)' })
-          .from(
-            card,
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 70%',
+            toggleActions: 'play none none reverse',
+          },
+        })
+        tl.from(node, { scale: 0, duration: 0.35, ease: 'back.out(2)' }, 0)
+        if (branch) {
+          // Hiện dần từ gốc (phía thân tre) ra ngọn — card-trái dùng ảnh mirror
+          // nên gốc nằm mép phải nội dung → thu inset trái thay vì inset phải
+          tl.fromTo(
+            branch,
+            { clipPath: cardOnLeft ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)' },
             {
-              autoAlpha: 0,
-              scale: 0.88,
-              x: cardOnLeft ? 24 : -24,
-              duration: 0.6,
-              ease: 'back.out(1.4)',
+              clipPath: cardOnLeft ? 'inset(0 0 0 0%)' : 'inset(0 0% 0 0)',
+              duration: 0.5,
+              ease: 'power2.inOut',
             },
-            '-=0.1',
+            0.1,
           )
+        }
+        tl.from(
+          card,
+          {
+            autoAlpha: 0,
+            scale: 0.88,
+            x: cardOnLeft ? 24 : -24,
+            duration: 0.6,
+            ease: 'back.out(1.4)',
+          },
+          0.4,
+        )
       })
     },
     // revertOnUpdate: khi openingVisible đổi phải revert context cũ trước khi
@@ -157,18 +190,10 @@ export default function VietnamRenderer({ era, events }: VietnamRendererProps) {
         </header>
 
         <div className="vn-sections">
-          {/* Thân tre: pathLength=1 → dash math 0..1, không cần đo chiều cao */}
-          <svg
-            className="vn-stalk"
-            viewBox="0 0 24 100"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <path className="vn-stalk__main" d="M12 0 V100" pathLength="1" />
-            <path className="vn-stalk__highlight" d="M9 0 V100" pathLength="1" />
-          </svg>
+          {/* Thân tre: ảnh đốt thật repeat-y — mối tile nằm đúng mấu nên liền mạch */}
+          <div className="vn-stalk" aria-hidden="true" />
 
-          {events.map((event) => (
+          {events.map((event, i) => (
             <section key={event.id} className="vn-section" data-slug={event.slug}>
               {event.year > 0 && (
                 <span className="vn-section__year" aria-hidden="true">
@@ -176,6 +201,19 @@ export default function VietnamRenderer({ era, events }: VietnamRendererProps) {
                 </span>
               )}
               <span className="vn-node" aria-hidden="true" />
+              {/* Cành mirror sẵn trong file cho card-trái — không scaleX(-1)
+                  CSS vì mirror quanh origin gốc cành làm lệch hộp */}
+              <img
+                className="vn-branch"
+                src={
+                  i % 2 === 0
+                    ? '/images/decor/bamboo-branch-left.webp'
+                    : '/images/decor/bamboo-branch.webp'
+                }
+                alt=""
+                aria-hidden="true"
+                decoding="async"
+              />
               <GiayDoCard
                 event={event}
                 active={selected?.slug === event.slug}

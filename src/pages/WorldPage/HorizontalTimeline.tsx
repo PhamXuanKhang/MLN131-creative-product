@@ -1,5 +1,5 @@
 /**
- * Timeline ngang — thanh overlay dưới map: 33 sự kiện gom thành ~9 cụm theo
+ * Timeline ngang — thanh overlay dưới map: 25 sự kiện thế giới gom thành ~7 cụm theo
  * giai đoạn (vừa khung, không scroll), mỗi cụm có badge số + khoảng năm + dãy
  * chấm sự kiện; cụm chứa sự kiện đang xem hiện thêm dòng tên sự kiện. Nút
  * ◀ ▶ ở hai đầu đi tuần tự qua từng sự kiện. Hai chiều qua URL: click →
@@ -10,7 +10,7 @@ import type { EraId, HistoricalEvent } from '@/types/events'
 import { ERA_COLOR } from './eraColors'
 import './HorizontalTimeline.css'
 
-/** Cỡ cụm mong muốn — 33 sự kiện / 4 ≈ 9 cụm, vừa khung 1024px+ */
+/** Cỡ cụm mong muốn — 25 sự kiện / 4 ≈ 7 cụm, vừa khung 1024px+ */
 const GROUP_TARGET_SIZE = 4
 
 /**

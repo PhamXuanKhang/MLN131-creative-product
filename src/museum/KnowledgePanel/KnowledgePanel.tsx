@@ -2,10 +2,12 @@
  * Knowledge Panel — tra cứu sự kiện (Ctrl+K hoặc nút Tra cứu trên header):
  * search không dấu trên title/description + filter era (tái dùng EraFilter/store),
  * kết quả group theo giai đoạn; chọn → mở EventPanel qua ?event= trên route
- * hiện tại. Pattern command-palette (tham khảo 21st.dev), CSS thuần --c-*.
+ * hiện tại — riêng sự kiện Việt Nam điều hướng về /viet-nam (world map không
+ * còn mốc VN). Pattern command-palette (tham khảo 21st.dev), CSS thuần --c-*.
  */
 import { useEffect, useRef, useState } from 'react'
-import { ERAS, getAllEvents } from '@/data/adapter'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { ERAS, getAllEvents, getEventBySlug } from '@/data/adapter'
 import { useMuseumStore } from '@/store/useMuseumStore'
 import { useSelectedEvent } from '../useSelectedEvent'
 import EraFilter from '@/pages/WorldPage/EraFilter'
@@ -26,6 +28,8 @@ export default function KnowledgePanel() {
   const setKnowledgeOpen = useMuseumStore((s) => s.setKnowledgeOpen)
   const eraFilter = useMuseumStore((s) => s.eraFilter)
   const { select } = useSelectedEvent()
+  const navigate = useNavigate()
+  const { pathname } = useLocation()
   const [query, setQuery] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -60,7 +64,12 @@ export default function KnowledgePanel() {
   })).filter((group) => group.events.length > 0)
 
   const pick = (slug: string) => {
-    select(slug)
+    const ev = getEventBySlug(slug)
+    if (ev?.era === 'vietnam' && pathname !== '/viet-nam') {
+      navigate(`/viet-nam?event=${slug}`)
+    } else {
+      select(slug)
+    }
     close()
   }
 

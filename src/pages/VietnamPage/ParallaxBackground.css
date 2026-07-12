@@ -1,5 +1,6 @@
-/* Parallax 4 lớp — fixed sau content (z-index 0), không nhận pointer.
-   Lớp cao 130% + neo đáy để tween yPercent không lộ mép. */
+/* Nền đen + 2 khóm tre ảnh treo rủ hai mép — fixed sau content (z-index 0),
+   không nhận pointer. Khóm nghiêng nhẹ vào trong (rủ từ trên xuống), chân khóm
+   fade bằng mask để không lộ vết cắt ảnh; sway chỉ khi motion cho phép. */
 
 .vn-parallax {
   position: fixed;
@@ -9,66 +10,74 @@
   pointer-events: none;
 }
 
-.vn-parallax__layer {
+.vn-parallax__bamboo {
   position: absolute;
-  left: 0;
+  top: -2vh;
+  width: clamp(180px, 22vw, 380px);
+  height: 72vh;
+  transform-origin: top center;
+}
+
+.vn-parallax__bamboo--left {
+  left: -3vw;
+  transform: rotate(4deg);
+}
+
+.vn-parallax__bamboo--right {
+  right: -3vw;
+  transform: rotate(-4deg);
+}
+
+.vn-parallax__bamboo img {
   width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: top;
+  opacity: 0.22;
+  transform-origin: top center;
+  /* Chân khóm tan dần — ảnh nguồn cắt ngang thân ở đáy */
+  mask-image: linear-gradient(180deg, #000 62%, transparent 96%);
+  -webkit-mask-image: linear-gradient(180deg, #000 62%, transparent 96%);
 }
 
-/* (1) Trời — gradient tĩnh, speed 0 */
-.vn-parallax__sky {
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--c-bg) 62%, var(--c-paper)) 0%,
-    color-mix(in srgb, var(--c-bg) 85%, var(--c-paper)) 34%,
-    var(--c-bg) 68%
-  );
+/* Khóm phải: mirror trên img (không đặt trên wrapper để tween GSAP của wrapper
+   không phải phân rã matrix scale âm) */
+.vn-parallax__bamboo--right img {
+  transform: scaleX(-1);
 }
 
-/* (2) Núi */
-.vn-parallax__mountains {
-  bottom: -6%;
-  height: 72%;
-  will-change: auto;
+@media (prefers-reduced-motion: no-preference) {
+  .vn-parallax__bamboo--left img {
+    animation: vn-sway 9s ease-in-out infinite alternate;
+  }
+
+  .vn-parallax__bamboo--right img {
+    animation: vn-sway-flip 9s ease-in-out infinite alternate;
+    animation-delay: -4.5s;
+  }
 }
 
-.vn-parallax__mountain-far {
-  fill: color-mix(in srgb, var(--c-surface) 55%, var(--c-bg));
+@keyframes vn-sway {
+  from {
+    transform: rotate(-0.7deg);
+  }
+  to {
+    transform: rotate(0.7deg);
+  }
 }
 
-.vn-parallax__mountain-near {
-  fill: color-mix(in srgb, var(--c-surface) 82%, var(--c-bg));
+@keyframes vn-sway-flip {
+  from {
+    transform: scaleX(-1) rotate(-0.7deg);
+  }
+  to {
+    transform: scaleX(-1) rotate(0.7deg);
+  }
 }
 
-/* (3) Sương */
-.vn-parallax__mist {
-  bottom: -10%;
-  height: 80%;
-  will-change: transform;
-}
-
-.vn-parallax__mist ellipse {
-  fill: color-mix(in srgb, var(--c-paper) 75%, var(--c-bg));
-  opacity: 0.14;
-}
-
-/* (4) Tre tiền cảnh */
-.vn-parallax__foreground {
-  bottom: -14%;
-  height: 118%;
-  will-change: transform;
-}
-
-.vn-parallax__bamboo path {
-  fill: color-mix(in srgb, var(--c-bg) 68%, #000);
-  opacity: 0.9;
-}
-
-/* Mobile: giản lược — bỏ sương + tiền cảnh, giữ trời + núi tĩnh */
+/* Mobile: giản lược — ẩn cả 2 khóm (thân tre đã dồn mép trái, decor chồng lên rối) */
 @media (max-width: 720px) {
-  .vn-parallax__mist,
-  .vn-parallax__foreground {
+  .vn-parallax__bamboo {
     display: none;
   }
 }
