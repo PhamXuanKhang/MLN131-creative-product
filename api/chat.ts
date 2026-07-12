@@ -11,7 +11,7 @@
  * File này nằm ngoài tsconfig của app (Vercel tự compile) nên tự khai báo
  * kiểu tối giản thay vì import từ src/ (tránh phụ thuộc alias @).
  */
-import content from '../src/data/content.json'
+import content from '../src/data/content.json' with { type: 'json' }
 
 const MODEL = 'gpt-5.4-mini'
 const OPENAI_URL = 'https://api.openai.com/v1/responses'
